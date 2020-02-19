@@ -1,9 +1,13 @@
-<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+<?php
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-add_shortcode( 'all_upcoming_shows', 'show_all_upcoming_shows' );
-function show_all_upcoming_shows() {
+add_shortcode( 'wpspx_all_upcoming_shows', 'wpspx_show_all_upcoming_shows' );
+function wpspx_show_all_upcoming_shows()
+{
 
-	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader.php';
+	$shows = Show::find_all_in_future();
+	$wp_shows = get_wp_shows_from_spektrix_shows($shows);
+	$shows = filter_published($shows,$wp_shows);
 
 	$all_performances = Performance::find_all_in_future(true);
 	$all_performances = $fake_performances + $all_performances;
@@ -32,26 +36,12 @@ function show_all_upcoming_shows() {
 
 	<section id="all_upcoming_shows">
 
-		<div class="row">
-			<div class="show-filter span12">
-			
-				<h3>Showing in</h3>
-				<hr>
-				<ul class="nav nav-pills month-jump">
-					<?php foreach($performance_months as $month => $month_name): $month = date("F Y",$month); ?>
-					<li><a href="#<?php echo strtolower(str_replace(' ','-',$month)) ?>"><?php echo $month ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-
-			</div>
-		</div>
-
 		<div class="all_shows">
 		<?php foreach($performance_months as $month => $shows): $month = date("F Y",$month); ?>
 
 			<h2 id="<?php echo strtolower(str_replace(' ','-',$month)) ?>" class="month"><?php echo $month ?></h2>
-			<div class="row">
-			<?php 
+
+			<?php
 				$i = 0;foreach($shows as $show) {
 				$performances = $show[1];
 				$show = $show[0];
@@ -67,13 +57,13 @@ function show_all_upcoming_shows() {
 				endforeach;
 				if(array_sum($number_tikets) === 0) {
 					$is_sold_out = true;
-				} 
+				}
 				?>
-				<div data-tickets-left="<?php echo array_sum($number_tikets); ?>" 
+				<div data-tickets-left="<?php echo array_sum($number_tikets); ?>"
 					class="span2 show <?php echo $show->website_category; ?> <?php if($is_sold_out): ?>sold-out<?php endif; ?>">
 					<?php if($is_sold_out): ?><div class="sold-out-container"></div><?php endif; ?>
 					<a href="<?php echo get_permalink($show_id); ?>">
-						<?php 
+						<?php
 						$poster = get_the_post_thumbnail($show_id, 'poster');
 						if($poster):
 							echo $poster;
@@ -90,8 +80,8 @@ function show_all_upcoming_shows() {
 							$show_terms = get_the_terms($show_id, 'genres');
 							foreach ($show_terms as $show_term): ?>
 								<li><?php echo $show_term->name; ?></li>
-							<?php 
-							endforeach; 
+							<?php
+							endforeach;
 							?>
 						</ul>
 
@@ -104,5 +94,5 @@ function show_all_upcoming_shows() {
 
 	</section>
 
-	<?php 
+	<?php
 }

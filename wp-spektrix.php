@@ -1,16 +1,14 @@
-<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-
+<?php
 /*
- Plugin Name: WPSPX (WordPress & Spektrix)
- Plugin URI: http://pixelpudu.com/wpspx
- Description: A WordPress plugin that intergrates WordPress with Spektrix API V2
- Version: 1.1.0
- Author: Martin Greenwood
- Author URI: http://www.pixelpudu.com/
- License: GPL2+
- Text Domain: wpspx
- Domain Path: /languages
- License: GPL v2 or later
+ * Plugin Name: WPSPX (WordPress & Spektrix)
+ * Plugin URI: https://wearebeard.com/wpwpx
+ * Description: A WordPress plugin that intergrates WordPress with Spektrix API
+ * Version: 1.0.0
+ * Author: Martin Greenwood
+ * Author URI: https://martingreenwood.com
+ * Text Domain: wpspx
+ * Domain Path: /languages
+ * License: GPL v2 or later
 
  Copyright © 2016 Martin Greenwood
 
@@ -26,34 +24,30 @@
 
  */
 
-if (defined('WPSPX')) {
-	// The plugin was already loaded (maybe as another plugin with different directory name)
-} else {
-	define( 'WPSPX', true) ;
-	define( 'WPPSX_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
-	define( 'WPPSX_PLUGIN_URL', plugin_dir_url(__FILE__));
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-	register_activation_hook(__FILE__,'create_pages'); 
-	
-	// load config settings
-	require WPPSX_PLUGIN_DIR . 'config.php';
+class WPSPX {
 
-	//  define loaded and local plugin dir
-	define( 'SPEKTRIX_URL', 'https://api.system.spektrix.com/'.SPEKTRIX_USER.'/api/v2/');
-	define( 'SPEKTRIX_WEB_URL', 'https://system.spektrix.com/'.SPEKTRIX_USER.'/website/secure/');
-	define( 'THEME_SLUG', wp_get_theme()->get( 'Name' ));
+	private static $instance = null;
+	private $wpspx;
 
-	// load plugin settings
-	require WPPSX_PLUGIN_DIR . 'settings.php';
+	public static function get_instance()
+	{
+		if ( is_null( self::$instance ) )
+		{
+			self::$instance = new self;
+		}
+		return self::$instance;
+	}
 
-	/*----------  load action links  ----------*/
-	add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'add_action_links' );
-	function add_action_links ( $links ) {
-	    $mylinks = array(
-	        '<a href="' . admin_url( 'options-general.php?page=wpspx-settings' ) . '">Settings</a>',
-	        '<a target="_blank" href="https://pixelpudu.com/submit-ticket/">Support</a>',
-	        '<a target="_blank" href="https://paypal.me/martingreenwood">Donate</a>',
-	    );
-	    return array_merge( $links, $mylinks );
+	private function __construct()
+	{
+
+		register_activation_hook( __FILE__, 'wpspx_create_pages' );
 	}
 }
+
+include plugin_dir_path( __FILE__ )  . '/config.php';
+include plugin_dir_path( __FILE__ )  . '/settings.php';
+
+WPSPX::get_instance();

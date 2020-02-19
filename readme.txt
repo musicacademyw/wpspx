@@ -1,35 +1,33 @@
 === WPSPX ===
-
-Contributors: pixelpudu
-Donate link: https://www.paypal.me/martingreenwood
+Contributors: beardeddev
 Tags: spektrix, tickets, api, booking, theatre
 Requires at least: 4.3
-Tested up to: 4.5
+Tested up to: 5.3.2
 Stable tag: 1.0.0
 License: GPL v2 or later
 Author: Martin Greenwood
-Author URI: https://profiles.wordpress.org/pixelpudu/
 
-A plugin for WordPress that intergrates with Spektrix API V2.
+This plugin help connect your WordPress website to the Spektrix API
 
 == Description ==
 
-This plugin allows you to quickly integrate your Spektrix API data into your WordPress website. 
+This plugin allows you to quickly integrate your Spektrix API data into your WordPress website.
 
 == Features out of the Box ==
 
 - Display a list of all upcoming shows
-- Display shows for the next week / six weeks
+- Display shows for the next(s)
 - Display a list of matinee shows
-- Display the Spektrix basket, checkout and my account (We recommend acquiring a SSL Certificate)
+- Display a list of evening shows
+- Display the Spektrix basket, checkout and my account
 
 == Frequently Asked Questions ==
 
-= I have an error when trying to add a show "Oops, no XML received from Spektrix". = 
+= I have an error when trying to add a show "Oops, no XML received from Spektrix". =
 Double check your API, account name and CRT/Key locations
 
 = My data is out of date =
-Visit the Settings page and delete the cache or do it manually by emptying the cache folder withn the plugin folder
+Visit the Settings page and delete the cache or do it manually by emptying the cache folder within the plugin folder
 
 == Installation ==
 
@@ -45,27 +43,8 @@ Visit the Settings page and delete the cache or do it manually by emptying the c
 
 1. WPSPX Settings
 
-== Donations ==
-
-If you would like to donate to the future development of this plugin you can do so [here](https://www.paypal.me/martingreenwood)
-
-== Support ==
-
-Even though this plugin is completely free, any help with installation or personal support will be charged at a standard hourly rate. 
-
 == Changelog ==
-
-= 1.1.0 =
-
-tba
-
-= 1.0.1 =
-
-Removed CMB2 plugin from human made
-Added custom meta box for poster images
-Added ABSPATH Check
-Added a bunch of empty dir index files
 
 = 1.0.0 =
 
-Initial Release.
+initial release

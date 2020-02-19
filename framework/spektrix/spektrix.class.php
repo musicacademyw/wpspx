@@ -8,8 +8,7 @@ class Spektrix
 {
 
   private static $api_key = SPEKTRIX_API;
-  private static $api_url = SPEKTRIX_URL;
-  protected $wp_theme = THEME_SLUG;
+  private static $api_url = SPEKTRIX_API_URL;
 
   public static function get_path_to_cert()
   {
@@ -54,26 +53,6 @@ class Spektrix
     return $string;
   }
 
-  function post_xml($xml_url,$params)
-  {
-    $xml_builder = '<?xml version="1.0" encoding="utf-8"?>';
-    $curl = curl_init();
-    $options = array(
-      CURLOPT_HTTPHEADER => array('Content-Type: text/xml'),
-      CURLOPT_URL => $xml_url,
-      CURLOPT_HEADER => 0,
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_POST => 1,
-      CURLOPT_POSTFIELDS => $xml_builder,
-      CURLOPT_SSLCERT => self::get_path_to_cert(),
-      CURLOPT_SSLKEY => self::get_path_to_key()
-    );
-  	curl_setopt_array($curl, $options);
-  	$string = curl_exec($curl);
-  	curl_close($curl);
-    return $string;
-  }
-
   function get_object($resource,$params=array())
   {
     $file = new CachedFile($resource, $params);
@@ -94,7 +73,7 @@ class Spektrix
     }
     catch (Exception $e){ ?>
         <div class="notice notice-error">
-          <p>Oops, <?php echo $e->getMessage(); ?>. Double check you settings are correct or <a href="https://pixelpudu.freshdesk.com/">contact us for support</a></p>
+          <p><?php echo $e->getMessage(); ?>. Double check you WPSPX settings are correct</p>
         </div>
     <?php
     }
@@ -103,14 +82,6 @@ class Spektrix
   function redirectAsError(){
     header("Location: " . home_url());
     die();
-  }
-
-  function post_object($resource,$params=array())
-  {
-    $xml_url = self::$api_url.$resource;
-    $xml_string = $this->post_xml($xml_url,$params);
-    $xml_as_object = simplexml_load_string($xml_string);
-    return $xml_as_object;
   }
 
   function get_event($id)
@@ -214,8 +185,4 @@ class Spektrix
     return $this->get_object('instance-status',array('instance_id'=>$performance_id));
   }
 
-  function login($email,$password)
-  {
-    $this->post_object('customers/authenticate',array('Email'=>$email,'Password'=>$password));
-  }
 }

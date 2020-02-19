@@ -7,12 +7,11 @@
 		'show',
 		'performance',
 		'pricelist',
+		'plan',
 		'availability',
-		'fakeshow',
-		'fakeperformance'
 	);
 
 	foreach($classnames as $classname) {
-		$filename = WPPSX_PLUGIN_DIR . "framework/spektrix/". $classname .".class.php";
+		$filename = plugin_dir_path( __FILE__ ) . "/spektrix/". $classname .".class.php";
 		require $filename;
 	}

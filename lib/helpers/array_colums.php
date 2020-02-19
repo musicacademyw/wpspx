@@ -1,4 +1,5 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
 /**
  * This file is part of the array_column library
  *

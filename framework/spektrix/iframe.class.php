@@ -8,8 +8,8 @@ class iFrame
   private $params_string;
   public $secure;
 
-  private $secure_prefix = SPEKTRIX_WEB_URL;
-  private $insecure_prefix = SPEKTRIX_WEB_URL;
+  private $secure_prefix = SPEKTRIX_SECURE_WEB_URL;
+  private $insecure_prefix = SPEKTRIX_NON_SECURE_WEB_URL;
 
   function __construct($page_name, $params = false, $secure = false){
     $this->page_name = strtolower($page_name);
@@ -18,7 +18,7 @@ class iFrame
   }
 
   public function iframe_url(){
-    return $this->prefix($this->secure) . $this->page_name . '.aspx?' . $this->params_string . 'stylesheet=style.css&resize=true';
+    return $this->prefix($this->secure) . $this->page_name . '.aspx?' . $this->params_string . '&resize=true';
   }
 
   public function render_iframe(){
