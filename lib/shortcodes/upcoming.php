@@ -1,38 +1,38 @@
 <?php
 if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-/**
- * Template Name: WPSPX Basket
- */
-get_header();
+add_shortcode( 'wpspx_all_upcoming_shows', 'wpspx_show_all_upcoming_shows' );
+function wpspx_show_all_upcoming_shows()
+{
 
-$shows = Show::find_all_in_future();
-$wp_shows = get_wp_shows_from_spektrix_shows($shows);
-$shows = filter_published($shows,$wp_shows);
-$all_performances = Performance::find_all_in_future(true);
-$all_performances = $fake_performances + $all_performances;
+	$shows = Show::find_all_in_future();
+	$wp_shows = get_wp_shows_from_spektrix_shows($shows);
+	$shows = filter_published($shows,$wp_shows);
 
-$api = new Spektrix();
-$availabilities = $api->get_availabilities();
+	$all_performances = Performance::find_all_in_future(true);
+	$all_performances = $fake_performances + $all_performances;
 
-uasort($all_performances, function($a, $b) {
-	return $a[0]->start_time->format('U') - $b[0]->start_time->format('U');
-});
-$performance_months = array();
-foreach($all_performances as $show_id => $ps):
-	if(!is_in_past($ps)){
-		$months = get_performance_months($ps);
-		foreach($months as $month):
-			if(array_key_exists($show_id,$shows)){
-				$month = strtotime($month);
-				$performance_months[$month][] = array($shows[$show_id],get_performance_range($ps,""));
-			}
-		endforeach;
-	}
-endforeach;
-ksort($performance_months);
+	$api = new Spektrix();
+	$availabilities = $api->get_availabilities();
 
-?>
+	uasort($all_performances, function($a, $b) {
+		return $a[0]->start_time->format('U') - $b[0]->start_time->format('U');
+	});
+	$performance_months = array();
+	foreach($all_performances as $show_id => $ps):
+		if(!is_in_past($ps)){
+	    	$months = get_performance_months($ps);
+			foreach($months as $month):
+				if(array_key_exists($show_id,$shows)){
+					$month = strtotime($month);
+					$performance_months[$month][] = array($shows[$show_id],get_performance_range($ps,""));
+				}
+	    	endforeach;
+		}
+	endforeach;
+	ksort($performance_months);
+
+	?>
 
 	<section id="all_upcoming_shows">
 
@@ -68,7 +68,7 @@ ksort($performance_months);
 						if($poster):
 							echo $poster;
 						else: ?>
-						<img src="<?php echo plugin_dir_url( __DIR__ ); ?>/lib/assets/no-image.jpg">
+						<img src="<?php echo WPPSX_PLUGIN_URL; ?>lib/assets/no-image.jpg">
 						<?php endif; ?>
 					</a>
 					<div class="info">
@@ -94,4 +94,5 @@ ksort($performance_months);
 
 	</section>
 
-<?php get_footer(); ?>
+	<?php
+}

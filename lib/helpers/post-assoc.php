@@ -35,7 +35,7 @@ function spectrix_record_inner_custom_box( $post ) {
 		// (We use this to ensure we don't ask the user to choose a shows in Spectrix that has already been added to WP)
 		$wp_shows = array();
 		foreach($shows_in_wordpress as $siw){
-			$wp_shows[] = get_post_meta($siw->ID,'_spektrix_id',true);
+			$wp_shows[] = get_post_meta($siw->ID,'_spectrix_id',true);
 		}
 
 		echo '<label for="spectrix_data_field">';
@@ -49,8 +49,8 @@ function spectrix_record_inner_custom_box( $post ) {
 		endforeach;
 		echo '</select>';
 	} else {
-		if(get_post_meta($post->ID,'_spektrix_id',true)){
-			echo '<h1>'.$post->post_title . ' // Spektrix ID: ' . get_post_meta($post->ID,'_spektrix_id',true) . '</h1>';
+		if(get_post_meta($post->ID,'_spectrix_id',true)){
+			echo '<h1>'.$post->post_title . ' // Spektrix ID: ' . get_post_meta($post->ID,'_spectrix_id',true) . '</h1>';
 		} else {
 			echo '<h1>'.$post->post_title . ' // No Spektrix ID</h1>';
 		}

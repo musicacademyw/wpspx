@@ -119,15 +119,4 @@ get_header();
 
 </div>
 
-<?php
-if (is_user_logged_in() && user_can(get_current_user_id(), 'edit_post' )) {
-	?>
-	<div class="cpanel">
-		<h4>Show Data (admin only)</h4>
-		<p>Show ID: <?php echo $show->id ?></p>
-	</div>
-	<?php
-}
-?>
-
 <?php get_footer(); ?>

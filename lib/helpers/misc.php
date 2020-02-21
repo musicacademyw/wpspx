@@ -38,9 +38,6 @@ function wpspx_get_first_paragraph($post_content)
 /*=======================================
 =            CLEAR THE CACHE            =
 =======================================*/
-
-function wpspx_bust_cache() {
-	$cached_files = WP_CONTENT_DIR . '/wpspx-cache/*.txt';
 	try
 	{
 		array_map('unlink', glob($cached_files)); ?>
@@ -83,7 +80,6 @@ function wpspx_convert_to_hours_minutes($minutes)
 /*============================================
 =            CONVERT MINS TO SECS            =
 ============================================*/
-
 function wpspx_convert_to_seconds($minutes)
 {
 	$seconds = $minutes * 60;
@@ -93,9 +89,6 @@ function wpspx_convert_to_seconds($minutes)
 /*=============================================
 =            CREATE REQUIRED PAGES            =
 =============================================*/
-
-function wpspx_create_pages()
-{
 
 	$wpspx_pages = array(
 		$basket = array(

@@ -121,28 +121,6 @@
 		"oAP": "/gpl-2.0.txt",
 		"oF": 0
 		},
-	"/lib/assets/css/chosen-sprite.png": {
-		"ft": 32768,
-		"iS": 538,
-		"oA": 0,
-		"oAP": "/lib/assets/css/chosen-sprite.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/lib/assets/css/chosen-sprite@2x.png": {
-		"ft": 32768,
-		"iS": 738,
-		"oA": 0,
-		"oAP": "/lib/assets/css/chosen-sprite@2x.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
 	"/lib/assets/css/wpspx-admin.css": {
 		"aP": 1,
 		"bl": 0,
@@ -229,12 +207,28 @@
 		"opt": 0,
 		"q": 100
 		},
+	"/lib/custom-post-types/cpts-meta.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/custom-post-types/cpts-meta.php",
+		"oF": 0
+		},
 	"/lib/custom-post-types/cpts.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/custom-post-types/cpts.php",
+		"oF": 0
+		},
+	"/lib/helpers/array_colums.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/helpers/array_colums.php",
 		"oF": 0
 		},
 	"/lib/helpers/misc.php": {
@@ -269,12 +263,60 @@
 		"oAP": "/lib/helpers/post-assoc.php",
 		"oF": 0
 		},
+	"/lib/helpers/show-loader.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/helpers/show-loader.php",
+		"oF": 0
+		},
 	"/lib/index.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/index.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/basket.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/basket.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/checkout.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/checkout.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/my_account.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/my_account.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/shortcodes.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/shortcodes.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/upcoming.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/upcoming.php",
 		"oF": 0
 		},
 	"/lib/templates/single-shows.php": {
