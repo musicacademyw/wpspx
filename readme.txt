@@ -1,35 +1,37 @@
 === WPSPX ===
-
-Contributors: pixelpudu
-Donate link: https://www.paypal.me/martingreenwood
+Contributors: beardeddev
 Tags: spektrix, tickets, api, booking, theatre
 Requires at least: 4.3
-Tested up to: 4.5
-Stable tag: 1.0.0
+Tested up to: 5.3.2
+Stable tag: 2.0.0
 License: GPL v2 or later
 Author: Martin Greenwood
-Author URI: https://profiles.wordpress.org/pixelpudu/
 
-A plugin for WordPress that intergrates with Spektrix API V2.
+This plugin help connect your WordPress website to the Spektrix API
 
 == Description ==
 
-This plugin allows you to quickly integrate your Spektrix API data into your WordPress website. 
+This plugin allows you to quickly integrate your Spektrix API data into your WordPress website.
 
 == Features out of the Box ==
 
 - Display a list of all upcoming shows
-- Display shows for the next week / six weeks
-- Display a list of matinee shows
-- Display the Spektrix basket, checkout and my account (We recommend acquiring a SSL Certificate)
+- Display show information (image, show name, duration, dates, short description and list of bookable instances)
+- Display the Spektrix basket, checkout and my account via iframes
+
+== Things you NEED to do ==
+
+- Add a folder to your server and host your Spektrix signed SSL certificate
+- Populate your spektrix show information
+- create a custom domain to avoid cross site scripting issues
 
 == Frequently Asked Questions ==
 
-= I have an error when trying to add a show "Oops, no XML received from Spektrix". = 
-Double check your API, account name and CRT/Key locations
+= I have an error when trying to add a show "Oops, no XML received from Spektrix". =
+Double check your API Key, account name and CRT/Key locations
 
 = My data is out of date =
-Visit the Settings page and delete the cache or do it manually by emptying the cache folder withn the plugin folder
+Visit the Settings page and delete the cache or do it manually by emptying the cache folder within the plugin folder
 
 == Installation ==
 
@@ -41,31 +43,21 @@ Visit the Settings page and delete the cache or do it manually by emptying the c
 - Enter your API Key, account name, and the path to your signed Spektrix certificates.
 - Add your first show
 
-== Screenshots ==
-
-1. WPSPX Settings
-
-== Donations ==
-
-If you would like to donate to the future development of this plugin you can do so [here](https://www.paypal.me/martingreenwood)
-
-== Support ==
-
-Even though this plugin is completely free, any help with installation or personal support will be charged at a standard hourly rate. 
-
 == Changelog ==
 
-= 1.1.0 =
+= 2.0.0 =
 
-tba
+- complete overhaul
+- removed outdated functionality
+- removed unnecessary code
+- cleaned up css
+- removed broken shortcodes
+- added page templates
 
-= 1.0.1 =
+= 1.5.0 =
 
-Removed CMB2 plugin from human made
-Added custom meta box for poster images
-Added ABSPATH Check
-Added a bunch of empty dir index files
+fixed a few errors
 
 = 1.0.0 =
 
-Initial Release.
+initial release

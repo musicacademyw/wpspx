@@ -1,7 +1,15 @@
-<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'book_online', 'load_book_online' );
-function load_book_online() {
+<?php
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
+/**
+ * Template Name: WPSPX Basket
+ */
+get_header();
+?>
+
+<div class="book-online">
+
+	<?php
 	$performance = get_query_var('performance');
 
 	if(strpos($performance,'event') === 0):
@@ -10,12 +18,10 @@ function load_book_online() {
 	else:
 		$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance));
 	endif;
+
+	echo $spektrix_iframe_url->render_iframe();
 	?>
-	<div class="row">
-		<div class="span12">
-			<?php echo $spektrix_iframe_url->render_iframe(); ?>
-		</div>    
-	</div>
-	
-	<?php 
-}
+
+</div>
+
+<?php get_footer(); ?>
