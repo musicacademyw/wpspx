@@ -45,17 +45,14 @@ class WPSPX {
 	{
 		add_action( 'admin_enqueue_scripts', 'wpspx_admin_scripts' );
 		add_action( 'wp_enqueue_scripts', 'wpspx_frontend_scripts', 99 );
-
-		register_activation_hook( __FILE__, 'wpspx_create_pages' );
-		register_activation_hook( __FILE__, 'wpspx_cpts_register' );
-		register_deactivation_hook( __FILE__, 'wpspx_deactivate' );
-		register_uninstall_hook( __FILE__, 'wpspx_uninstall' );
+		register_activation_hook( __FILE__, 'wpspx_activate' );
 	}
 }
 
 include plugin_dir_path( __FILE__ )  . '/config.php';
 include plugin_dir_path( __FILE__ )  . '/settings.php';
-include plugin_dir_path( __FILE__ )  . '/deactivate.php';
-include plugin_dir_path( __FILE__ )  . '/uninstall.php';
+include plugin_dir_path( __FILE__ )  . '/activate.php';
+// include plugin_dir_path( __FILE__ )  . '/deactivate.php';
+// include plugin_dir_path( __FILE__ )  . '/uninstall.php';
 
 WPSPX::get_instance();

@@ -19,9 +19,7 @@ $cpts = array(
 
 function wpspx_cpts_register()
 {
-
 	global $cpts;
-
 	foreach($cpts as $cpt){
 
 		$cpt_wp_name = $cpt[0];

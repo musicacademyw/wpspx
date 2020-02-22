@@ -7,12 +7,9 @@ $accent-inactive: desaturate($accent, 85%);
 $secondary: $accent-inactive;
 
 /* tab setting */
-$tab-count: 4;
+$tab-count: 3;
 $indicator-width: 50px;
 $indicator-height: 4px;
-
-/* breakpoints */
-$breakpoints: (medium: #{$tab-count*250px}, small: #{$tab-count*150px});
 
 /* selectors relative to radio inputs */
 $label-selector: "~ ul > li";
@@ -57,18 +54,59 @@ $content-selector: "~ .content > section";
 
 			article {
 				padding-top: 60px;
+				display: flex;
+				justify-content: center;
+
+				.form-table {
+
+					td {
+						input {
+							width: 100%;
+							margin-bottom: 10px;
+						}
+						span {
+							color: #666;
+							font-size: 12px;
+						}
+					}
+				}
+
+				.pages {
+					display: flex;
+					flex-flow: wrap;
+					flex: 0 0 100%;
+					margin-bottom: 30px;
+
+					div {
+						flex-flow: wrap;
+						display: flex;
+						flex: 0 0 100%;
+						justify-content: left;
+						text-align: left;
+						align-items: center;
+						padding: 4px 0;
+
+						p {
+							flex: 0 0 25%;
+							margin: 0;
+						}
+
+						svg {
+							width: 16px;
+							height: auto;
+						}
+					}
+				}
 
 				.tabs {
-					left: 50%;
-					transform: translateX(-50%);
 					position: relative;
+					flex: 0 0 50%;
 					background: white;
 					padding: 50px;
 					padding-bottom: 80px;
-					width: 70%;
-					height: 250px;
 					border-radius: 5px;
-					min-width: #{$tab-count * 60px};
+					display: flex;
+					flex-flow: wrap;
 
 					input[name="tab-control"] {
 						display: none;
@@ -86,10 +124,11 @@ $content-selector: "~ .content > section";
 						padding-left: 0;
 						display: flex;
 						flex-direction: row;
-						margin-bottom: 10px;
 						justify-content: space-between;
 						align-items: flex-end;
 						flex-wrap: wrap;
+						flex: 0 0 100%;
+						margin: 0 0 20px 0;
 
 						li {
 							box-sizing: border-box;
@@ -190,14 +229,6 @@ $content-selector: "~ .content > section";
 							> label {
 								cursor: default;
 								color: $accent;
-
-								svg {
-									fill: $accent;
-								}
-
-								@media (max-width: map-get($breakpoints, small)) {
-									background: rgba(0, 0, 0, 0.08);
-								}
 							}
 						}
 					}
@@ -210,42 +241,6 @@ $content-selector: "~ .content > section";
 						to {
 							opacity: 1;
 							transform: translateY(0%);
-						}
-					}
-
-					@media (max-width: map-get($breakpoints, medium)) {
-						ul li label {
-							white-space: initial;
-
-							br {
-								display: initial;
-							}
-
-							svg {
-								height: 1.5em;
-							}
-						}
-					}
-
-					@media (max-width: map-get($breakpoints, small)) {
-						ul li label {
-							padding: 5px;
-							border-radius: 5px;
-
-							span {
-								display: none;
-							}
-						}
-
-						.slider {
-							display: none;
-						}
-
-						.content {
-							margin-top: 20px;
-							section h2 {
-								display: block;
-							}
 						}
 					}
 				}

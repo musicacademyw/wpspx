@@ -9,7 +9,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 require plugin_dir_path( __FILE__ ) . '/framework/bootstrap.php';
 
 // Inlude custom post types items
-require plugin_dir_path( __FILE__ )  . '/lib/custom-post-types/cpts.php';
+// require plugin_dir_path( __FILE__ )  . '/lib/custom-post-types/cpts.php';
 
 // Plugin helpers
 require plugin_dir_path( __FILE__ )  . '/lib/helpers/misc.php';

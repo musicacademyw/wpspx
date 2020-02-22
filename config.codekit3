@@ -17,6 +17,14 @@
 		"oAP": "/.gitignore",
 		"oF": 0
 		},
+	"/activate.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/activate.php",
+		"oF": 0
+		},
 	"/config.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -175,6 +183,17 @@
 		"oAP": "/lib/assets/index.php",
 		"oF": 0
 		},
+	"/lib/assets/js/wpspx-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/lib/assets/js/wpspx-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/lib/assets/js/wpspx.js": {
 		"bF": 0,
 		"ft": 64,
@@ -207,28 +226,12 @@
 		"opt": 0,
 		"q": 100
 		},
-	"/lib/custom-post-types/cpts-meta.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/lib/custom-post-types/cpts-meta.php",
-		"oF": 0
-		},
 	"/lib/custom-post-types/cpts.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/custom-post-types/cpts.php",
-		"oF": 0
-		},
-	"/lib/helpers/array_colums.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/lib/helpers/array_colums.php",
 		"oF": 0
 		},
 	"/lib/helpers/misc.php": {
@@ -261,14 +264,6 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/helpers/post-assoc.php",
-		"oF": 0
-		},
-	"/lib/helpers/show-loader.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/lib/helpers/show-loader.php",
 		"oF": 0
 		},
 	"/lib/index.php": {

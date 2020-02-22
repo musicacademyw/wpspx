@@ -24,3 +24,4 @@ function wpspx_uninstall() {
     unregister_post_type( 'shows' );
     flush_rewrite_rules();
 }
+register_uninstall_hook( __FILE__, 'wpspx_uninstall' );
