@@ -1,161 +1,173 @@
 /* tab setting */
 /* selectors relative to radio inputs */
-.settings_page_wpspx #wpcontent {
+@keyframes infinite-spinning {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+.toplevel_page_wpspx #wpcontent, .wpspx_page_wpspx-cache #wpcontent, .wpspx_page_wpspx-shows #wpcontent, .wpspx_page_wpspx-pages #wpcontent {
   padding-left: 0; }
-  .settings_page_wpspx #wpcontent .wpspx-wrapper {
+  .toplevel_page_wpspx #wpcontent .wpspx-wrapper, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper {
     justify-content: center;
     display: flex;
     flex-flow: wrap; }
-    .settings_page_wpspx #wpcontent .wpspx-wrapper header {
+    .toplevel_page_wpspx #wpcontent .wpspx-wrapper header, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header {
       text-align: center;
       background: white;
-      padding: 20px;
-      flex: 0 0 100%; }
-    .settings_page_wpspx #wpcontent .wpspx-wrapper article {
-      padding-top: 60px;
+      padding: 40px;
+      flex: 0 0 100%;
+      box-sizing: border-box; }
+      .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center; }
+        .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul {
+          display: flex;
+          flex-flow: wrap;
+          margin: 20px 0 0 0; }
+          .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li {
+            margin: 0 10px; }
+            .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li a, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li a, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li a, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li a {
+              color: #929daf;
+              text-decoration: none;
+              font-size: 18px;
+              font-weight: 600;
+              position: relative;
+              transition: all 0.3s ease-in-out; }
+              .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li a:after, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li a:after, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li a:after, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li a:after {
+                content: '';
+                position: absolute;
+                bottom: -7px;
+                background: transparent;
+                height: 3px;
+                width: 100%;
+                left: 0;
+                pointer-events: none;
+                transition: all 0.3s ease-in-out; }
+              .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li a.active, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li a.active, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li a.active, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li a.active {
+                color: #333; }
+                .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li a.active:after, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li a.active:after, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li a.active:after, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li a.active:after {
+                  background: #333; }
+            .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li:hover a, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li:hover a, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li:hover a, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li:hover a {
+              color: #333; }
+              .toplevel_page_wpspx #wpcontent .wpspx-wrapper header nav ul li:hover a:after, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper header nav ul li:hover a:after, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper header nav ul li:hover a:after, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper header nav ul li:hover a:after {
+                background: #333; }
+    .toplevel_page_wpspx #wpcontent .wpspx-wrapper article, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article {
+      padding: 60px;
+      max-width: 800px;
+      min-width: 800px;
+      width: 800px;
       display: flex;
-      justify-content: center; }
-      .settings_page_wpspx #wpcontent .wpspx-wrapper article .form-table td input {
+      flex-flow: wrap;
+      justify-content: center;
+      box-sizing: border-box; }
+      .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .notice, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .notice, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .notice, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .notice {
+        margin: 0 0 20px 0;
+        width: 100%;
+        border-top: 0;
+        border-bottom: 0;
+        border-right: 0; }
+      .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .form-table td input, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .form-table td input, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .form-table td input, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .form-table td input {
         width: 100%;
         margin-bottom: 10px; }
-      .settings_page_wpspx #wpcontent .wpspx-wrapper article .form-table td span {
+      .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .form-table td span, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .form-table td span, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .form-table td span, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .form-table td span {
         color: #666;
         font-size: 12px; }
-      .settings_page_wpspx #wpcontent .wpspx-wrapper article .pages {
+      .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab {
         display: flex;
         flex-flow: wrap;
         flex: 0 0 100%;
-        margin-bottom: 30px; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .pages div {
-          flex-flow: wrap;
-          display: flex;
-          flex: 0 0 100%;
-          justify-content: left;
-          text-align: left;
-          align-items: center;
-          padding: 4px 0; }
-          .settings_page_wpspx #wpcontent .wpspx-wrapper article .pages div p {
+        padding: 40px;
+        background: white;
+        box-sizing: border-box;
+        position: relative; }
+        .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div {
+          flex: 0 0 100%; }
+          .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div section, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div section, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div section, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div section {
+            flex-flow: wrap;
+            display: flex;
+            flex-flow: wrap;
+            flex: 0 0 100%;
+            justify-content: left;
+            text-align: left;
+            align-items: center; }
+          .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div h2, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div h2, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div h2, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div h2 {
+            font-size: 25px;
+            margin: 0 0 30px 0;
+            flex: 0 0 100%; }
+          .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div p, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div p, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div p, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div p {
             flex: 0 0 25%;
-            margin: 0; }
-          .settings_page_wpspx #wpcontent .wpspx-wrapper article .pages div svg {
+            margin: 0 0 15px 0;
+            flex: 0 0 100%; }
+          .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div svg, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div svg, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div svg, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div svg {
             width: 16px;
             height: auto; }
-      .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs {
-        position: relative;
-        flex: 0 0 50%;
-        background: white;
-        padding: 50px;
-        padding-bottom: 80px;
-        border-radius: 5px;
-        display: flex;
-        flex-flow: wrap; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"] {
-          display: none; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .content section h2,
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label {
-          font-weight: bold;
-          font-size: 18px;
-          color: #428BFF; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul {
-          list-style-type: none;
-          padding-left: 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: flex-end;
-          flex-wrap: wrap;
-          flex: 0 0 100%;
-          margin: 0 0 20px 0; }
-          .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li {
-            box-sizing: border-box;
-            flex: 1;
-            width: 33.3333333333%;
-            padding: 0 10px;
-            text-align: center; }
-            .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label {
-              transition: all 0.3s ease-in-out;
-              color: #929daf;
-              padding: 5px auto;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: block;
-              cursor: pointer;
-              transition: all 0.2s ease-in-out;
-              white-space: nowrap;
-              -webkit-touch-callout: none; }
-              .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label br {
-                display: none; }
-              .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label svg {
-                fill: #929daf;
-                height: 1.2em;
-                vertical-align: bottom;
-                margin-right: 0.2em;
-                transition: all 0.2s ease-in-out; }
-              .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label:hover, .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label:focus, .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label:active {
-                outline: 0;
-                color: #bec5cf; }
-                .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label:hover svg, .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label:focus svg, .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs ul li label:active svg {
-                  fill: #bec5cf; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .slider {
-          position: relative;
-          width: 33.3333333333%;
-          transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07); }
-          .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .slider .indicator {
-            position: relative;
-            width: 50px;
-            max-width: 100%;
-            margin: 0 auto;
-            height: 4px;
-            background: #428BFF;
-            border-radius: 1px; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .content {
-          margin-top: 30px; }
-          .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .content section {
-            display: none;
-            animation-name: content;
-            animation-direction: normal;
-            animation-duration: 0.3s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: 1;
-            line-height: 1.4; }
-            .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .content section h2 {
-              color: #428BFF;
-              display: none; }
-              .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs .content section h2::after {
-                content: "";
-                position: relative;
-                display: block;
-                width: 30px;
-                height: 3px;
-                background: #428BFF;
-                margin-top: 5px;
-                left: 1px; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {
-          cursor: default;
-          color: #428BFF; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(1):checked ~ .slider {
-          transform: translateX(0%); }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(1):checked ~ .content > section:nth-child(1) {
-          display: block; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {
-          cursor: default;
-          color: #428BFF; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(2):checked ~ .slider {
-          transform: translateX(100%); }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(2):checked ~ .content > section:nth-child(2) {
-          display: block; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {
-          cursor: default;
-          color: #428BFF; }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(3):checked ~ .slider {
-          transform: translateX(200%); }
-        .settings_page_wpspx #wpcontent .wpspx-wrapper article .tabs input[name="tab-control"]:nth-of-type(3):checked ~ .content > section:nth-child(3) {
-          display: block; }
+          .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div .header, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div .header, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div .header, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div .header {
+            flex-flow: wrap;
+            display: flex;
+            justify-content: space-between; }
+            .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div .header .half, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div .header .half, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div .header .half, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div .header .half {
+              flex: 0 0 100%;
+              display: flex;
+              flex-flow: wrap;
+              margin-bottom: 10px; }
+              .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div .header .half p, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div .header .half p, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div .header .half p, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div .header .half p {
+                font-weight: 600;
+                flex: 0 0 50%;
+                margin-bottom: 0; }
+              .toplevel_page_wpspx #wpcontent .wpspx-wrapper article .tab div .header .half span, .wpspx_page_wpspx-cache #wpcontent .wpspx-wrapper article .tab div .header .half span, .wpspx_page_wpspx-shows #wpcontent .wpspx-wrapper article .tab div .header .half span, .wpspx_page_wpspx-pages #wpcontent .wpspx-wrapper article .tab div .header .half span {
+                flex: 0 0 50%;
+                font-weight: 600; }
 
-@keyframes content {
-  from {
-    opacity: 0;
-    transform: translateY(5%); }
-  to {
-    opacity: 1;
-    transform: translateY(0%); } }
+.wpspx_page_wpspx-shows .content {
+  position: relative; }
+
+.wpspx_page_wpspx-shows .submit {
+  margin-bottom: 0 !important;
+  padding-bottom: 0; }
+
+.wpspx_page_wpspx-shows .loading {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 5px;
+  left: 120px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out; }
+  .wpspx_page_wpspx-shows .loading.show {
+    opacity: 1; }
+  .wpspx_page_wpspx-shows .loading .spin {
+    display: block;
+    float: none;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 18px;
+    background: #808080;
+    animation: infinite-spinning 1.08s linear infinite; }
+    .wpspx_page_wpspx-shows .loading .spin:after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      border-radius: 4px;
+      margin-left: -2px;
+      background: #ffffff; }
+
+#wpspx_cache_section .update-messages h2, #wpspx_cache_section .update-php h2, #wpspx_cache_section h4 {
+  margin-bottom: 2rem; }
+
+#wpspx_cache_section ul {
+  margin: -20px 0 0 0; }
+  #wpspx_cache_section ul li {
+    font-weight: 600;
+    margin: 0;
+    align-items: center;
+    display: flex; }
+    #wpspx_cache_section ul li svg {
+      margin-right: 10px;
+      width: 14px;
+      height: auto; }

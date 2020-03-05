@@ -40,7 +40,7 @@ function wpspx_get_first_paragraph($post_content)
 =======================================*/
 function wpspx_bust_cache()
 {
-	$cached_files = WPSPX_PLUGIN_DIR . '/wpspx-cache/*.txt';
+	$cached_files = WPSPX_PLUGIN_DIR . '/wpspx-cache/*.json';
 	try
 	{
 		array_map('unlink', glob($cached_files)); ?>
@@ -89,6 +89,12 @@ function wpspx_convert_to_seconds($minutes)
 	return $seconds;
 }
 
-/*=============================================
-=            CREATE REQUIRED PAGES            =
-=============================================*/
+/*===========================================
+=            CREATE POSTER IMAGE            =
+===========================================*/
+
+add_image_size( 'poster', 800, 1200, false );
+
+/*===========================================
+=            CREATE POSTER IMAGE            =
+===========================================*/

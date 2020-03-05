@@ -22,10 +22,10 @@ require plugin_dir_path( __FILE__ )  . '/lib/helpers/post-assoc.php';
 function wpspx_admin_scripts()
  {
 	 wp_register_style('wpspx_admin_css', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-admin.css', false, '1.0');
-	 wp_register_script('wpspx_select',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx.js', array( 'jquery' ), '1.0', true);
+	 wp_register_script('wpspx_js',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx-min.js', array( 'jquery' ), '1.0', true);
 
 	 wp_enqueue_style( 'wpspx_admin_css' );
-	 wp_enqueue_script( 'wpspx_select' );
+	 wp_enqueue_script( 'wpspx_js' );
  }
 
  function wpspx_frontend_scripts()

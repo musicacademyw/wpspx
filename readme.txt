@@ -22,7 +22,7 @@ This plugin allows you to quickly integrate your Spektrix API data into your Wor
 == Things you NEED to do ==
 
 - Add a folder to your server and host your Spektrix signed SSL certificate
-- Populate your spektrix show information
+- Populate your Spektrix show information
 - create a custom domain to avoid cross site scripting issues
 
 == Frequently Asked Questions ==

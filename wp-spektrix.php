@@ -49,6 +49,16 @@ class WPSPX {
 	}
 }
 
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'wpspx_plugin_settings_link' );
+function wpspx_plugin_settings_link( $links )
+{
+	$url = admin_url() . 'options-general.php?page=wpspx';
+	$_link = '<a href="'.$url.'">' . __( 'Settings', 'wpspx' ) . '</a>';
+	$links[] = $_link;
+	return $links;
+}
+
+
 include plugin_dir_path( __FILE__ )  . '/config.php';
 include plugin_dir_path( __FILE__ )  . '/settings.php';
 include plugin_dir_path( __FILE__ )  . '/activate.php';
