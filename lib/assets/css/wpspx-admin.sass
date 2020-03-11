@@ -30,7 +30,7 @@ $content-selector: "~ .content > section"
 		transform: rotate(360deg)
 
 
-.toplevel_page_wpspx, .wpspx_page_wpspx-cache, .wpspx_page_wpspx-shows, .wpspx_page_wpspx-pages
+.toplevel_page_wpspx, .wpspx_page_wpspx-cache, .wpspx_page_wpspx-shows, .wpspx_page_wpspx-support, .wpspx_page_wpspx-license
 
 	#wpcontent
 		padding-left: 0
@@ -193,6 +193,48 @@ $content-selector: "~ .content > section"
 								span
 									flex: 0 0 50%
 									font-weight: 600
+
+						.debug_log
+							height: 280px
+							overflow: scroll
+							margin-bottom: 30px
+							border: 1px solid #eee
+							border-radius: 4px
+							background: #f9f9f9
+							padding: 20px
+							box-sizing: border-box
+
+							dl
+								margin: 0
+								display: flex
+								flex-flow: wrap
+								margin: 0 0 30px
+
+								dt
+									flex: 0 0 40%
+									margin: 0
+
+								dd
+									flex: 0 0 60%
+									margin: 0
+
+									ul
+										margin: 0
+										li
+											margin: 0
+
+						.pages
+							display: flex
+							flex-flow: wrap
+
+							.found
+								display: flex
+								align-content: center
+								align-items: center
+
+								p
+									flex: 0 0 35%
+									margin-bottom: 0
 
 
 .wpspx_page_wpspx-shows

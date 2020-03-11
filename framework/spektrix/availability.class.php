@@ -40,9 +40,9 @@ function book_online_button($av,$performance)
 {
 	$perfid = (integer) $performance->id;
 	if($av->available == 0):
-		$class = "button sold-out";
+		$class = "button is-danger";
 	else:
-		$class = "button";
+		$class = "button is-primary";
 	endif;
 
 	$now = new DateTime(current_time('mysql'));

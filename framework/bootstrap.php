@@ -9,6 +9,7 @@
 		'pricelist',
 		'plan',
 		'availability',
+		'memberships',
 	);
 
 	foreach($classnames as $classname) {

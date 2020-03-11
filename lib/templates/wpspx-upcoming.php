@@ -19,39 +19,36 @@ usort($shows, 'date_compare');
 
 ?>
 
-<div class="all-upcoming-shows">
-
-	<div class="shows-container">
-
-	<?php
-	foreach($shows as $show) {
-		$show_id = $wp_shows[$show->id];
-		$show_poster = $show->image_url;
-		$poster = get_the_post_thumbnail($show_id, 'poster');
-
-		?>
-		<div class="show">
-
-			<a href="<?php echo get_permalink($show_id); ?>">
-				<?php
-				if($show_poster):
-					echo '<img src="'.$show_poster.'">';
-				elseif($poster):
-					echo $poster;
-				else:
-					echo '<img src="'.plugin_dir_url( __DIR__ ).'/assets/wpspx-image-portrait.jpg">';
-				endif;
-				?>
-			</a>
-			<div class="info">
-				<h5><a href="<?php echo get_permalink($show_id); ?>"><?php echo $show->name ?></a></h5>
-				<p><?php echo $show->instance_dates; ?></p>
-			</div>
-		</div>
-		<?php
-	}
+<div class="all-upcoming-shows columns is-multiline">
+<?php
+foreach($shows as $show) {
+	$show_id = $wp_shows[$show->id];
+	$show_poster = $show->image_url;
+	$poster = get_the_post_thumbnail($show_id, 'poster');
 	?>
+	<div class="show column is-one-quarter">
+
+		<a href="<?php echo get_permalink($show_id); ?>">
+			<?php
+			if($show_poster):
+				echo '<img src="'.$show_poster.'">';
+			elseif($poster):
+				echo $poster;
+			else:
+				echo '<img src="'.plugin_dir_url( __DIR__ ).'/assets/wpspx-image-portrait.jpg">';
+			endif;
+			?>
+		</a>
+		<div class="info">
+			<h3 class="subtitle">
+				<a href="<?php echo get_permalink($show_id); ?>"><?php echo $show->name ?></a>
+			</h3>
+			<p><?php echo $show->instance_dates; ?></p>
+		</div>
 	</div>
+	<?php
+}
+?>
 </div>
 
 <?php get_footer(); ?>

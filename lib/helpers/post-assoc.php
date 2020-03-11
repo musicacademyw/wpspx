@@ -134,6 +134,7 @@ function wpspx_save_postdata($post_id) {
 		$spektrix_data = sanitize_text_field($_POST['wpspx_data_field']);
 		$spektrix_data = explode('|',$spektrix_data);
 
+
 		//remove action to prevent infinite loop
 		remove_action('save_post','wpspx_save_postdata');
 		wp_update_post(
@@ -148,6 +149,17 @@ function wpspx_save_postdata($post_id) {
 
 		add_post_meta($post_ID, '_spektrix_id', $spektrix_data[0], true) or
 		update_post_meta($post_ID, '_spektrix_id', $spektrix_data[0]);
+
+		$show = new Show($spektrix_data[0]);
+		$performances = $show->get_performances();
+	    $firstdate = reset($performances);
+	    $lastdate = end($performances);
+
+		add_post_meta($post_ID, '_spektrix_start', $firstdate, true) or
+		update_post_meta($post_ID, '_spektrix_start', $firstdate);
+
+		add_post_meta($post_ID, '_spektrix_end', $lastdate, true) or
+		update_post_meta($post_ID, '_spektrix_end', $lastdate);
 }
 
 // Now move advanced meta boxes after the title:

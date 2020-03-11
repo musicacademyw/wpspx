@@ -33,8 +33,9 @@ class Spektrix
 
 			// $url = self::$api_url.$resource."?".$params_string;
 			$url = self::$api_url.$resource."?".substr($params_string, 0, -1);
+
 		endif;
-;
+
 		// $url.= "?all=true";
 
 		return $url;
@@ -199,6 +200,11 @@ class Spektrix
 		$availabilities = $this->get_object('instances/'.$performance_id.'/status', array('includeChildPlans'=>'true'));
 		$collection = new Availability($availabilities);
 		return $collection;
+	}
+
+	function get_memberships()
+	{
+		return $this->get_object('memberships');
 	}
 
 }

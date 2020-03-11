@@ -81,6 +81,14 @@
 		"oAP": "/framework/spektrix/iframe.class.php",
 		"oF": 0
 		},
+	"/framework/spektrix/memberships.class.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/framework/spektrix/memberships.class.php",
+		"oF": 0
+		},
 	"/framework/spektrix/performance.class.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -215,6 +223,16 @@
 		"plM": 52780316221407,
 		"prP": 0
 		},
+	"/lib/assets/shopping-basket-regular.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/lib/assets/shopping-basket-regular.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
 	"/lib/assets/wpspx-image-portrait.jpg": {
 		"ft": 16384,
 		"iS": 15628,
@@ -304,6 +322,22 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/templates/wpspx-checkout.php",
+		"oF": 0
+		},
+	"/lib/templates/wpspx-giftcards.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/templates/wpspx-giftcards.php",
+		"oF": 0
+		},
+	"/lib/templates/wpspx-memberships.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/templates/wpspx-memberships.php",
 		"oF": 0
 		},
 	"/lib/templates/wpspx-my-account.php": {

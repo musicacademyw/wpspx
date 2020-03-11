@@ -34,6 +34,7 @@ function wpspx_admin_scripts()
 	 wp_register_script('wpspx-integrate', '//'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/scripts/integrate.js', '', '', false);
 	 wp_register_script('wpspx-viewfromseats','//'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/scripts/viewfromseats.js', '', '', false);
 
+
 	 wp_enqueue_style( 'wpspx_css' );
 
 	 if(!wp_script_is('jquery')) {
@@ -83,5 +84,23 @@ function wpspx_page_template( $page_template )
 	{
 		$page_template = dirname( __FILE__ ) . '/lib/templates/wpspx-upcoming.php';
 	}
+	if ( is_page( 'memberships' ) )
+	{
+		$page_template = dirname( __FILE__ ) . '/lib/templates/wpspx-memberships.php';
+	}
+	if ( is_page( 'gift-cards' ) )
+	{
+		$page_template = dirname( __FILE__ ) . '/lib/templates/wpspx-giftcards.php';
+	}
     return $page_template;
 }
+
+// Async load
+function wpspx_webc_scripts($url)
+{
+	?>
+	<script src="https://webcomponents.spektrix.com/stable/webcomponents-loader.js"></script>
+	<script src="https://webcomponents.spektrix.com/stable/spektrix-component-loader.js" data-components="spektrix-basket-summary,spektrix-memberships,spektrix-donate,spektrix-gift-vouchers" async></script>
+	<?php
+}
+add_filter( 'wp_head', 'wpspx_webc_scripts', 999 );
