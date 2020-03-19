@@ -181,10 +181,9 @@ function wpspx_basket() {
 		class="is-primary"
 		custom-domain="<?php echo SPEKTRIX_CUSTOM_URL ?>"
 		client-name="<?php echo SPEKTRIX_USER ?>">
-
 		<div class="basket-icon">
 			<span class="count" data-basket-item-count></span>
-			<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-basket" class="svg-inline--fa fa-shopping-basket fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M564 192h-72.902L362.286 40.457c-8.583-10.099-23.729-11.327-33.83-2.743-10.099 8.584-11.327 23.731-2.742 33.83L428.102 192H147.899L250.287 71.543c8.584-10.099 7.356-25.246-2.743-33.83s-25.246-7.355-33.83 2.743L84.901 192H12c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h18.667l27.584 198.603C61.546 462.334 81.836 480 105.794 480h364.412c23.958 0 44.248-17.666 47.544-41.397L545.333 240H564c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12zm-93.794 240H105.794L79.127 240h417.745l-26.666 192zM312 296v80c0 13.255-10.745 24-24 24s-24-10.745-24-24v-80c0-13.255 10.745-24 24-24s24 10.745 24 24zm112 0v80c0 13.255-10.745 24-24 24s-24-10.745-24-24v-80c0-13.255 10.745-24 24-24s24 10.745 24 24zm-224 0v80c0 13.255-10.745 24-24 24s-24-10.745-24-24v-80c0-13.255 10.745-24 24-24s24 10.745 24 24z"></path></svg>
+			<a href="<?php echo home_url('basket'); ?>"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-basket" class="svg-inline--fa fa-shopping-basket fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M564 192h-72.902L362.286 40.457c-8.583-10.099-23.729-11.327-33.83-2.743-10.099 8.584-11.327 23.731-2.742 33.83L428.102 192H147.899L250.287 71.543c8.584-10.099 7.356-25.246-2.743-33.83s-25.246-7.355-33.83 2.743L84.901 192H12c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h18.667l27.584 198.603C61.546 462.334 81.836 480 105.794 480h364.412c23.958 0 44.248-17.666 47.544-41.397L545.333 240H564c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12zm-93.794 240H105.794L79.127 240h417.745l-26.666 192zM312 296v80c0 13.255-10.745 24-24 24s-24-10.745-24-24v-80c0-13.255 10.745-24 24-24s24 10.745 24 24zm112 0v80c0 13.255-10.745 24-24 24s-24-10.745-24-24v-80c0-13.255 10.745-24 24-24s24 10.745 24 24zm-224 0v80c0 13.255-10.745 24-24 24s-24-10.745-24-24v-80c0-13.255 10.745-24 24-24s24 10.745 24 24z"></path></svg></a>
 			</div>
 		</div>
 
@@ -212,82 +211,26 @@ function wpspx_login() {
 		</footer>
 	</div>
 </div>
-<!--
-
-					<h1>Login to your account</h1>
-					<div class="loginform">
-						<div class="login-form">
-							<form>
-								<div class="form-row">
-									<div class="input-holder">
-										<input id="spektrix-username" autocomplete="username" type="text" placeholder="your email" name="login-username" required>
-									</div>
-									<div class="input-holder">
-										<input id="spektrix-password" autocomplete="current-password" type="password" placeholder="your password" name="login-password" required>
-									</div>
-								</div>
-								<div class="errormess">
-									There was an error!
-								</div>
-
-								<div class="form-row util end-xs">
-									<span class="forgot-password"><a href="#" class="forgot-password-link">Forgot password?</a></span>
-								</div>
-							</form>
-							<div id="loginbutton">Login</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="panel">
-					<h1>Sign up for an account</h1>
-					<div class="registerform">
-						<div class="signup-form">
-							<div class="signup-form-input">
-								<label>
-									First Name
-									<input type="text" id="signup-firstname">
-								</label>
-							</div>
-							<div class="signup-form-input">
-								<label>
-									last Name
-									<input type="text" id="signup-lastname">
-								</label>
-							</div>
-							<div class="signup-form-input">
-								<label>
-									Birthdate
-									<input type="date" id="signup-birthdate">
-								</label>
-							</div>
-							<div class="signup-form-input">
-								<label>
-									Phone Number
-									<input type="text" id="signup-phone">
-								</label>
-							</div>
-							<div class="signup-form-input email">
-								<label>
-									Email
-									<input type="email" id="signup-email">
-								</label>
-							</div>
-							<div class="errormess">
-								There was an error!
-							</div>
-							<div id="register">Register</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-	</div> -->
 <script>
+function wpspxLogout() {
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "<?php echo SPEKTRIX_API_URL ?>customer/deauthenticate",
+		"method": "POST",
+		"xhrFields": {
+			"withCredentials": true
+		},
+		"headers": {
+			"Content-Type": "application/json",
+			"cache-control": "no-cache"
+		},
+		"processData": false
+	}
+	jQuery.ajax(settings).done(function (response) {
+		location.reload();
+	});
+}
 function wpspxLogin(message) {
 
 	jQuery('.accountbox').addClass('is-active');
@@ -295,11 +238,14 @@ function wpspxLogin(message) {
 		jQuery('.accountbox').removeClass('is-active');
 	});
 
-	var lostpass = '<p>Please enter your email to reset your password.</p><div class="fields"><div class="field"><input id="passwordresetemail" class="input" type="text" placeholder="your email" name="forgot-password" required></div><div class="field"><div class="message is-danger" style="display:none;"><div class="message-body"></div></div></div></div>';
-	var logpaaslinks = '<button id="sendpassword" class="button is-primary">Reset Password</button><button id="backtologin" class="button is-info">Back to Login</button>';
+	var lostpass = '<p>Please enter your email to reset your password.</p><div class="fields"><div class="field"><label class="label">Email Address</label><input id="passwordresetemail" class="input" type="text" placeholder="your email" name="forgot-password" required></div><div class="field"><div class="message" style="display:none;"><div class="message-body"></div></div></div></div>';
+	var logpaaslinks = '<button id="sendpassword" class="button is-primary">Reset Password</button><button id="forgotpassword" class="button is-info">Forgot password?</button>';
 
-	var loginform = '<p>Login to your account. Don\'t have one yet? You can <a class="registerlink" href="#">register here</a></p><div class="fields"><div class="fields"><input class="input" autocomplete="username" type="text" placeholder="your email" name="login-username" required></div><div class="fields"><input class="input" autocomplete="current-password" type="password" placeholder="your password" name="login-password" required></div></div>';
-	var loginformlinks = '<button id="loginbutton" class="button is-primary">Login</button><button id="forgotpassword" class="button is-info">Forgot password?</a>';
+	var loginform = '<p>Login to your account. Don\'t have one yet? You can <a class="registerlink" href="#">register here</a></p><div class="field"><label class="label">Email Address</label><input class="input" autocomplete="username" type="text" placeholder="Email" name="login-username" required></div><div class="field"><label class="label">Password</label><input class="input" autocomplete="current-password" type="password" placeholder="Password" name="login-password" required></div><div class="field"><div class="message" style="display:none;"><div class="message-body"></div></div></div></div>';
+	var loginformlinks = '<button id="loginbutton" class="button is-primary">Login</button><button id="forgotpassword" class="button is-info">Forgot password?</button>';
+
+	var registerform = '<p>Please complete the below form to register for an account.</p><div class="field"><div class="label"><label class="label">Name</label></div><div class="field-body is-horizontal"><div class="field"><input class="input" type="text" placeholder="First Name" id="signup-firstname"></div><div class="field"><input class="input" type="text" placeholder="Last Name" id="signup-lastname"></div></div></div><div class="field"><label class="label">Date of Birth</label><div class="control"><input class="input" type="date" id="signup-birthdate"></div></div><div class="field"><label class="label">Phone Number</label><div class="control"><input class="input" type="text" id="signup-phone"></div></div><div class="field"><label class="label">Email Address</label><div class="control"><input class="input" type="email" id="signup-email"></div></div><div class="field"><div class="message" style="display:none;"><div class="message-body"></div></div></div></div>';
+	var registerformlinks = '<button id="register" class="button is-primary">Register</button>';
 
 
 	jQuery('.modal-card-title').html('Login to your account');
@@ -307,12 +253,11 @@ function wpspxLogin(message) {
 	jQuery('.modal-card-foot').html(loginformlinks);
 
 	//login button
-	jQuery('#loginbutton').click(function(e){
-		e.preventDefault();
+	jQuery('#loginbutton').on("click", function(){
 		var settings = {
 			"async": true,
 			"crossDomain": true,
-			"url": SPECTRIX_DOMAIN + "/theatreroyalbury/api/v3/customer/authenticate",
+			"url": "<?php echo SPEKTRIX_API_URL ?>customer/authenticate",
 			"method": "POST",
 			"xhrFields": {
 				"withCredentials": true
@@ -324,44 +269,42 @@ function wpspxLogin(message) {
 			"processData": false,
 			"data": "{\r\n  \"email\": \"" + jQuery('#spektrix-username').val() + "\",\r\n  \"password\": \"" + jQuery('#spektrix-password').val() + "\"\r\n}"
 		}
-
 		jQuery.ajax(settings).done(function (response) {
 			if(response.id !== '') {
-				jQuery('.accountbox').removeClass('show');
-
 				sessionStorage.setItem("spektrix_auth", "success");
-
-				location.reload();
-				jQuery('#snackbar').html('<span>Successfully Logged In!</span>').addClass('show');
+				jQuery('.message').addClass('is-success');
+				jQuery('.message .message-body').text('Sucessfully loggin in.');
+				jQuery('.message').show();
 				setTimeout(function() {
-					jQuery('#snackbar').removeClass('show');
+					jQuery('.accountbox').removeClass('is-active');
 				},3000);
-
 			}
 			else {
-				jQuery('.errormess').text('There was an error!').addClass('active');
-				setTimeout(function() {
-					jQuery('.errormess').removeClass('active');
-				},3000);
+				jQuery('.message').addClass('is-danger');
+				jQuery('.message .message-body').text('There was an error.');
+				jQuery('.message').show();
 			}
 		}).fail(function(xhr, status, error) {
 			switch(xhr.status) {
 				case 404:
-					jQuery('.errormess').text('Invalid Username or Password').addClass('active');
+					jQuery('.message').addClass('is-danger');
+					jQuery('.message .message-body').text('Invalid username or password');
 					setTimeout(function() {
-						jQuery('.big-errormess').removeClass('active');
+						jQuery('.message').show();
 					},3000);
 					break;
 				case 401:
-					jQuery('.errormess').text('Invalid Username or Password').addClass('active');
+					jQuery('.message').addClass('is-danger');
+					jQuery('.message .message-body').text('There was an error trying to log you in.');
 					setTimeout(function() {
-						jQuery('.errormess').removeClass('active');
+						jQuery('.message').show();
 					},3000);
 					break;
 				default:
-					jQuery('.errormess').text('There was an error!').addClass('active');
+					jQuery('.message').addClass('is-danger');
+					jQuery('.message .message-body').text('There was an error trying to log you in.');
 					setTimeout(function() {
-						jQuery('.errormess').removeClass('active');
+						jQuery('.message').show();
 					},3000);
 					break;
 			}
@@ -370,7 +313,7 @@ function wpspxLogin(message) {
 
 	// forget password link
 	jQuery('#forgotpassword').on("click", function(e) {
-		jQuery('.modal-card-title').html('Forgot Password');
+		jQuery('.modal-card-title').html('Forgot your password');
 		jQuery('.formcontent').html(lostpass);
 		jQuery('.modal-card-foot').html(logpaaslinks)
 		jQuery('#sendpassword').on("click", function(e){
@@ -379,7 +322,7 @@ function wpspxLogin(message) {
 				var settings = {
 					"async": true,
 					"crossDomain": true,
-					"url": SPECTRIX_DOMAIN + "/theatreroyalbury/api/v3/customer/forgot-password?emailAddress=" + emailaddress,
+					"url": "<?php echo SPEKTRIX_API_URL ?>customer/forgot-password?emailAddress=" + emailaddress,
 					"method": "POST",
 					"headers": {
 						"Content-Type": "application/x-www-form-urlencoded",
@@ -388,24 +331,22 @@ function wpspxLogin(message) {
 				}
 
 				jQuery.ajax(settings).done(function (response) {
-					// jQuery('#datpopup').removeClass('modalshown');
-					jQuery('#snackbar').html('<span>An email has been sent to the email specified</span>').addClass('show');
+					jQuery('.message').addClass('is-success');
+					jQuery('.message .message-body').text('Password reset email sent.');
 					setTimeout(function() {
-						jQuery('#snackbar').removeClass('show');
+						jQuery('.message').show();
 					},8000);
 				}).fail(function(xhr, status, error) {
 					switch(xhr.status) {
 						case '404':
-							jQuery('.errormess').text('The supplied email address does not exist').addClass('active');
-							setTimeout(function() {
-								jQuery('.errormess').removeClass('active');
-							},3000);
+							jQuery('.message').addClass('is-danger');
+							jQuery('.message .message-body').text('No account found with this email address.');
+							jQuery('.message').show();
 							break;
 						default:
-							jQuery('.errormess').text('There was an error!').addClass('active');
-							setTimeout(function() {
-								jQuery('.errormess').removeClass('active');
-							},3000);
+							jQuery('.message').addClass('is-danger');
+							jQuery('.message .message-body').text('Sorry there was an error - please call the box office to reset your password.');
+							jQuery('.message').show();
 							break;
 					}
 				});
@@ -425,50 +366,91 @@ function wpspxLogin(message) {
 
 
 	// register button
-	jQuery('#register').on("click", function(e){
-		var settings = {
-			"async": true,
-			"crossDomain": true,
-			"url": SPECTRIX_DOMAIN + "/theatreroyalbury/api/v3/customer",
-			"method": "POST",
-			"xhrFields": {
-				"withCredentials": true
-			},
-			"headers": {
-				"Content-Type": "application/json",
-				"cache-control": "no-cache"
-			},
-			"processData": false,
-			"data": "{\r\n  \"birthDate\": \"" + jQuery('#signup-birthdate').val() + "\",\r\n  \"email\": \"" + jQuery('#signup-email').val() + "\",\r\n  \"firstName\": \"" + jQuery('#signup-firstname').val() + "\",\r\n  \"lastName\": \"" + jQuery('#signup-lastname').val() + "\",\r\n  \"mobile\": \"" + jQuery('#signup-phone').val() + "\",\r\n  \"password\": \"" + jQuery('#signup-password').val() + "\"\r\n}"
-		}
-
-		jQuery.ajax(settings).done(function (response) {
-			if(response.id !== '') {
-
-				location.reload();
-				jQuery('#snackbar').html('<span>Successfully Registered & Logged In!</span>').addClass('show');
-				setTimeout(function() {
-					jQuery('#snackbar').removeClass('show');
-				},3000);
-
+	jQuery('.registerlink').on("click", function(e){
+		jQuery('.modal-card-title').html('Sign uo for an account');
+		jQuery('.formcontent').html(registerform);
+		jQuery('.modal-card-foot').html(registerformlinks);
+		jQuery('#register').on("click", function(e){
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "<?php echo SPEKTRIX_API_URL ?>customer",
+				"method": "POST",
+				"xhrFields": {
+					"withCredentials": true
+				},
+				"headers": {
+					"Content-Type": "application/json",
+					"cache-control": "no-cache"
+				},
+				"processData": false,
+				"data": "{\r\n  \"birthDate\": \"" + jQuery('#signup-birthdate').val() + "\",\r\n  \"email\": \"" + jQuery('#signup-email').val() + "\",\r\n  \"firstName\": \"" + jQuery('#signup-firstname').val() + "\",\r\n  \"lastName\": \"" + jQuery('#signup-lastname').val() + "\",\r\n  \"mobile\": \"" + jQuery('#signup-phone').val() + "\",\r\n  \"password\": \"" + jQuery('#signup-password').val() + "\"\r\n}"
 			}
-			else {
-				jQuery('.errormess').text('There was an error!').addClass('active');
-				setTimeout(function() {
-					jQuery('.errormess').removeClass('active');
-				},3000);
-			}
-		}).fail(function(xhr, status, error) {
-			switch(xhr.status) {
-				default:
-					jQuery('.errormess').text('There was an error!').addClass('active');
+
+			jQuery.ajax(settings).done(function (response) {
+				if(response.id !== '') {
+					jQuery('.message').addClass('is-success');
+					jQuery('.message .message-body').text('Account sucessfully created, logging you in....');
+					jQuery('.message').show();
 					setTimeout(function() {
-						jQuery('.errormess').removeClass('active');
+						location.reload();
 					},3000);
-					break;
-			}
+				}
+				else {
+					jQuery('.message').addClass('is-success');
+					jQuery('.message .message-body').text('There was an error.');
+					setTimeout(function() {
+						jQuery('.message').show();
+					},8000);
+				}
+			}).fail(function(xhr, status, error) {
+				switch(xhr.status) {
+					default:
+						jQuery('.message').addClass('is-success');
+						jQuery('.message .message-body').text('There was an error.');
+						setTimeout(function() {
+							jQuery('.message').show();
+						},8000);
+						break;
+				}
+			});
 		});
 	});
+}
+if (sessionStorage.getItem('spektrix_auth') == 'success') {
+	var spektrixuserid = null;
+	var userdetailssettings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "<?php echo SPEKTRIX_API_URL ?>customer",
+		"method": "GET",
+		"xhrFields": {
+			"withCredentials": true
+		},
+		"headers": {
+			"Content-Type": "application/json",
+			"cache-control": "no-cache"
+		},
+		"statusCode": {
+        	401: function (error) {
+            	// simply ignore this error
+        	}
+		},
+		"processData": false
+	}
+	jQuery.ajax(userdetailssettings).done(function (userdetailsresponse) {
+		if(typeof userdetailsresponse.id !== 'undefined' && userdetailsresponse.id !== '') {
+			spektrixuserid = userdetailsresponse.id;
+			jQuery('.accountlink').html('<div class="greeting">Hello '+ userdetailsresponse.firstName +'</div><a class="button is-info" href="<?php echo home_url('my-account'); ?>">View Account</a><a class="logoutlink" onclick="wpspxLogout();">Log Out</a>'
+			);
+
+		}
+	}).fail(function(xhr, status, error) {
+		jQuery('.accountlink').html('<div class="greeting">Hello '+ userdetailsresponse.firstName +'</div><a class="button is-info" href="<?php echo home_url('my-account'); ?>">View Account</a><a class="logoutlink" onclick="wpspxLogin();">Log In</a>'
+		);
+	});
+
+
 }
 </script>
 <?php

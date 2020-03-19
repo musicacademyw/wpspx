@@ -1,16 +1,15 @@
 <?php
 if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
+$api = New Spektrix();
+$basket = $api->get_basket();
+
 /**
  * Template Name: WPSPX Basket
  */
 get_header();
 
-$request = wp_remote_get( SPEKTRIX_API_URL . 'basket' );
-if( is_wp_error( $request ) ) {
-	return false; // Bail early
-}
-$json = wp_remote_retrieve_body( $request );
+
 
 // totalDiscount
 // defaultCardPaymentFee
@@ -34,9 +33,11 @@ $json = wp_remote_retrieve_body( $request );
 
 ?>
 
-<div class="showcard">
+<div class="wpspxbasket">
 
-	<?php print_r($json); ?>
+	<pre>
+		<?php print_r($basket) ?>
+	</pre>
 
 </div>
 

@@ -41,7 +41,7 @@ class Spektrix
 		return $url;
 	}
 
-	function get_spektrix_data($obj_url)
+	function get_spektrix_data($obj_url, $method = 'GET')
 	{
 		// $curl = curl_init();
 		// $options = array(
@@ -59,16 +59,18 @@ class Spektrix
 		// 	  CURLOPT_SSLKEY => self::get_path_to_key()
 		// );
 
-		$args = array(
-			'timeout' 		=> 120,
-			'sslcert' 		=> self::get_path_to_cert(),
-			'sslkey' 		=> self::get_path_to_key(),
-		);
+		// $headers = aerray()
+		// $headers["Date"] = $gmtdate
+		// $headers["Authorization"] = "SpektrixAPI3 ". spektrix_api_user . ":" . $signature;
 
-		$request = wp_remote_get( $obj_url, $args );
+		$requestargs = array(
+			'timeout' 		=> 120,
+		);
+		$request = wp_remote_get( $obj_url, $requestargs );
 		if( is_wp_error( $request ) ) {
 			return false; // Bail early
 		}
+
 		$json = wp_remote_retrieve_body( $request );
 		return $json;
 	}
@@ -96,8 +98,36 @@ class Spektrix
 		catch (Exception $e)
 		{
 			?>
-			<div class="notice notice-error">
-				<p><?php echo $e->getMessage(); ?>. Double check you WPSPX settings are correct</p>
+			<div class="message is-warning">
+				<div class="message-body">
+					<?php echo $e->getMessage(); ?>. Double check you WPSPX settings are correct
+				</div>
+			</div>
+			<?php
+		}
+	}
+
+	function get_object_nocache($resource,$params=array())
+	{
+		try
+		{
+			$obj_url = $this->build_url($resource,$params);
+			$spektrix_data = $this->get_spektrix_data($obj_url);
+			$spektrix_data = $spektrix_data;
+			if($spektrix_data){
+				$json_as_object = json_decode($spektrix_data, false);
+				return $json_as_object;
+			} else {
+				throw new Exception('no data received from Spektrix');
+			}
+		}
+		catch (Exception $e)
+		{
+			?>
+			<div class="message is-warning">
+				<div class="message-body">
+					<?php echo $e->getMessage(); ?>. Double check you WPSPX settings are correct
+				</div>
 			</div>
 			<?php
 		}
@@ -205,6 +235,11 @@ class Spektrix
 	function get_memberships()
 	{
 		return $this->get_object('memberships');
+	}
+
+	function get_basket()
+	{
+		return $this->get_object_nocache('basket');
 	}
 
 }

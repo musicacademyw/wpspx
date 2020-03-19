@@ -16,7 +16,7 @@
  define( 'SPEKTRIX_API',  esc_attr( $options['wpspx_api_key'] ) );
  define( 'SPEKTRIX_CUSTOM_URL',  esc_attr( $options['wpspx_custom_domain'] ) );
 
- define( 'SPEKTRIX_API_URL', 'https://api.system.spektrix.com/'.SPEKTRIX_USER.'/api/v3/');
- define( 'SPEKTRIX_SECURE_WEB_URL', 'https://system.spektrix.com/'.SPEKTRIX_USER.'/website/secure/');
- define( 'SPEKTRIX_NON_SECURE_WEB_URL', 'https://system.spektrix.com/'.SPEKTRIX_USER.'/website/');
+ define( 'SPEKTRIX_API_URL', 'https://'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/api/v3/');
+ define( 'SPEKTRIX_SECURE_WEB_URL', 'https://'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/secure/');
+ define( 'SPEKTRIX_NON_SECURE_WEB_URL', 'https://'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/');
  define( 'THEME_SLUG', wp_get_theme()->get( 'Name' ));

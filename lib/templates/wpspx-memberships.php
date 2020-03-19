@@ -43,8 +43,16 @@ $memberships = $api->get_memberships();
 
 
 
-			<div data-success-container style="display: none;">Insert success content/markup here</div>
-			<div data-fail-container style="display: none;">Insert failure content/markup here</div>
+			<div class="message is-success" data-success-container style="display: none;">
+				<div class="message-body">
+					Sucessfully added to basket
+				</div>
+			</div>
+			<div class="message is-warning" data-fail-container style="display: none;">
+				<div class="message-body">
+					There seems to be an issue, please try again or call the box office.
+				</div>
+			</div>
 
 		</spektrix-memberships>
 
