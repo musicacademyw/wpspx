@@ -1,12 +1,17 @@
 <?php
-/**
- * Memberships template
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
+/*
+ * Spektrix memberships template
+ *
+ * To overwrite this template copy this file to your theme under /wpspx/wpspx-memberships.php
+ *
  */
 
-get_header();
+ get_header();
 
-$api = New Spektrix();
-$memberships = $api->get_memberships();
+ $api = New Spektrix();
+ $memberships = $api->get_memberships();
 
 ?>
 

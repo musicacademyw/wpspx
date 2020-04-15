@@ -52,7 +52,7 @@ class WPSPX {
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'wpspx_plugin_settings_link' );
 function wpspx_plugin_settings_link( $links )
 {
-	$url = admin_url() . 'options-general.php?page=wpspx';
+	$url = admin_url() . 'admin.php?page=wpspx';
 	$_link = '<a href="'.$url.'">' . __( 'Settings', 'wpspx' ) . '</a>';
 	$links[] = $_link;
 	return $links;
@@ -62,7 +62,6 @@ function wpspx_plugin_settings_link( $links )
 include plugin_dir_path( __FILE__ )  . '/config.php';
 include plugin_dir_path( __FILE__ )  . '/settings.php';
 include plugin_dir_path( __FILE__ )  . '/activate.php';
-// include plugin_dir_path( __FILE__ )  . '/deactivate.php';
-// include plugin_dir_path( __FILE__ )  . '/uninstall.php';
+include plugin_dir_path( __FILE__ )  . '/uninstall.php';
 
 WPSPX::get_instance();

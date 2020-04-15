@@ -38,14 +38,17 @@ function book_online_text($av)
 
 function book_online_button($av,$performance)
 {
+	$now = new DateTime(current_time('mysql'));
 	$perfid = (integer) $performance->id;
+
 	if($av->available == 0):
 		$class = "button is-danger";
+	elseif ($now < $performance->start_selling_at || $now > $performance->stop_selling_at || !$performance->is_on_sale):
+		$class = "button is-warning";
 	else:
 		$class = "button is-primary";
 	endif;
 
-	$now = new DateTime(current_time('mysql'));
 	if($now < $performance->start_selling_at):
 		echo '<a class="'.$class.'" href="#" disabled>Selling Soon</a>';
 	elseif($now > $performance->stop_selling_at || !$performance->is_on_sale):

@@ -2,7 +2,7 @@
 Contributors: beardeddev
 Tags: spektrix, tickets, api, booking, theatre
 Requires at least: 4.3
-Tested up to: 5.3.2
+Tested up to: 5.4
 Stable tag: 2.0.0
 License: GPL v2 or later
 Author: Martin Greenwood
@@ -35,13 +35,12 @@ Visit the Settings page and delete the cache or do it manually by emptying the c
 
 == Installation ==
 
-- Add via the plugin screen by searching for WPSPX or
-- Upload WPSPX to the /wp-content/plugins/ directory
-- Upload your Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before /public_html)
+- Upload wpspx to the /wp-content/plugins/ directory and activate
+- Upload your Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before /public_html or /htdocs)
 - Activate the plugin through the 'Plugins' menu in WordPress
-- Visit the settings page under Settings > WPSPX
-- Enter your API Key, account name, and the path to your signed Spektrix certificates.
-- Add your first show
+- Visit the settings page under Settings > WPSPX or via thr plugin page link
+- Enter your API Key, account name, custom domain and the path to your signed Spektrix certificates.
+- visit the Data Sync tab and sync your Spektrix shows
 
 == Changelog ==
 
@@ -52,7 +51,7 @@ Visit the Settings page and delete the cache or do it manually by emptying the c
 - removed unnecessary code
 - cleaned up css
 - removed broken shortcodes
-- added page templates
+- added basic page templates
 
 = 1.5.0 =
 

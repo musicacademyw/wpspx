@@ -1,25 +1,35 @@
 <?php
-/**
- * Upcoming shows template
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
+/*
+ * Spektrix upcomming shows template
+ *
+ * To overwrite this template copy this file to your theme under /wpspx/wpspx-upcomming.php
+ *
  */
 
-get_header();
+ get_header();
 
-$shows = Show::find_all_in_future_with_instances();
-$wp_shows = get_wp_shows_from_spektrix_shows($shows);
-$shows = filter_published($shows,$wp_shows);
+ $shows = Show::find_all_in_future_with_instances();
+ $wp_shows = get_wp_shows_from_spektrix_shows($shows);
+ $shows = filter_published($shows,$wp_shows);
 
-function date_compare($a, $b)
-{
-    $t1 = strtotime($a->instances[0]->start);
-    $t2 = strtotime($b->instances[0]->start);
-    return $t1 - $t2;
-}
-usort($shows, 'date_compare');
+ function wpspx_date_compare($a, $b)
+ {
+     $t1 = strtotime($a->instances[0]->start);
+     $t2 = strtotime($b->instances[0]->start);
+     return $t1 - $t2;
+ }
+ usort($shows, 'wpspx_date_compare');
 
 ?>
 
+<header>
+	<h1>Upcoming Shows</h1>
+</header>
+
 <div class="all-upcoming-shows columns is-multiline">
+
 <?php
 foreach($shows as $show) {
 	$show_id = $wp_shows[$show->id];
@@ -35,7 +45,7 @@ foreach($shows as $show) {
 			elseif($poster):
 				echo $poster;
 			else:
-				echo '<img src="'.plugin_dir_url( __DIR__ ).'/assets/wpspx-image-portrait.jpg">';
+				echo '<img src="'.WPSPX_PACEHOLDER . '">';
 			endif;
 			?>
 		</a>

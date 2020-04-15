@@ -7,8 +7,10 @@
 
  $options = get_option( 'wpspx_settings' );
 
+ define( 'WPSPXREF', '5e95acafe6fe81.09923660' );
  define( 'WPSPX_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
  define( 'WPSPX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+ define( 'WPSPX_PACEHOLDER', WP_CONTENT_URL . '/uploads/wpspx/wpspx-image-portrait.jpg' );
 
  define( 'SPEKTRIX_USER', esc_attr( $options['wpspx_account_name'] ) );
  define( 'SPEKTRIX_CERT', esc_attr( $options['wpspx_path_to_crt'] ) );

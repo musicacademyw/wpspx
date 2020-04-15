@@ -7,6 +7,7 @@ $wp-spinner-anim-duration: 1.08s
 
 $blue: #428BFF
 $red: #FF4A53
+$green: #4BB543
 $dark: #333
 
 $accent: $blue
@@ -30,7 +31,7 @@ $content-selector: "~ .content > section"
 		transform: rotate(360deg)
 
 
-.toplevel_page_wpspx, .wpspx_page_wpspx-cache, .wpspx_page_wpspx-shows, .wpspx_page_wpspx-support, .wpspx_page_wpspx-license
+.toplevel_page_wpspx, .wpspx_page_wpspx-cache, .wpspx_page_wpspx-shows, .wpspx_page_wpspx-support, .wpspx_page_wpspx-license, .wpspx_page_wpspx-basket, .wpspx_page_wpspx-login
 
 	#wpcontent
 		padding-left: 0
@@ -125,13 +126,25 @@ $content-selector: "~ .content > section"
 				.form-table
 
 					td
-						input
+						input:not(.wp-picker-clear), input:not(.checkbox)
 							width: 100%
 							margin-bottom: 10px
+
+						input[type=checkbox]
+							width: auto
+							margin: 0
 
 						span
 							color: #666
 							font-size: 12px
+
+							&.error
+								font-weight: 600
+								color: $red
+
+							&.active
+								font-weight: 600
+								color: $green
 
 
 

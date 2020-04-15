@@ -1,9 +1,14 @@
 <?php
-/**
- * Memberships template
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
+/*
+ * Spektrix giftcards template
+ *
+ * To overwrite this template copy this file to your theme under /wpspx/wpspx-giftcards.php
+ *
  */
 
-get_header();
+ get_header();
 
 ?>
 

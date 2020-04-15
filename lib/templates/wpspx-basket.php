@@ -1,43 +1,23 @@
 <?php
 if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-$api = New Spektrix();
-$basket = $api->get_basket();
-
-/**
- * Template Name: WPSPX Basket
+/*
+ * Spektrix basket template
+ *
+ * To overwrite this template copy this file to your theme under /wpspx/wpspx-basket.php
+ *
  */
+
 get_header();
-
-
-
-// totalDiscount
-// defaultCardPaymentFee
-// promoCode
-// id
-// basketId
-// basketId_Comment
-// transactionCommission
-	// waived
-	// amount
-// disableWebComponents
-// hash
-// customer
-// merchandiseItems
-// donations
-// notes
-// tickets
-// membershipSubscriptions
-// giftVouchers
-// total
 
 ?>
 
 <div class="wpspxbasket">
 
-	<pre>
-		<?php print_r($basket) ?>
-	</pre>
+	<?php
+	$spektrix_iframe_url = new iFrame('Basket2',NULL,false);
+	echo $spektrix_iframe_url->render_iframe();
+	?>
 
 </div>
 

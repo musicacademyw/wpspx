@@ -1,8 +1,11 @@
 <?php
 if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-/**
- * Template Name: WPSPX Basket
+/*
+ * Spektrix booking page tempkate
+ *
+ * To overwrite this template copy this file to your theme under /wpspx/wpspx-book-online.php
+ *
  */
 get_header();
 ?>

@@ -1,18 +1,23 @@
 <?php
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
 /*
  * Single show template.
  *
+ * To overwrite this template copy this file to your theme under /wpspx/single-shows.php
+ *
  */
 
-$spektrix_id = get_post_meta($post->ID,'_spektrix_id',true);
-$show = new Show($spektrix_id);
-$api = new Spektrix();
+ $spektrix_id = get_post_meta($post->ID,'_spektrix_id',true);
+ $show = new Show($spektrix_id);
+ $api = new Spektrix();
 
-$performances = $show->get_performances();
-$is_in_future = !is_in_past($performances);
+ $performances = $show->get_performances();
+ $is_in_future = !is_in_past($performances);
 
-$now = new DateTime();
-get_header();
+ $now = new DateTime();
+ get_header();
+
 ?>
 
 <div class="showcard">

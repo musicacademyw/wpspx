@@ -1,10 +1,15 @@
 <?php
 if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-/**
- * Template Name: WPSPX Basket
+/*
+ * Spektrix my account template
+ *
+ * To overwrite this template copy this file to your theme under /wpspx/wpspx-my-account.php
+ *
  */
-get_header();
+
+ get_header();
+
 ?>
 
 <div class="showcard">
