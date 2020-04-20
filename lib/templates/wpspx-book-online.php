@@ -12,6 +12,8 @@ get_header();
 
 <div class="book-online">
 
+	<div class="container is-flex">
+
 	<?php
 	$performance = get_query_var('performance');
 
@@ -24,6 +26,8 @@ get_header();
 
 	echo $spektrix_iframe_url->render_iframe();
 	?>
+
+	</div>
 
 </div>
 

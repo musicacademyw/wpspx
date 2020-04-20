@@ -17,51 +17,55 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="all-memberships">
 
-	<div class="columns is-multiline">
-	<?php foreach ($memberships as $membership): ?>
+	<div class="container is-flex">
 
-		<spektrix-memberships
-			class="column is-one-third"
-			client-name="<?php echo SPEKTRIX_USER; ?>"
-			custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>"
-			membership-id="<?php echo $membership->id ?>">
+		<div class="columns is-multiline">
+		<?php foreach ($memberships as $membership): ?>
 
-			<div class="header">
-				<h2><?php echo $membership->name ?></h2>
-			</div>
-			<div class="content">
-				<?php echo wpautop($membership->htmlDescription); ?>
-			</div>
+			<spektrix-memberships
+				class="column is-one-third"
+				client-name="<?php echo SPEKTRIX_USER; ?>"
+				custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>"
+				membership-id="<?php echo $membership->id ?>">
 
-
-			<div class="field">
-				<div class="control">
-					<button class="button is-primary" data-submit-membership>Buy membership</button>
+				<div class="header">
+					<h2><?php echo $membership->name ?></h2>
 				</div>
-			</div>
-			<div class="field">
-				<label class="checkbox">
-					<input class="" type="checkbox" name="autorenew" data-set-autorenew checked>
-					Auto Renew Membership
-				</label>
-			</div>
-
-
-
-			<div class="message is-success" data-success-container style="display: none;">
-				<div class="message-body">
-					Sucessfully added to basket
+				<div class="content">
+					<?php echo wpautop($membership->htmlDescription); ?>
 				</div>
-			</div>
-			<div class="message is-warning" data-fail-container style="display: none;">
-				<div class="message-body">
-					There seems to be an issue, please try again or call the box office.
+
+
+				<div class="field">
+					<div class="control">
+						<button class="button is-primary" data-submit-membership>Buy membership</button>
+					</div>
 				</div>
-			</div>
+				<div class="field">
+					<label class="checkbox">
+						<input class="" type="checkbox" name="autorenew" data-set-autorenew checked>
+						Auto Renew Membership
+					</label>
+				</div>
 
-		</spektrix-memberships>
 
-	<?php endforeach; ?>
+
+				<div class="message is-success" data-success-container style="display: none;">
+					<div class="message-body">
+						Sucessfully added to basket
+					</div>
+				</div>
+				<div class="message is-warning" data-fail-container style="display: none;">
+					<div class="message-body">
+						There seems to be an issue, please try again or call the box office.
+					</div>
+				</div>
+
+			</spektrix-memberships>
+
+		<?php endforeach; ?>
+		</div>
+
 	</div>
 
 </div>

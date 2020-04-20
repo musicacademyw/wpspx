@@ -10,16 +10,6 @@ class Spektrix
 	private static $api_key = SPEKTRIX_API;
 	private static $api_url = SPEKTRIX_API_URL;
 
-	public static function get_path_to_cert()
-	{
-		return SPEKTRIX_CERT;
-	}
-
-	public static function get_path_to_key()
-	{
-		return SPEKTRIX_KEY;
- 	}
-
 	function build_url($resource,$params = array())
 	{
 		$params_string = "";
@@ -43,25 +33,6 @@ class Spektrix
 
 	function get_spektrix_data($obj_url, $method = 'GET')
 	{
-		// $curl = curl_init();
-		// $options = array(
-		//   CURLOPT_URL => $obj_url,
-		//   CURLOPT_RETURNTRANSFER => 1,
-		//   CURLOPT_SSLCERT => self::get_path_to_cert(),
-		//   CURLOPT_SSLKEY => self::get_path_to_key()
-		// );
-		// curl_setopt_array($curl, $options);
-		// $string = curl_exec($curl);
-		// return $string;
-
-		// $args = array(
-		// 	  CURLOPT_SSLCERT => self::get_path_to_cert(),
-		// 	  CURLOPT_SSLKEY => self::get_path_to_key()
-		// );
-
-		// $headers = aerray()
-		// $headers["Date"] = $gmtdate
-		// $headers["Authorization"] = "SpektrixAPI3 ". spektrix_api_user . ":" . $signature;
 
 		$requestargs = array(
 			'timeout' 		=> 120,

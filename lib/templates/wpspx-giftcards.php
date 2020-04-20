@@ -14,7 +14,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="all-memberships">
 
-	<div class="container">
+	<div class="container is-flex">
 
 		<spektrix-gift-vouchers client-name="<?php echo SPEKTRIX_USER; ?>" custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>" forward-to="<?php echo home_url( 'basket' ) ?>">
 

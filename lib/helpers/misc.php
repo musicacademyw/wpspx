@@ -169,3 +169,58 @@ function wpspx_sortable_date_column( $columns ) {
 
     return $columns;
 }
+
+
+function wpspx_callback()
+{
+	$license = get_option( 'wpspx_licence_settings' );
+	$key = $license['wpspx_license_key'];
+	if (!$key) {
+		?>
+		<div class="notice notice-error">
+			<p><?php _e( 'Plesase <a href="'.admin_url().'admin.php?page=wpspx-license">register</a> your copy of WPSPX!', 'sample-text-domain' ); ?></p>
+		</div>
+    <?php
+	}
+}
+add_action( 'admin_notices', 'wpspx_callback' );
+
+function wpspx_callback_validate($key)
+{
+	if ($key) {
+		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/validate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 20, 'sslverify' => false));
+		$body = wp_remote_retrieve_body($response);
+		$json = json_decode($body);
+		return $json;
+	}
+	else {
+		return false;
+	}
+}
+
+function wpspx_callback_activate($key)
+{
+	if ($key) {
+		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/activate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 20, 'sslverify' => false));
+		$body = wp_remote_retrieve_body($response);
+		$json = json_decode($body);
+		return $json;
+	}
+	else {
+		return false;
+	}
+}
+
+
+function wpspx_callback_retrieve($key)
+{
+	if ($key) {
+		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 20, 'sslverify' => false));
+		$body = wp_remote_retrieve_body($response);
+		$json = json_decode($body);
+		return $json;
+	}
+	else {
+		return false;
+	}
+}

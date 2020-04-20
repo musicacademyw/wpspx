@@ -14,10 +14,14 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="showcard">
 
+	<div class="container is-flex">
+
 	<?php
 	$spektrix_iframe_url = new iFrame('Checkout',NULL,true);
 	echo $spektrix_iframe_url->render_iframe();
 	?>
+
+	</div>
 
 </div>
 

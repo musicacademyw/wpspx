@@ -37,6 +37,18 @@ function wpspx_activate() {
 			'',
 			'0',
 		),
+		$memberships = array(
+			'Memberships',
+			'memberships',
+			'',
+			'0',
+		),
+		$giftcards = array(
+			'Gift Cards',
+			'gift-cards',
+			'',
+			'0',
+		),
 	);
 
 	foreach ( $wpspx_pages as $wpspx_page ) {

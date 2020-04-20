@@ -7,7 +7,7 @@
 
  $options = get_option( 'wpspx_settings' );
 
- define( 'WPSPXREF', '5e95acafe6fe81.09923660' );
+ define( 'WPSPXREF', 'gB04eRXZpMB7D0SzL4MGpuXbtAjxN9.81794921' );
  define( 'WPSPX_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
  define( 'WPSPX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  define( 'WPSPX_PACEHOLDER', WP_CONTENT_URL . '/uploads/wpspx/wpspx-image-portrait.jpg' );

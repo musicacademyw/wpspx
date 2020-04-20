@@ -105,22 +105,6 @@ function wpspx_settings_init(  ) {
 		'wpspx_wpspxPluginPage_section'
 	);
 
-	add_settings_field(
-		'wpspx_path_to_crt',
-		__( 'Path to Spektrix CRT', 'wpspx' ),
-		'wpspx_path_to_crt_render',
-		'wpspxPluginPage',
-		'wpspx_wpspxPluginPage_section'
-	);
-
-	add_settings_field(
-		'wpspx_path_to_key',
-		__( 'Parh to Spektrix KEY', 'wpspx' ),
-		'wpspx_path_to_key_render',
-		'wpspxPluginPage',
-		'wpspx_wpspxPluginPage_section'
-	);
-
 	// Cache Setting
 	register_setting( 'wpspxPluginPageCache', 'wpspx_cache_settings' );
 
@@ -129,6 +113,14 @@ function wpspx_settings_init(  ) {
 		__( 'Spektrix API Cache', 'wpspx' ),
 		'wpspx_settings_cache_section_callback',
 		'wpspxPluginPageCache'
+	);
+
+	add_settings_field(
+		'wpspx_expire_cache',
+		__( 'WPSPX Cache Length', 'wpspx' ),
+		'wpspx_cache_expires_render',
+		'wpspxPluginPageCache',
+		'wpspx_wpspxPluginPageCache_section'
 	);
 
 	// Posts Settings
@@ -184,8 +176,18 @@ function wpspx_settings_init(  ) {
 function wpspx_account_name_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
+
+	$is_disabled = true;
+	$license = get_option( 'wpspx_licence_settings' );
+	$lkey = $license['wpspx_license_key'];
+	if ($lkey) {
+		$validation = wpspx_callback_validate($lkey);
+		if ($validation->success == 1):
+			$is_disabled = false;
+		endif;
+	}
 	?>
-	<input type='text' name='wpspx_settings[wpspx_account_name]' value='<?php echo $options['wpspx_account_name']; ?>'>
+	<input type='text' name='wpspx_settings[wpspx_account_name]' value='<?php echo $options['wpspx_account_name']; ?>'<?php disabled( $is_disabled ) ?>>
 	<span>Your account name is the theatrename ius your admin interface url: https://system.spektrix.com/[your account name]/</span>
 	<?php
 
@@ -196,8 +198,18 @@ function wpspx_api_key_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
 	$key = $options['wpspx_api_key'];
+
+	$is_disabled = true;
+	$license = get_option( 'wpspx_licence_settings' );
+	$lkey = $license['wpspx_license_key'];
+	if ($lkey) {
+		$validation = wpspx_callback_validate($lkey);
+		if ($validation->success == 1):
+			$is_disabled = false;
+		endif;
+	}
 	?>
-	<input type='text' id='ssn' name='wpspx_settings[wpspx_api_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;<?php echo substr($key, -5,5); ?><?php endif; ?>'>
+	<input type='text' id='ssn' name='wpspx_settings[wpspx_api_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;<?php echo substr($key, -5,5); ?><?php endif; ?>' <?php disabled( $is_disabled ) ?>>
 	<span>This will look something like this abcd1e12-f4g5-6789-h01i-2345678j910k</span>
 	<?php
 
@@ -207,31 +219,19 @@ function wpspx_api_key_render(  ) {
 function wpspx_custom_domain_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
+
+	$is_disabled = true;
+	$license = get_option( 'wpspx_licence_settings' );
+	$lkey = $license['wpspx_license_key'];
+	if ($lkey) {
+		$validation = wpspx_callback_validate($lkey);
+		if ($validation->success == 1):
+			$is_disabled = false;
+		endif;
+	}
 	?>
-	<input type='text' name='wpspx_settings[wpspx_custom_domain]' value='<?php echo $options['wpspx_custom_domain']; ?>'>
+	<input type='text' name='wpspx_settings[wpspx_custom_domain]' value='<?php echo $options['wpspx_custom_domain']; ?>' <?php disabled( $is_disabled ) ?>>
 	<span>A custom domain such as tickets.theatre.com <a target="_blank" href="https://integrate.spektrix.com/docs/customdomains">Instructions to set this up</a></span>
-	<?php
-
-}
-
-// Path to CRT
-function wpspx_path_to_crt_render(  ) {
-
-	$options = get_option( 'wpspx_settings' );
-	?>
-	<input type='text' name='wpspx_settings[wpspx_path_to_crt]' value='<?php echo $options['wpspx_path_to_crt']; ?>'>
-	<span>This needs to be a server path. Your path is <?php echo $_SERVER['DOCUMENT_ROOT']; ?></span>
-	<?php
-
-}
-
-// Path to KEY
-function wpspx_path_to_key_render(  ) {
-
-	$options = get_option( 'wpspx_settings' );
-	?>
-	<input type='text' name='wpspx_settings[wpspx_path_to_key]' value='<?php echo $options['wpspx_path_to_key']; ?>'>
-	<span>This needs to be a server path. Your path is <?php echo $_SERVER['DOCUMENT_ROOT']; ?></span>
 	<?php
 
 }
@@ -242,6 +242,22 @@ function wpspx_disable_styles_render(  ) {
 	$options = get_option( 'wpspx_support_settings' );
 	?>
 	<input type='checkbox' class="checkbox" value="1" name='wpspx_support_settings[wpspx_disable_styles]' <?php checked( 1 == isset($options['wpspx_disable_styles'] )); ?>>
+	<?php
+
+}
+
+// Disbale WPSPX Styles
+function wpspx_cache_expires_render(  ) {
+
+	$options = get_option( 'wpspx_cache_settings' );
+	?>
+	<select class="wpspx_expire_cache" name="wpspx_support_settings[wpspx_expire_cache]">
+		<option value="3600">1 Hour</option>
+		<option value="21600">6 Hours</option>
+		<option value="43200">12 Hours</option>
+		<option value="86400">1 Day</option>
+		<option value="604800">1 Week</option>
+	</select>
 	<?php
 
 }
@@ -273,28 +289,30 @@ function wpspx_settings_license_section_callback(  ) {
 
 function wpspx_license_key_render() {
 
+
+	$message = "";
+	$validation = null;
 	$license = get_option( 'wpspx_licence_settings' );
 	$key = $license['wpspx_license_key'];
 	if ($key) {
-		$api_params = array(
-			'slm_action' => 'slm_check',
-			'secret_key' => WPSPXREF,
-			'license_key' => $key
-		);
-		$response = wp_remote_get(add_query_arg($api_params, 'https://martingreenwood.com'), array('timeout' => 20, 'sslverify' => false));
-		$body = wp_remote_retrieve_body($response);
-		$json = json_decode($body);
+		$validation = wpspx_callback_validate($key);
+		if ($validation->success == 1):
+			if ($validation->data->remainingActivations > 1) {
+				$activate = wpspx_callback_activate($key);
+			}
+			$licenseinfo = wpspx_callback_retrieve($key);
+			$message = "<span class='active'>Licence active</span><br>
+			<span>Remaining ctivations: ".$validation->data->remainingActivations."</span><br /><span>Valid for: ".$licenseinfo->data->validFor." days</span>";
+		else:
+			delete_site_option( 'wpspx_licence_settings' );
+			$message = "<span class='error'>Invalid License entered.</span>";
+		endif;
 	}
 	?>
 	<input type='text' id='ssn' name='wpspx_licence_settings[wpspx_license_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;<?php echo substr($key, -3,3); ?><?php endif; ?>'>
-	<?php if ($json->result === 'success'): ?>
-		<span>Licence Status: </span><span class="<?php echo $json->status; ?>"><?php echo strtoupper($json->status); ?></span><br /><span>Licence Expires: <?php echo date("dS M Y", strtotime($json->date_expiry)); ?></span>
-	<?php elseif ($json->result === 'error'): ?>
-		<span>Licence Status: </span><span class="error">Invalid</span>
-	<?php else: ?>
-		<span>This will look something like this wpspx-1234a-56789-a12</span>
-	<?php endif; ?>
 	<?php
+	echo $message;
+
 
 }
 
@@ -402,7 +420,16 @@ function wpspx_options_page(  ) {
 								<?php
 								settings_fields( 'wpspxPluginPage' );
 								do_settings_sections( 'wpspxPluginPage' );
-								submit_button();
+								$license = get_option( 'wpspx_licence_settings' );
+								$key = $license['wpspx_license_key'];
+								if ($key) {
+									$validation = wpspx_callback_validate($key);
+									if ($validation->success == 1):
+										submit_button();
+									else:
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									endif;
+								}
 								?>
 							</section>
 						</div>
@@ -452,7 +479,7 @@ function wpspx_cache_options_page(  ) {
 						$cached_files = WP_CONTENT_DIR . '/wpspx-cache/*.json';
 						try
 						{
-							array_map('unlink', glob($cached_files)); ?>
+							// array_map('unlink', glob($cached_files)); ?>
 							<div class="notice notice-success is-dismissible">
 								<p><strong>Settings saved.</strong></p>
 								<button type="button" class="notice-dismiss">
@@ -480,12 +507,30 @@ function wpspx_cache_options_page(  ) {
 								do_settings_sections( 'wpspxPluginPageCache' );
 								$cached_dir = WP_CONTENT_DIR . '/wpspx-cache/';
 								$cached_files = glob($cached_dir . "*.json");
+
+								$license = get_option( 'wpspx_licence_settings' );
+								$key = $license['wpspx_license_key'];
+								if ($key) {
+									$validation = wpspx_callback_validate($key);
+									if ($validation->success == 1):
+										submit_button("Save Cache Settings");
+									else:
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									endif;
+								}
 								?>
-								<p>
+								<h4>
 									There are currnelty <?php echo count($cached_files); ?> cached files
-								</p>
+								</h4>
 								<?php
-								submit_button("Clear Cache");
+								if ($key) {
+									$validation = wpspx_callback_validate($key);
+									if ($validation->success == 1):
+										submit_button("Clear Cache", "large", "clear-cache");
+									else:
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									endif;
+								}
 								?>
 							</section>
 						</div>
@@ -548,7 +593,16 @@ function wpspx_support_options_page(  ) {
 								do_settings_sections( 'wpspxPluginPageSupport' );
 								?>
 								<br /><br /><?php
-								submit_button('Save Settings');
+								$license = get_option( 'wpspx_licence_settings' );
+								$key = $license['wpspx_license_key'];
+								if ($key) {
+									$validation = wpspx_callback_validate($key);
+									if ($validation->success == 1):
+										submit_button('Save Settings');
+									else:
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									endif;
+								}
 								?>
 
 								<h2>Links</h2>
@@ -758,7 +812,7 @@ function wpspx_shows_options_page(  ) {
 					wpspx_settings_posts_section_callback();
 					?>
 					<div class="notice notice-success is-dismissible">
-						<p><strong>Shows / Events Cached.</strong></p>
+						<p><strong>Shows Synced.</strong></p>
 						<button type="button" class="notice-dismiss">
 							<span class="screen-reader-text">Dismiss this notice.</span>
 						</button>
@@ -815,7 +869,16 @@ function wpspx_shows_options_page(  ) {
 									<div class="spin"></div>
 								</div>
 								<?php
-								submit_button($synctext, 'primary', 'publishshows', true, $other_attributes );
+								$license = get_option( 'wpspx_licence_settings' );
+								$key = $license['wpspx_license_key'];
+								if ($key) {
+									$validation = wpspx_callback_validate($key);
+									if ($validation->success == 1):
+										submit_button($synctext, 'primary', 'publishshows', true );
+									else:
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									endif;
+								}
 								?>
 							</section>
 						</div>
