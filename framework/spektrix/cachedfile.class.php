@@ -5,8 +5,6 @@ class CachedFile extends Spektrix {
 	public $file_name;
 	public $full_path_to_file;
 
-	const ONE_DAY = 86400;
-
 	public function __construct($resource, $params = array()){
 		$this->file_name = $this->build_file_name($resource, $params);
 		$this->full_path_to_file = $this->build_full_path();
@@ -51,7 +49,7 @@ class CachedFile extends Spektrix {
 	* @access public
 	*/
 	public function is_fresh(){
-		$yesterday = time() - self::ONE_DAY;
+		$yesterday = time() - WPSPXCACHEVALIDFOR;
 		return filemtime($this->full_path_to_file) > $yesterday;
 	}
 

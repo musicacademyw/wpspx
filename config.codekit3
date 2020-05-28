@@ -7,7 +7,7 @@
 		"uuidString": "DFA88EB1-F5C7-44FC-A4AF-EE2FE3DB17E1"
 		}
 	],
-"creatorBuild": "31934",
+"creatorBuild": "32186",
 "files": {
 	"/.gitignore": {
 		"cB": 0,
@@ -143,14 +143,14 @@
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/lib/assets/css/wpspx-admin.css",
 		"oF": 0,
 		"oS": 3,
-		"uL": 1
+		"sct": 1
 		},
 	"/lib/assets/css/wpspx-styles.css": {
 		"aP": 1,
@@ -166,14 +166,56 @@
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/lib/assets/css/wpspx-styles.css",
 		"oF": 0,
 		"oS": 3,
-		"uL": 1
+		"sct": 1
+		},
+	"/lib/assets/icon-blue.png": {
+		"ft": 32768,
+		"iS": 10829,
+		"oA": 0,
+		"oAP": "/lib/assets/icon-blue.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/lib/assets/icon-blue.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/lib/assets/icon-blue.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
+	"/lib/assets/icon.png": {
+		"ft": 32768,
+		"iS": 10273,
+		"oA": 0,
+		"oAP": "/lib/assets/icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/lib/assets/icon.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/lib/assets/icon.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
 		},
 	"/lib/assets/index.php": {
 		"cB": 0,
@@ -182,6 +224,28 @@
 		"oA": 0,
 		"oAP": "/lib/assets/index.php",
 		"oF": 0
+		},
+	"/lib/assets/js/wpspx-front-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/lib/assets/js/wpspx-front-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/lib/assets/js/wpspx-front.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/lib/assets/js/wpspx-front-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"/lib/assets/js/wpspx-min.js": {
 		"bF": 0,
@@ -205,6 +269,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/lib/assets/logo.png": {
+		"ft": 32768,
+		"iS": 2895,
+		"oA": 0,
+		"oAP": "/lib/assets/logo.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/lib/assets/logo.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -215,401 +290,164 @@
 		"plM": 52780316221407,
 		"prP": 0
 		},
-	"/lib/assets/sass/base/_all.sass": {
+	"/lib/assets/sass/_Base.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/base/_all.css",
+		"oAP": "/lib/assets/sass/_Base.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/base/generic.sass": {
+	"/lib/assets/sass/_Button.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/base/generic.css",
+		"oAP": "/lib/assets/sass/_Button.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/base/helpers.sass": {
+	"/lib/assets/sass/_Color.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/base/helpers.css",
+		"oAP": "/lib/assets/sass/_Color.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/base/minireset.sass": {
+	"/lib/assets/sass/_Form.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/base/minireset.css",
+		"oAP": "/lib/assets/sass/_Form.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/components/_all.sass": {
+	"/lib/assets/sass/_Grid.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/components/_all.css",
+		"oAP": "/lib/assets/sass/_Grid.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/components/message.sass": {
+	"/lib/assets/sass/_Image.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/components/message.css",
+		"oAP": "/lib/assets/sass/_Image.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/components/modal.sass": {
+	"/lib/assets/sass/_Link.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/components/modal.css",
+		"oAP": "/lib/assets/sass/_Link.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/elements/_all.sass": {
+	"/lib/assets/sass/_List.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/_all.css",
+		"oAP": "/lib/assets/sass/_List.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/elements/button.sass": {
+	"/lib/assets/sass/_Typography.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/button.css",
+		"oAP": "/lib/assets/sass/_Typography.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/elements/container.sass": {
+	"/lib/assets/sass/_Utility.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/container.css",
+		"oAP": "/lib/assets/sass/_Utility.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
-	"/lib/assets/sass/elements/content.sass": {
+	"/lib/assets/sass/milligram.sass": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 2,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/content.css",
+		"oAP": "/lib/assets/sass/milligram.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/elements/image.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/image.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/elements/notification.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/notification.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/elements/other.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/other.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/elements/title.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/elements/title.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/form/_all.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/form/_all.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/form/checkbox-radio.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/form/checkbox-radio.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/form/input-textarea.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/form/input-textarea.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/form/select.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/form/select.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/form/shared.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/form/shared.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/form/tools.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/form/tools.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/grid/_all.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/grid/_all.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/grid/columns.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/grid/columns.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/grid/tiles.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/grid/tiles.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/utilities/_all.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/utilities/_all.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/utilities/controls.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/utilities/controls.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/utilities/derived-variables.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/utilities/derived-variables.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/utilities/functions.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/utilities/functions.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/utilities/initial-variables.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/utilities/initial-variables.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/lib/assets/sass/utilities/mixins.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/utilities/mixins.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/lib/assets/shopping-basket-regular.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
 		"oAP": "/lib/assets/shopping-basket-regular.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
+	"/lib/assets/white-tick.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/lib/assets/white-tick.svg",
 		"oF": 0,
 		"opt": 0,
 		"plM": 52780316221407,
@@ -632,6 +470,12 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/custom-post-types/cpts.php",
+		"oF": 0
+		},
+	"/lib/helpers/cache": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/lib/helpers/cache",
 		"oF": 0
 		},
 	"/lib/helpers/misc.php": {
@@ -674,6 +518,46 @@
 		"oAP": "/lib/index.php",
 		"oF": 0
 		},
+	"/lib/shortcodes/wpspx-donate.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/wpspx-donate.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/wpspx-giftcard.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/wpspx-giftcard.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/wpspx-membership.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/wpspx-membership.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/wpspx-memberships.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/wpspx-memberships.php",
+		"oF": 0
+		},
+	"/lib/shortcodes/wpspx-shows.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/shortcodes/wpspx-shows.php",
+		"oF": 0
+		},
 	"/lib/templates/single-shows.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -704,6 +588,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/lib/templates/wpspx-checkout.php",
+		"oF": 0
+		},
+	"/lib/templates/wpspx-donate.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/lib/templates/wpspx-donate.php",
 		"oF": 0
 		},
 	"/lib/templates/wpspx-giftcards.php": {
@@ -1320,6 +1212,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"default-case-last": {
+			"active": 0,
+			"optionString": ""
+			},
 		"default-param-last": {
 			"active": 0,
 			"optionString": ""
@@ -1375,6 +1271,10 @@
 		"global-require": {
 			"active": 0,
 			"optionString": ""
+			},
+		"grouped-accessor-pairs": {
+			"active": 0,
+			"optionString": "'anyOrder'"
 			},
 		"guard-for-in": {
 			"active": 0,
@@ -1552,6 +1452,10 @@
 			"active": 1,
 			"optionString": "{'checkLoops': true}"
 			},
+		"no-constructor-return": {
+			"active": 0,
+			"optionString": ""
+			},
 		"no-continue": {
 			"active": 0,
 			"optionString": ""
@@ -1577,6 +1481,10 @@
 			"optionString": ""
 			},
 		"no-dupe-class-members": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-dupe-else-if": {
 			"active": 1,
 			"optionString": ""
 			},
@@ -1720,6 +1628,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"no-loss-of-precision": {
+			"active": 0,
+			"optionString": ""
+			},
 		"no-magic-numbers": {
 			"active": 0,
 			"optionString": "{'ignore': [], 'ignoreArrayIndexes': true, 'enforceConst': false, 'detectObjects': false}"
@@ -1836,6 +1748,10 @@
 			"active": 1,
 			"optionString": ""
 			},
+		"no-restricted-exports": {
+			"active": 0,
+			"optionString": "{'restrictedNamedExports': []}"
+			},
 		"no-restricted-globals": {
 			"active": 0,
 			"optionString": "'event', 'fdescribe'"
@@ -1878,6 +1794,10 @@
 			},
 		"no-sequences": {
 			"active": 0,
+			"optionString": ""
+			},
+		"no-setter-return": {
+			"active": 1,
 			"optionString": ""
 			},
 		"no-shadow": {
@@ -1975,6 +1895,10 @@
 		"no-use-before-define": {
 			"active": 0,
 			"optionString": "{'functions': true, 'classes': true, 'variables': true}"
+			},
+		"no-useless-backreference": {
+			"active": 0,
+			"optionString": ""
 			},
 		"no-useless-call": {
 			"active": 0,
@@ -2083,6 +2007,10 @@
 		"prefer-destructuring": {
 			"active": 0,
 			"optionString": "{'array': true, 'object': true}, {'enforceForRenamedProperties': false}"
+			},
+		"prefer-exponentiation-operator": {
+			"active": 0,
+			"optionString": ""
 			},
 		"prefer-named-capture-group": {
 			"active": 0,
@@ -2780,13 +2708,13 @@
 		"autoOutputPathReplace1": "sass",
 		"autoOutputPathReplace2": "css",
 		"autoOutputPathStyle": 0,
+		"compilerType": 1,
 		"createSourceMap": 0,
-		"debugStyle": 0,
 		"decimalPrecision": 10,
+		"emitCharset": 1,
 		"outputStyle": 0,
 		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"useLibsass": 1
+		"shouldRunBless": 0
 		},
 	"languageDefaultsSLIM": {
 		"autoOutputAction": 0,

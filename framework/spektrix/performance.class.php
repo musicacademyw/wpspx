@@ -122,7 +122,7 @@ function get_performance_range($performances,$prefix = true){
 	if($first_show == $last_show){
 		$from .= $first_show . ' ' . $first_show_month;
 	} else {
-		$to = $last_show . ' ' . $last_show_month;
+		$to = $last_show . ' ' . $last_show_month . ' ' . $last_show_year;
 		if($first_show_month == $last_show_month){
 			$from = $first_show;
 		} else {

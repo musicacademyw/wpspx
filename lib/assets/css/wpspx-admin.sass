@@ -4,7 +4,6 @@ $wp-spinner-size: 18px
 $wp-spinner-size-inner: 4px
 $wp-spinner-anim-duration: 1.08s
 
-
 $blue: #428BFF
 $red: #FF4A53
 $green: #4BB543
@@ -123,6 +122,103 @@ $range-label-width: 60px !default
 
 
 
+			.done
+				transition: all 0.3s ease-in-out
+				position: absolute
+				top: 0
+				left: 50%
+				transform: translate(-50%, -100vh)
+				width: 50%
+				z-index: 99
+				padding: 3rem
+				min-height: 550px
+				background: white
+				transition: all 0.3s
+				display: flex
+				flex-flow: wrap
+
+				&.show
+					transform: translate(-50%, 0)
+					box-shadow: 0px 28px 77px 14px #666
+
+				#stopwatch
+					position: absolute
+					left: 0
+					bottom: 17px
+					width: 100%
+					text-align: center
+					font-family: monospace
+					font-size: 13px
+					color: #666
+					text-transform: uppercase
+
+
+				ul
+					margin: 0
+					width: 100%
+
+					li
+						width: 100%
+						margin-bottom: 5px
+						padding: 5px
+						display: flex
+						flex: 0 0 100%
+						align-items: center
+						justify-content: space-between
+						position: relative
+
+						&::before
+							content: ""
+							position: absolute
+							height: 100%
+							top: 0
+							left: 0
+							width: 0%
+							transition: all 0.3s linear
+							z-index: -1
+							background: #E1F5C4
+
+						&.complete
+
+							&::before
+								width: 100%
+
+							.loadinggif
+								opacity: 0
+
+							.donetick
+								opacity: 1
+
+						&:first-of-type
+							font-size: 23px
+							font-weight: 600
+							margin-bottom: 2rem
+
+							&::before
+								display: none
+
+						span
+							font-weight: 600
+							text-transform: uppercase
+
+						.loadinggif
+							width: 21px
+							height: auto
+							opacity: 1
+							transition: all 0.3s linear
+							position: absolute
+							right: 5px
+
+						.donetick
+							width: 21px
+							height: auto
+							opacity: 0
+							transition: all 0.3s linear
+							transition-delay: 0.5s
+
+				a
+					margin-top: auto
+
 
 			article
 				padding: 60px
@@ -192,7 +288,7 @@ $range-label-width: 60px !default
 
 						h2
 							font-size: 25px
-							margin: 0 0 30px 0
+							margin: 20px 0 30px 0
 							flex: 0 0 100%
 
 
@@ -200,6 +296,33 @@ $range-label-width: 60px !default
 							flex: 0 0 25%
 							margin: 0 0 15px 0
 							flex: 0 0 100%
+
+						dl
+							flex: 0 0 100%
+							display: flex
+							flex-flow: wrap
+							align-items: center
+							align-content: center
+
+							dt
+								flex: 0 0 40%
+								line-height: 2.2
+								margin-bottom: 0
+
+								&:first-of-type
+									font-weight: 600
+									border-bottom: 1px solid #ccc
+
+
+							dd
+								flex: 0 0 60%
+								margin-left: 0
+								margin-bottom: 0
+								line-height: 2.2
+
+								&:first-of-type
+									font-weight: 600
+									border-bottom: 1px solid #ccc
 
 						svg
 							width: 16px
@@ -241,14 +364,18 @@ $range-label-width: 60px !default
 								display: flex
 								flex-flow: wrap
 								margin: 0 0 30px
+								align-items: flex-start
+								align-content: flex-start
 
 								dt
-									flex: 0 0 40%
 									margin: 0
+									font-weight: 600
+									border-bottom: 0
 
 								dd
-									flex: 0 0 60%
 									margin: 0
+									font-weight: normal
+									border-bottom: 0
 
 									ul
 										margin: 0
@@ -278,12 +405,14 @@ $range-label-width: 60px !default
 		margin-bottom: 0 !important
 		padding-bottom: 0
 
+
+
 	.loading
 		display: flex
 		align-items: center
 		position: absolute
 		bottom: 5px
-		left: 120px
+		left: 155px
 		opacity: 0
 		transition: all 0.3s ease-in-out
 
@@ -312,14 +441,6 @@ $range-label-width: 60px !default
 				border-radius: $wp-spinner-size-inner
 				margin-left: -($wp-spinner-size-inner / 2)
 				background: $wp-spinner-fg
-
-
-
-
-
-
-
-
 
 
 #wpspx_cache_section
@@ -351,3 +472,12 @@ $range-label-width: 60px !default
 				margin-right: 10px
 				width: 14px
 				height: auto
+
+
+#adminmenu
+	.toplevel_page_wpspx
+		.wp-menu-image
+			img
+				width: auto
+				height: 18px
+				padding: 8px 0px

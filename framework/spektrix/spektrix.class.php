@@ -208,6 +208,11 @@ class Spektrix
 		return $this->get_object('memberships');
 	}
 
+	function get_data($name)
+	{
+		return $this->get_object($name);
+	}
+
 	function get_basket()
 	{
 		return $this->get_object_nocache('basket');

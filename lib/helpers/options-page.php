@@ -6,7 +6,14 @@ add_action( 'admin_init', 'wpspx_settings_init' );
 
 function wpspx_add_admin_menu(  ) {
 
-	add_menu_page( 'WPSPX', 'WPSPX', 'manage_options', 'wpspx', 'wpspx_options_page' );
+	add_menu_page(
+		'WPSPX',
+		'WPSPX',
+		'manage_options',
+		'wpspx',
+		'wpspx_options_page',
+		plugins_url( 'wpspx/lib/assets/icon.svg' )
+	);
 
 	add_submenu_page(
 		'wpspx',									// parent slug
@@ -14,7 +21,8 @@ function wpspx_add_admin_menu(  ) {
 		'Data Sync',								// menu title
 		'manage_options',							// capability
 		'wpspx-shows',								// slug
-		'wpspx_shows_options_page' 					// callback
+		'wpspx_shows_options_page', 				// callback
+		null
 	);
 
 	add_submenu_page(
@@ -23,16 +31,18 @@ function wpspx_add_admin_menu(  ) {
 		'Cache',									// menu title
 		'manage_options',							// capability
 		'wpspx-cache',								// slug
-		'wpspx_cache_options_page' 					// callback
+		'wpspx_cache_options_page', 				// callback
+		null
 	);
 
 	add_submenu_page(
 		'wpspx',									// parent slug
 		'License',									// page title
 		'License',									// menu title
-			'manage_options',						// capability
+		'manage_options',							// capability
 		'wpspx-license',							// slug
-		'wpspx_license_options_page' 				// callback
+		'wpspx_license_options_page',				// callback
+		null
 	);
 
 	if (is_plugin_active('wpspx-basket/wp-spektrix-basket.php')):
@@ -42,7 +52,8 @@ function wpspx_add_admin_menu(  ) {
 		'Basket',									// menu title
 		'manage_options',							// capability
 		'wpspx-basket',								// slug
-		'wpspx_basket_options_page' 				// callback
+		'wpspx_basket_options_page', 				// callback
+		null
 	);
 	endif;
 
@@ -53,7 +64,8 @@ function wpspx_add_admin_menu(  ) {
 		'Login',									// menu title
 		'manage_options',							// capability
 		'wpspx-login',								// slug
-		'wpspx_login_options_page' 					// callback
+		'wpspx_login_options_page', 				// callback
+		null
 	);
 	endif;
 
@@ -63,7 +75,8 @@ function wpspx_add_admin_menu(  ) {
 		'Support',									// menu title
 		'manage_options',							// capability
 		'wpspx-support',							// slug
-		'wpspx_support_options_page' 				// callback
+		'wpspx_support_options_page', 				// callback
+		null
 	);
 
 }
@@ -85,6 +98,14 @@ function wpspx_settings_init(  ) {
 		'wpspx_account_name',
 		__( 'Spektrix Account Name', 'wpspx' ),
 		'wpspx_account_name_render',
+		'wpspxPluginPage',
+		'wpspx_wpspxPluginPage_section'
+	);
+
+	add_settings_field(
+		'wpspx_api_useername',
+		__( 'Spektrix API Username', 'wpspx' ),
+		'wpspx_api_username_render',
 		'wpspxPluginPage',
 		'wpspx_wpspxPluginPage_section'
 	);
@@ -152,6 +173,14 @@ function wpspx_settings_init(  ) {
 		'wpspx_wpspxPluginPageSupport_section'
 	);
 
+	add_settings_field(
+		'wpspx_disable_fontawesome',
+		__( 'Disable Font Awesome', 'wpspx' ),
+		'wpspx_disable_fontawesome_render',
+		'wpspxPluginPageSupport',
+		'wpspx_wpspxPluginPageSupport_section'
+	);
+
 	// License Settings
 	register_setting( 'wpspxPluginPageLicense', 'wpspx_licence_settings' );
 
@@ -194,6 +223,28 @@ function wpspx_account_name_render(  ) {
 }
 
 // Client API Key
+function wpspx_api_username_render(  ) {
+
+	$options = get_option( 'wpspx_settings' );
+	$username = $options['wpspx_api_username'];
+
+	$is_disabled = true;
+	$license = get_option( 'wpspx_licence_settings' );
+	$lkey = $license['wpspx_license_key'];
+	if ($lkey) {
+		$validation = wpspx_callback_validate($lkey);
+		if ($validation->success == 1):
+			$is_disabled = false;
+		endif;
+	}
+	?>
+	<input type='text' id='ssn' name='wpspx_settings[wpspx_api_username]' value='<?php if ($username): echo $username; endif; ?>' <?php disabled( $is_disabled ) ?>>
+	<span>You will need to request an API Username though your spektrix account manager.</span>
+	<?php
+
+}
+
+// Client API Key
 function wpspx_api_key_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
@@ -209,8 +260,8 @@ function wpspx_api_key_render(  ) {
 		endif;
 	}
 	?>
-	<input type='text' id='ssn' name='wpspx_settings[wpspx_api_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;<?php echo substr($key, -5,5); ?><?php endif; ?>' <?php disabled( $is_disabled ) ?>>
-	<span>This will look something like this abcd1e12-f4g5-6789-h01i-2345678j910k</span>
+	<textarea rows='7' cols='50' type='textarea' id='ssn' style="width: 100%;margin-bottom: 10px;" name='wpspx_settings[wpspx_api_key]' value='' <?php disabled( $is_disabled ) ?>><?php if ($key): echo $key;  endif; ?></textarea>
+	<span>You will need to request an API key though your spektrix account manager.</span>
 	<?php
 
 }
@@ -241,7 +292,19 @@ function wpspx_disable_styles_render(  ) {
 
 	$options = get_option( 'wpspx_support_settings' );
 	?>
+	<p>WPSPX uses the Milligram CSS framework. If you experience issues with your theme, please disable the plugin's CSS and compose your own style.</p>
 	<input type='checkbox' class="checkbox" value="1" name='wpspx_support_settings[wpspx_disable_styles]' <?php checked( 1 == isset($options['wpspx_disable_styles'] )); ?>>
+	<?php
+
+}
+
+// Disbale WPSPX Font Awesome
+function wpspx_disable_fontawesome_render(  ) {
+
+	$options = get_option( 'wpspx_support_settings' );
+	?>
+	<p>WPSPX uses Font Awesome. You should disable this if your theme already uses it.</p>
+	<input type='checkbox' class="checkbox" value="1" name='wpspx_support_settings[wpspx_disable_fontawesome]' <?php checked( 1 == isset($options['wpspx_disable_fontawesome'] )); ?>>
 	<?php
 
 }
@@ -249,14 +312,13 @@ function wpspx_disable_styles_render(  ) {
 // Disbale WPSPX Styles
 function wpspx_cache_expires_render(  ) {
 
-	$options = get_option( 'wpspx_cache_settings' );
 	?>
-	<select class="wpspx_expire_cache" name="wpspx_support_settings[wpspx_expire_cache]">
-		<option value="3600">1 Hour</option>
-		<option value="21600">6 Hours</option>
-		<option value="43200">12 Hours</option>
-		<option value="86400">1 Day</option>
-		<option value="604800">1 Week</option>
+	<select class="wpspx_expire_cache" name="wpspx_cache_settings[wpspx_expire_cache]">
+		<option value="3600" <?php if (selected( WPSPXCACHEVALIDFOR, 3600 )); ?>>1 Hour</option>
+		<option value="21600 <?php if (selected( WPSPXCACHEVALIDFOR, 21600 )); ?>">6 Hours</option>
+		<option value="43200" <?php if (selected( WPSPXCACHEVALIDFOR, 43200 )); ?>>12 Hours</option>
+		<option value="86400" <?php if (selected( WPSPXCACHEVALIDFOR, 86400 )); ?>>1 Day</option>
+		<option value="604800" <?php if (selected( WPSPXCACHEVALIDFOR, 604800 )); ?>>1 Week</option>
 	</select>
 	<?php
 
@@ -265,19 +327,20 @@ function wpspx_cache_expires_render(  ) {
 
 function wpspx_support_section_callback(  ) {
 
-	echo __( '<p>Please review the documentation first. If you still can\'t find the answer open a support ticket and we will be happy to answer 1your questions and assist you with any problems. Please note: If you have not purchased a license from us, you will not have access to these help resources.</p>', 'wpspx' );
+	echo __( '<p>Please review the <a href="https://docs.wpspx.io" target="_blank" >documentation</a> first. If you can\'t find the answer open a support ticket and we will be happy to answer your questions and assist you with any problems. Please note: If you have not purchased a license from us, you will not have access to these help resources.</p>', 'wpspx' );
 
 }
 
 function wpspx_settings_section_callback(  ) {
 
-	echo __( '<p>Please populate the below fields with your API settings from your Spektrix control panel. You will need a valid API key, your account name, a custom domain (if you have one setup) and the server path to your self hosted Spektrix signed CRT & KEY.</p>', 'wpspx' );
+	echo __( '<p>Please populate the below fields with your API credentials from your Spektrix control panel. You will need a valid API key, your account name &amp; a custom domain.</p>', 'wpspx' );
 
 }
 
 function wpspx_settings_cache_section_callback(  ) {
 
-	echo __( '<p>Clear you WPSPX Cache files. This will completely remove all cached data from the server. <strong>Proceed with caution</strong> as this will cause your site to run slowly untill the cache has been rebuilt. </p>', 'wpspx' );
+	echo __( '<p>Please select how long you would like your Spektrix API data to be cached locally on your server.</p>', 'wpspx' );
+	echo __( '<p><strong>Cache currently set for: '.secondsToWords(WPSPXCACHEVALIDFOR).'</strong></p>', 'wpspx' );
 
 }
 
@@ -297,7 +360,7 @@ function wpspx_license_key_render() {
 	if ($key) {
 		$validation = wpspx_callback_validate($key);
 		if ($validation->success == 1):
-			if ($validation->data->remainingActivations > 1) {
+			if ($validation->data->remainingActivations >= 1) {
 				$activate = wpspx_callback_activate($key);
 			}
 			$licenseinfo = wpspx_callback_retrieve($key);
@@ -309,58 +372,10 @@ function wpspx_license_key_render() {
 		endif;
 	}
 	?>
-	<input type='text' id='ssn' name='wpspx_licence_settings[wpspx_license_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;<?php echo substr($key, -3,3); ?><?php endif; ?>'>
+	<input type='text' id='ssn' name='wpspx_licence_settings[wpspx_license_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-<?php echo substr($key, -4,4); ?><?php endif; ?>'>
 	<?php
 	echo $message;
 
-
-}
-
-
-function wpspx_settings_posts_section_callback(  ) {
-
-	// Grab all future shows in spektrix and all shows in WordPress
-	$shows_in_spektrix = Show::find_all_in_future_with_instances();
-	$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
-
-	$wp_shows = array();
-	foreach($shows_in_wordpress as $siw){
-		$wp_shows[] = get_post_meta($siw->ID,'_spektrix_id',true);
-	}
-
-	foreach($shows_in_spektrix as $show):
-		if(!in_array($show->id,$wp_shows)){
-			$spektrix_id = $show->id;
-			$spektrix_name = $show->name;
-			$spektrix_short_description = $show->short_description;
-			$api = new Spektrix();
-			$performances = $show->get_performances();
-			foreach ($performances as $performance) {
-				$pricelists = $api->get_price_list($performance->id);
-				$availabilities = $api->get_availability($performance->id);
-			}
-			$firstdate = reset($performances);
-		    $lastdate = end($performances);
-
-			// Create post object
-			$my_post = array(
-				'post_type'		=> 'shows',
-				'post_title'    => $spektrix_name,
-				'post_content'  => $spektrix_short_description,
-				'post_status'   => 'publish',
-				'post_author'   => 1,
-				'meta_input' 	=> array(
-                    '_spektrix_id'	=> $spektrix_id,
-                    '_spektrix_start'	=> $firstdate->start_time->format('U'),
-                    '_spektrix_end'	=> $lastdate->start_time->format('U'),
-                ),
-			);
-
-			// Insert the post into the database
-			wp_insert_post( $my_post );
-		}
-	endforeach;
-	flush_rewrite_rules( );
 
 }
 
@@ -402,9 +417,7 @@ function wpspx_options_page(  ) {
 
 				<article>
 
-					<?php if (isset($_GET['settings-updated'])):
-						wpspx_settings_initial_posts_section_callback();
-						?>
+					<?php if (isset($_GET['settings-updated'])): ?>
 					<div class="notice notice-success is-dismissible">
 						<p><strong>Settings saved.</strong></p>
 						<button type="button" class="notice-dismiss">
@@ -479,7 +492,7 @@ function wpspx_cache_options_page(  ) {
 						$cached_files = WP_CONTENT_DIR . '/wpspx-cache/*.json';
 						try
 						{
-							// array_map('unlink', glob($cached_files)); ?>
+							array_map('unlink', glob($cached_files)); ?>
 							<div class="notice notice-success is-dismissible">
 								<p><strong>Settings saved.</strong></p>
 								<button type="button" class="notice-dismiss">
@@ -519,6 +532,9 @@ function wpspx_cache_options_page(  ) {
 									endif;
 								}
 								?>
+								<p>
+									Clearing this cache completely remove all cached API data data from the server. <strong>Proceed with caution</strong> as this will cause your site to run slowly untill the cache has been rebuilt.
+								</p>
 								<h4>
 									There are currnelty <?php echo count($cached_files); ?> cached files
 								</h4>
@@ -607,8 +623,40 @@ function wpspx_support_options_page(  ) {
 
 								<h2>Links</h2>
 								<ul>
-									<li><a href="#">Documentation</a></li>
+									<li><a target="_blank" href="https://docs.wpspx.io">Documentation</a></li>
+									<li><a target="_blank" href="https://integrate.spektrix.com/docs/customdomains">Custom Domain Setup</a></li>
 								</ul>
+
+								<h2>API Data Information</h2>
+								<h3>Memberships</h3>
+								<?php
+								$api = New Spektrix();
+								$memberships = $api->get_memberships();
+								?>
+								<dl>
+									<dt>Name</dt>
+									<dd>ID</dd>
+									<?php foreach ($memberships as $membership): ?>
+										<dt><?php echo $membership->name ?></dt>
+										<dd><?php echo $membership->id ?></dd>
+									<?php endforeach; ?>
+								</dl>
+
+								<h3>Shows</h3>
+								<?php
+								$shows = Show::find_all_in_future_with_instances();
+							    $wp_shows = get_wp_shows_from_spektrix_shows($shows);
+							    $shows = filter_published($shows,$wp_shows);
+								?>
+								<dl>
+									<dt>Name</dt>
+									<dd>ID</dd>
+									<?php foreach($shows as $show): ?>
+										<dt><?php echo $show->name ?></dt>
+										<dd><?php echo $show->id ?></dd>
+									<?php endforeach; ?>
+								</dl>
+
 
 								<h2>Debug Info</h2>
 								<?php
@@ -692,10 +740,6 @@ function wpspx_support_options_page(  ) {
 									<dl>
 										<dt>SPEKTRIX_USER</dt>
 										<dd><?php echo SPEKTRIX_USER; ?></dd>
-										<dt>SPEKTRIX_CERT</dt>
-										<dd><?php echo SPEKTRIX_CERT; ?></dd>
-										<dt>SPEKTRIX_KEY</dt>
-										<dd><?php echo SPEKTRIX_KEY; ?></dd>
 										<dt>SPEKTRIX_API</dt>
 										<dd><?php echo SPEKTRIX_API; ?></dd>
 										<dt>SPEKTRIX_CUSTOM_URL</dt>
@@ -744,27 +788,7 @@ function wpspx_support_options_page(  ) {
 
 								</div>
 
-								<h3>WPSPX Pages</h3>
-								<div class="pages">
-								<?php
-								$page_slugs = array(
-									'basket',
-									'checkout',
-									'my-account',
-									'book-online',
-									'upcoming',
-								);
-								foreach ($page_slugs as $page_slug) {
-									$page = get_page_by_path( $page_slug , OBJECT );
-									if ( isset($page) )
-										echo '<div class="found"><p>' . $page->post_title . '</p><svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512" viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m0 274.226 176.549 176.886 339.007-338.672-48.67-47.997-290.337 290-128.553-128.552z"/></svg>
-										</div>';
-									else
-										echo '<div class="not-found"><p>' . ucwords(str_replace("-"," ", $page_slug)) .'</p><svg id="Capa_1" enable-background="new 0 0 386.667 386.667" height="512" viewBox="0 0 386.667 386.667" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m386.667 45.564-45.564-45.564-147.77 147.769-147.769-147.769-45.564 45.564 147.769 147.769-147.769 147.77 45.564 45.564 147.769-147.769 147.769 147.769 45.564-45.564-147.768-147.77z"/></svg>
-										</div>';
-								}
-								?>
-								</div>
+
 							</section>
 						</div>
 					</div>
@@ -783,6 +807,20 @@ function wpspx_shows_options_page(  ) {
 		<form action='options.php' method='post' autocomplete="off">
 
 			<div class="wpspx-wrapper">
+
+				<div class="done">
+					<ul class="list">
+						<li>Caching Spektrix Data</li>
+					</ul>
+					<a class="close-cacher button button-primary" href="<?php echo get_admin_url(); ?>/admin.php?page=wpspx-shows">Close</a>
+					<div id="stopwatch">
+						Time elapsed
+						<span id="sw_h">00</span>:
+    					<span id="sw_m">00</span>:
+    					<span id="sw_s">00</span>:
+    					<span id="sw_ms">00</span>
+					</div>
+				</div>
 
 				<header>
 					<div class="logo">
@@ -809,7 +847,6 @@ function wpspx_shows_options_page(  ) {
 
 					<?php
 					if (isset($_GET['settings-updated'])):
-					wpspx_settings_posts_section_callback();
 					?>
 					<div class="notice notice-success is-dismissible">
 						<p><strong>Shows Synced.</strong></p>
@@ -822,6 +859,10 @@ function wpspx_shows_options_page(  ) {
 					<div class="tab">
 
 						<div class="content">
+							<input type="hidden" name="cache_url" value="<?php echo WP_CONTENT_DIR; ?>/wpspx-cache/">
+							<input type="hidden" name="plugin_url" value="<?php echo plugin_dir_url( __FILE__ ); ?>cache/">
+							<input type="hidden" name="spektrix_url" value="<?php echo SPEKTRIX_API_URL; ?>">
+
 							<section>
 								<h2>Data Sync</h2>
 								<p>
@@ -856,14 +897,13 @@ function wpspx_shows_options_page(  ) {
 								<?php
 								settings_fields( 'wpspxPluginPagePosts' );
 								do_settings_sections( 'wpspxPluginPagePosts' );
-								$showstosync = count($shows_in_spektrix) - count($wp_shows);
-								$synctext =  'Sync '.$showstosync.' Shows';
-								$other_attributes = array();
-								if ($showstosync < 1) {
-									$synctext =  'All Available Shows Synced';
-									$other_attributes = array( 'disabled' => 'disabled' );
-								}
-
+								// $showstosync = count($shows_in_spektrix) - count($wp_shows);
+								// $synctext =  'Sync '.$showstosync.' Shows';
+								// $other_attributes = array();
+								// if ($showstosync < 1) {
+								// 	$synctext =  'All Available Shows Synced';
+								// 	$other_attributes = array( 'disabled' => 'disabled' );
+								// }
 								?>
 								<div class="loading">
 									<div class="spin"></div>
@@ -873,13 +913,21 @@ function wpspx_shows_options_page(  ) {
 								$key = $license['wpspx_license_key'];
 								if ($key) {
 									$validation = wpspx_callback_validate($key);
+									// if ($validation->success == 1):
+									// 	submit_button($synctext, 'primary', 'publishshows', true );
+									// else:
+									// 	echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									// endif;
 									if ($validation->success == 1):
-										submit_button($synctext, 'primary', 'publishshows', true );
+										echo '<a href="#" id="cache_selected_data" class="button button-primary">Cache selected data</a>';
 									else:
-										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please register WPSPX to cache data">';
 									endif;
 								}
+
 								?>
+
+
 							</section>
 						</div>
 					</div>

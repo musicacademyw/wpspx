@@ -16,6 +16,13 @@ require plugin_dir_path( __FILE__ )  . '/lib/helpers/options-page.php';
 // Load post / show association
 require plugin_dir_path( __FILE__ )  . '/lib/helpers/post-assoc.php';
 
+// shortcodes
+require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-shows.php';
+require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-giftcard.php';
+require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-donate.php';
+require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-membership.php';
+require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-memberships.php';
+
 function wpspx_admin_scripts()
  {
 	 wp_register_style('wpspx_admin_css', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-admin.css', false, '1.0');
@@ -28,17 +35,26 @@ function wpspx_admin_scripts()
  function wpspx_frontend_scripts()
  {
 	 wp_register_style('wpspx_styles', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-styles.css', false, '1.0');
+
+	 wp_register_script('wpspx_front_js',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx-front-min.js', array( 'jquery' ), '1.0', true);
+
+	 wp_register_script('wpspx-fontawesome', 'https://kit.fontawesome.com/07652d90a4.js', '', '', false);
 	 wp_register_script('wpspx-integrate', '//'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/scripts/integrate.js', '', '', false);
 	 wp_register_script('wpspx-viewfromseats','//'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/scripts/viewfromseats.js', '', '', false);
 
 	 $options = get_option( 'wpspx_support_settings' );
+
 	 if (!isset($options['wpspx_disable_styles'] )) {
 		 wp_enqueue_style( 'wpspx_styles' );
 	 }
-
 	 if(!wp_script_is('jquery')) {
 		 wp_enqueue_script( 'jquery' );
 	 }
+
+	 if (!isset($options['wpspx_disable_fontawesome'] )) {
+		 wp_enqueue_script( 'wpspx-fontawesome' );
+	 }
+	 wp_enqueue_script( 'wpspx_front_js' );
 	 wp_enqueue_script( 'wpspx-integrate' );
 	 wp_enqueue_script( 'wpspx-viewfromseats' );
  }
@@ -144,6 +160,17 @@ function wpspx_page_template( $page_template )
 			$page_template = dirname( __FILE__ ) . '/lib/templates/wpspx-giftcards.php';
 		}
 	}
+	if ( is_page( 'donate' ) )
+	{
+		if(file_exists(get_template_directory()  . '/wpspx/wpspx-donate.php'))
+		{
+			$page_template = get_template_directory() . '/wpspx/wpspx-donate.php';
+		}
+		else if(file_exists(plugin_dir_path( __FILE__ )  . '/lib/templates/wpspx-donate.php'))
+		{
+			$page_template = dirname( __FILE__ ) . '/lib/templates/wpspx-donate.php';
+		}
+	}
     return $page_template;
 }
 
@@ -174,6 +201,8 @@ function wpspx_placeholder()
 	} else {
 		// File copied to uploads;
 	}
-
 }
 add_action( 'wp_head', 'wpspx_placeholder' );
+
+
+$api = New Spektrix();

@@ -58,6 +58,43 @@ function wpspx_bust_cache()
 	}
 }
 
+/*================================================
+=            CONVERT SECONDS TO WORDS            =
+================================================*/
+function secondsToWords($seconds)
+{
+    $ret = "";
+
+    /*** get the days ***/
+    $days = intval(intval($seconds) / (3600*24));
+    if($days> 0)
+    {
+        $ret .= "$days days ";
+    }
+
+    /*** get the hours ***/
+    $hours = (intval($seconds) / 3600) % 24;
+    if($hours > 0)
+    {
+        $ret .= "$hours hours ";
+    }
+
+    /*** get the minutes ***/
+    $minutes = (intval($seconds) / 60) % 60;
+    if($minutes > 0)
+    {
+        $ret .= "$minutes minutes ";
+    }
+
+    /*** get the seconds ***/
+    $seconds = intval($seconds) % 60;
+    if ($seconds > 0) {
+        $ret .= "$seconds seconds";
+    }
+
+    return $ret;
+}
+
 /*=============================================
 =            CONVERT HOURS TO MINS            =
 =============================================*/
@@ -188,7 +225,7 @@ add_action( 'admin_notices', 'wpspx_callback' );
 function wpspx_callback_validate($key)
 {
 	if ($key) {
-		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/validate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 20, 'sslverify' => false));
+		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/validate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 120, 'sslverify' => false));
 		$body = wp_remote_retrieve_body($response);
 		$json = json_decode($body);
 		return $json;
@@ -201,7 +238,7 @@ function wpspx_callback_validate($key)
 function wpspx_callback_activate($key)
 {
 	if ($key) {
-		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/activate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 20, 'sslverify' => false));
+		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/activate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 120, 'sslverify' => false));
 		$body = wp_remote_retrieve_body($response);
 		$json = json_decode($body);
 		return $json;
@@ -215,7 +252,7 @@ function wpspx_callback_activate($key)
 function wpspx_callback_retrieve($key)
 {
 	if ($key) {
-		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 20, 'sslverify' => false));
+		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 120, 'sslverify' => false));
 		$body = wp_remote_retrieve_body($response);
 		$json = json_decode($body);
 		return $json;

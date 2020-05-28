@@ -12,45 +12,60 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 ?>
 
-<div class="all-memberships">
+<div class="wpspx-giftcard">
 
-	<div class="container is-flex">
+	<div class="wpspx-container container">
 
-		<spektrix-gift-vouchers client-name="<?php echo SPEKTRIX_USER; ?>" custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>" forward-to="<?php echo home_url( 'basket' ) ?>">
+		<spektrix-gift-vouchers client-name="<?php echo SPEKTRIX_USER; ?>" custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>">
 
-			<div class="fields">
-
-				<div class="field">
-					<label class="label">Amount</label>
-					<div class="control">
-						<input class="input" type="text" name="amount" placeholder="amount" data-amount>
+			<div class="wpspx-row row" data-success-container style="display: none;">
+				<div class="column">
+					<div class="message-body alert success">
+						Sucessfully added to basket
 					</div>
 				</div>
-				<div class="field">
+			</div>
+			<div class="wpspx-row row" data-fail-container style="display: none;">
+				<div class="column">
+					<div class="message-body alert warn">
+						There seems to be an issue, please try again or call the box office.
+					</div>
+				</div>
+			</div>
+
+			<div class="wpspx-row row">
+
+				<div class="wpspx-membership-field column column-50">
+					<label class="label">Amount</label>
+					<div class="control">
+						<input class="input" type="text" name="amount" placeholder="£20" data-amount>
+					</div>
+				</div>
+				<div class="wpspx-membership-field column column-50">
 					<label class="label">Send Date</label>
 					<div class="control">
 						<input class="input" type="date" name="sendDate" data-send-date>
 					</div>
 				</div>
-				<div class="field">
+				<div class="wpspx-membership-field column column-50">
 					<label class="label">To</label>
 					<div class="control">
 						<input class="input" type="text" name="toname" data-to-name>
 					</div>
 				</div>
-				<div class="field">
+				<div class="wpspx-membership-field column column-50">
 					<label class="label">From</label>
 					<div class="control">
 						<input class="input" type="text" name="fromname" data-from-name>
 					</div>
 				</div>
-				<div class="field">
+				<div class="wpspx-membership-field column">
 					<label class="label">Message</label>
 					<div class="control">
 						<textarea class="textarea" placeholder="e.g. Hello world" name="message" data-message></textarea>
 					</div>
 				</div>
-				<div class="field">
+				<div class="wpspx-membership-field ext-email column column-50">
 					<label class="label">Delivery Type</label>
 					<div class="select">
 						<select name="deliveryType" data-delivery-type>
@@ -59,26 +74,18 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 						</select>
 					</div>
 				</div>
-				<div class="field">
+				<div class="wpspx-membership-field column column-50">
 					<label class="label">Delivery Email Address</label>
 					<div class="control">
-						<input class="input" type="text" name="deliveryEmail" data-delivery-email-address>
+						<input disabled class="input" type="text" name="deliveryEmail" data-delivery-email-address>
 					</div>
 				</div>
+
 			</div>
 
-			<div class="control">
-				<button class="button is-primary" data-submit-gift-voucher>Buy Gift Voucher</button>
-			</div>
-
-			<div class="message is-success" data-success-container style="display: none;">
-				<div class="message-body">
-					Sucessfully added to basket
-				</div>
-			</div>
-			<div class="message is-warning" data-fail-container style="display: none;">
-				<div class="message-body">
-					There seems to be an issue, please try again or call the box office.
+			<div class="control wpspx-row row">
+				<div class="column">
+					<button class="button btn button-primary" data-submit-gift-voucher>Add to Basket</button>
 				</div>
 			</div>
 
