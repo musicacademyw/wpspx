@@ -740,8 +740,6 @@ function wpspx_support_options_page(  ) {
 									<dl>
 										<dt>SPEKTRIX_USER</dt>
 										<dd><?php echo SPEKTRIX_USER; ?></dd>
-										<dt>SPEKTRIX_API</dt>
-										<dd><?php echo SPEKTRIX_API; ?></dd>
 										<dt>SPEKTRIX_CUSTOM_URL</dt>
 										<dd><?php echo SPEKTRIX_CUSTOM_URL; ?></dd>
 										<dt>SPEKTRIX_API_URL</dt>

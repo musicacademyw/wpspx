@@ -37,11 +37,11 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="wpspx-single-show">
 
-	<div class="wpspx-container container">
+	<div class="wpspx-container">
 
-		<div class="wpspx-show-info wpspx-row row">
+		<div class="wpspx-show-info wpspx-row wpspx-row-wrap">
 
-			<div class="wpspx-show-image column column-40">
+			<div class="wpspx-show-image wpspx-column wpspx-column-40">
 			<?php
 			if(has_post_thumbnail()):
 				the_post_thumbnail('poster');
@@ -53,7 +53,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 			?>
 			</div>
 
-			<div class="wpspx-show-content column column-60">
+			<div class="wpspx-show-content wpspx-column wpspx-column-60">
 				<div class="wpspx-show-title">
 					<h1><?php the_title(); ?></h1>
 				</div>
@@ -94,19 +94,19 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 					$pricelists = $api->get_price_list($performance->id);
 					$availabilities = $api->get_availability($performance->id);
 					?>
-					<div class="wpspx-performance column wpspx-row row">
-						<div class="wpspx-performance-date column column-20">
+					<div class="wpspx-performance wpspx-row">
+						<div class="wpspx-performance-date wpspx-column wpspx-column-20">
 							<i class="far fa-calendar-alt"></i> <?php echo $performance->start_time->format('D d M') ?>
 						</div>
-						<div class="wpspx-performance-time column column-20">
+						<div class="wpspx-performance-time wpspx-column wpspx-column-20">
 							<i class="far fa-clock"></i> <?php echo $performance->start_time->format('g:ia') ?>
 						</div>
-						<div class="wpspx-performance-attr column column-20">
+						<div class="wpspx-performance-attr wpspx-column wpspx-column-20">
 							<?php if ($performance->start_time->format('h') < 5): ?>
 								Matinee
 							<?php endif; ?>
 						</div>
-						<div class="wpspx-performance-prices column column-20">
+						<div class="wpspx-performance-prices wpspx-column wpspx-column-20">
 							<?php
 							$price_range = array();
 							foreach($pricelists->prices as $price):
@@ -128,7 +128,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 							}
 							?>
 						</div>
-						<div class="wpspx-performance-action column column-20">
+						<div class="wpspx-performance-action wpspx-column wpspx-column-20">
 							<?php echo book_online_button($availabilities,$performance); ?>
 						</div>
 					</div>
@@ -140,7 +140,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 		</div>
 		<?php else: ?>
-		<div class="wpspx-no-performaces wpspx-row row">
+		<div class="wpspx-no-performaces wpspx-row">
 			<div class="alert warn">
 				<!-- <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> -->
 				This is an alert box.

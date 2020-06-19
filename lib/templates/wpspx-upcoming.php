@@ -26,16 +26,16 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="wpspx-upcoming-shows">
 
-	<div class="wpspx-container container">
+	<div class="wpspx-container">
 
-		<div class="wpspx-row row">
+		<div class="wpspx-row wpspx-row-wrap">
 		<?php
 		foreach($shows as $show) {
 			$show_id = $wp_shows[$show->id];
 			$show_poster = $show->image_url;
 			$poster = get_the_post_thumbnail($show_id, 'poster');
 			?>
-			<div class="wpspx-show column column-25">
+			<div class="wpspx-show wpspx-column wpspx-column-25">
 
 				<a href="<?php echo get_permalink($show_id); ?>">
 					<?php

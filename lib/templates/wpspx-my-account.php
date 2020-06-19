@@ -14,12 +14,16 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="showcard">
 
-	<div class="container is-flex">
+	<div class="wpspx-container">
 
-	<?php
-	$spektrix_iframe_url = new iFrame('MyAccount',NULL,true);
-	echo $spektrix_iframe_url->render_iframe();
-	?>
+		<div class="wpspx-row">
+
+			<?php
+			$spektrix_iframe_url = new iFrame('MyAccount',NULL,true);
+			echo $spektrix_iframe_url->render_iframe();
+			?>
+
+		</div>
 
 	</div>
 

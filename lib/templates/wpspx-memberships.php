@@ -17,13 +17,13 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 <div class="wpspx-memberships">
 
-	<div class="wpspx-container container">
+	<div class="wpspx-container">
 
-		<div class="wpspx-row row">
+		<div class="wpspx-row wpspx-row-wrap">
 		<?php foreach ($memberships as $membership): ?>
 
 			<spektrix-memberships
-				class="wpspx-membership-box column"
+				class="wpspx-membership-box wpspx-column wpspx-column-25"
 				client-name="<?php echo SPEKTRIX_USER; ?>"
 				custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>"
 				membership-id="<?php echo $membership->id ?>">

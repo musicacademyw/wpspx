@@ -42,11 +42,11 @@ function book_online_button($av,$performance)
 	$perfid = (integer) $performance->id;
 
 	if($av->available == 0):
-		$class = "button is-danger";
+		$class = "button btn is-danger";
 	elseif ($now < $performance->start_selling_at || $now > $performance->stop_selling_at || !$performance->is_on_sale):
-		$class = "button is-warning";
+		$class = "button btn is-warning";
 	else:
-		$class = "button is-primary";
+		$class = "button btn is-primary";
 	endif;
 
 	if($now < $performance->start_selling_at):

@@ -12,20 +12,29 @@ get_header();
 
 <div class="book-online">
 
-	<div class="container is-flex">
+	<div class="wpspx-container">
 
-	<?php
-	$performance = get_query_var('performance');
+		<div class="wpspx-row">
 
-	if(strpos($performance,'event') === 0):
-		$pieces = explode('-',$performance);
-		$spektrix_iframe_url = new iFrame('EventDetails',array('EventId' => $pieces[1]));
-	else:
-		$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance));
-	endif;
+			<?php
+			$performance = get_query_var('performance');
+			if(!$performance):
+				?>
+				<div class="wpspx-column">
+					<!-- Enter a message for those trying to access directly. -->
+					<h1>Opps.</h1>
+					<p>Seems you tried to access the booking page without choosing a performance.</p>
+					<a class="button btn" href="<?php echo home_url(); ?>">Browse all available shows</a>
+				</div>
+			<?php
 
-	echo $spektrix_iframe_url->render_iframe();
-	?>
+			else:
+				$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance));
+				echo $spektrix_iframe_url->render_iframe();
+			endif;
+			?>
+
+		</div>
 
 	</div>
 
