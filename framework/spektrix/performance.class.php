@@ -7,7 +7,7 @@
  * From their API:
  * "An instance represents an occurrence of an event and contains the Start time, Duration and status of that occurrence of the event. It references the price list and plan that are being used at that time."
  */
-class Performance extends Spektrix
+class WPSPX_Performance extends WPSPX_Spektrix
 {
 	public $id;
 	public $start_time;
@@ -50,14 +50,14 @@ class Performance extends Spektrix
 
 	static function find_all()
 	{
-		$api = new Spektrix();
+		$api = new WPSPX_Spektrix();
 		$performances = $api->get_performances();
 		return $api->collect_performances($performances);
 	}
 
 	static function find_all_in_future($by_show = false)
 	{
-		$api = new Spektrix();
+		$api = new WPSPX_Spektrix();
 		$eternity = time() + (60 * 60 * 24 * 7 * 500);
 		$performances = $api->get_performances_until($eternity);
 		if($by_show) {

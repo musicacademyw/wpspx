@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class PriceList extends Spektrix
+class WPSPX_PriceList extends WPSPX_Spektrix
 {
   public $id;
   public $prices;
@@ -9,17 +9,17 @@ class PriceList extends Spektrix
   {
     $this->id = (string) $pl->id;
 
-    $api = new Spektrix();
+    $api = new WPSPX_Spektrix();
     $bands = $api->get_bands();
     $ticket_types = $api->get_ticket_types();
 
     foreach($pl->prices as $p){
-      $this->prices[] = (object) new Price($p,$bands,$ticket_types);
+      $this->prices[] = (object) new WPSPX_Price($p,$bands,$ticket_types);
     }
   }
 }
 
-class Price extends Spektrix
+class WPSPX_Price extends WPSPX_Spektrix
 {
   private $band_id;
   private $band_default;
@@ -37,14 +37,14 @@ class Price extends Spektrix
 
     //Getting bands
     $this->band_id = (integer) $price->priceBand->id;
-    $this->band_name = Band::get_name_by_id($bands,$this->band_id);
+    $this->band_name = WPSPX_Band::get_name_by_id($bands,$this->band_id);
     //Getting ticket types
     $this->ticket_type_id = (integer) $price->ticketType->id;
-    $this->ticket_type_name = TicketType::get_name_by_id($ticket_types,$this->ticket_type_id);
+    $this->ticket_type_name = WPSPX_TicketType::get_name_by_id($ticket_types,$this->ticket_type_id);
   }
 }
 
-class Band extends Spektrix
+class WPSPX_Band extends WPSPX_Spektrix
 {
   private $id;
   public $name;
@@ -59,7 +59,7 @@ class Band extends Spektrix
   }
 }
 
-class TicketType extends Spektrix
+class WPSPX_TicketType extends WPSPX_Spektrix
 {
   private $id;
   public $name;

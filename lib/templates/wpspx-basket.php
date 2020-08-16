@@ -19,7 +19,7 @@ get_header();
 		<div class="wpspx-row">
 
 			<?php
-			$spektrix_iframe_url = new iFrame('Basket2',NULL,false);
+			$spektrix_iframe_url = new WPSPX_iFrame('Basket2',NULL,false);
 			echo $spektrix_iframe_url->render_iframe();
 			?>
 

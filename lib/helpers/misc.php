@@ -40,7 +40,7 @@ function wpspx_get_first_paragraph($post_content)
 =======================================*/
 function wpspx_bust_cache()
 {
-	$cached_files = WPSPX_PLUGIN_DIR . '/wpspx-cache/*.json';
+	$cached_files = WP_CONTENT_DIR . '/wpspx-cache/*.json';
 	try
 	{
 		array_map('unlink', glob($cached_files)); ?>
@@ -207,57 +207,20 @@ function wpspx_sortable_date_column( $columns ) {
     return $columns;
 }
 
-
-function wpspx_callback()
-{
-	$license = get_option( 'wpspx_licence_settings' );
-	$key = $license['wpspx_license_key'];
-	if (!$key) {
-		?>
-		<div class="notice notice-error">
-			<p><?php _e( 'Plesase <a href="'.admin_url().'admin.php?page=wpspx-license">register</a> your copy of WPSPX!', 'sample-text-domain' ); ?></p>
-		</div>
-    <?php
-	}
+/**
+ * WPSPX Cache filter
+ */
+function wpspx_cache_query_vars_filter($vars) {
+  $vars[] .= 'resource';
+  return $vars;
 }
-add_action( 'admin_notices', 'wpspx_callback' );
+add_filter( 'query_vars', 'wpspx_cache_query_vars_filter' );
 
-function wpspx_callback_validate($key)
-{
-	if ($key) {
-		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/validate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 120, 'sslverify' => false));
-		$body = wp_remote_retrieve_body($response);
-		$json = json_decode($body);
-		return $json;
-	}
-	else {
-		return false;
-	}
+function wpspx_cache_query_template( $template ) {
+    if ( isset( $_GET['resource'] ) ) {
+        $resource = $_GET['resource'];
+        include plugin_dir_path( __FILE__ ) . 'cache/'.$resource.'.php';
+        die;
+    }
 }
-
-function wpspx_callback_activate($key)
-{
-	if ($key) {
-		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/activate/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 120, 'sslverify' => false));
-		$body = wp_remote_retrieve_body($response);
-		$json = json_decode($body);
-		return $json;
-	}
-	else {
-		return false;
-	}
-}
-
-
-function wpspx_callback_retrieve($key)
-{
-	if ($key) {
-		$response = wp_remote_get('https://wpspx.io/wp-json/lmfwc/v2/licenses/'.$key.'?consumer_key=ck_db81190fd250b15d45a4a0dd393b3eef0df7f85e&consumer_secret=cs_919ec37967950a0c5a60725055ad9be43302ebf9', array('timeout' => 120, 'sslverify' => false));
-		$body = wp_remote_retrieve_body($response);
-		$json = json_decode($body);
-		return $json;
-	}
-	else {
-		return false;
-	}
-}
+add_filter( 'init', 'wpspx_cache_query_template' );

@@ -1,5 +1,12 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/wp-blog-header.php';
-$api = New Spektrix();
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+/*
+* Cache seating plans bands from Spektrix
+*/
+
+
+$api = New WPSPX_Spektrix();
 $plans = $api->get_data('plans');
+
+
 ?>

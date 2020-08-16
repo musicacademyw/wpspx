@@ -9,14 +9,6 @@
 	],
 "creatorBuild": "32186",
 "files": {
-	"/.gitignore": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/.gitignore",
-		"oF": 0
-		},
 	"/activate.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -33,20 +25,20 @@
 		"oAP": "/config.php",
 		"oF": 0
 		},
-	"/framework/bootstrap.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/framework/bootstrap.php",
-		"oF": 0
-		},
 	"/framework/index.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/framework/index.php",
+		"oF": 0
+		},
+	"/framework/spektrix.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/framework/spektrix.php",
 		"oF": 0
 		},
 	"/framework/spektrix/availability.class.php": {
@@ -139,19 +131,6 @@
 		"oF": 0,
 		"oS": 3
 		},
-	"/lib/assets/css/wpspx-admin.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/lib/assets/css/wpspx-admin.css",
-		"oF": 0,
-		"oS": 3,
-		"sct": 1
-		},
 	"/lib/assets/css/wpspx-styles.css": {
 		"aP": 1,
 		"bl": 0,
@@ -161,19 +140,6 @@
 		"oAP": "/lib/assets/css/wpspx-styles-min.css",
 		"oF": 0,
 		"oS": 3
-		},
-	"/lib/assets/css/wpspx-styles.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/lib/assets/css/wpspx-styles.css",
-		"oF": 0,
-		"oS": 3,
-		"sct": 1
 		},
 	"/lib/assets/icon-blue.png": {
 		"ft": 32768,
@@ -236,17 +202,6 @@
 		"sC": 3,
 		"tS": 0
 		},
-	"/lib/assets/js/wpspx-front.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/lib/assets/js/wpspx-front-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
 	"/lib/assets/js/wpspx-min.js": {
 		"bF": 0,
 		"ft": 64,
@@ -289,97 +244,6 @@
 		"opt": 0,
 		"plM": 52780316221407,
 		"prP": 0
-		},
-	"/lib/assets/sass/_Button.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/_Button.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/lib/assets/sass/_Color.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/_Color.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/lib/assets/sass/_Form.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/_Form.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/lib/assets/sass/_Grid.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/_Grid.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/lib/assets/sass/_Image.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/_Image.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/lib/assets/sass/_Utility.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/_Utility.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/lib/assets/sass/milligram.sass": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 2,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/lib/assets/sass/milligram.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
 		},
 	"/lib/assets/shopping-basket-regular.svg": {
 		"ft": 2097152,
@@ -465,6 +329,97 @@
 		"oA": 0,
 		"oAP": "/lib/index.php",
 		"oF": 0
+		},
+	"/lib/sass/_Button.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/lib/sass/_Button.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/lib/sass/_Color.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/lib/sass/_Color.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/lib/sass/_Form.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/lib/sass/_Form.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/lib/sass/_Grid.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/lib/sass/_Grid.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/lib/sass/_Image.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/lib/sass/_Image.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/lib/sass/_Utility.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/lib/sass/_Utility.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/lib/sass/milligram.sass": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 2,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/lib/sass/milligram.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
 		},
 	"/lib/shortcodes/wpspx-donate.php": {
 		"cB": 0,

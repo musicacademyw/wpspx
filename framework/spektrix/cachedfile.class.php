@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class CachedFile extends Spektrix {
+class WPSPX_CachedFile extends WPSPX_Spektrix {
 
 	public $file_name;
 	public $full_path_to_file;

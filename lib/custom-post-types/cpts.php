@@ -37,7 +37,7 @@ function wpspx_cpts_register()
 			'new_item' 				=> __('New '.$cpt_singular),
 			'view_item' 			=> __('View '.$cpt_singular),
 			'search_items' 			=> __('Search '.$cpt_plural),
-			'not_found' 			=>  __('No '.$cpt_plural.' Found'),
+			'not_found' 			=> __('No '.$cpt_plural.' Found'),
 			'not_found_in_trash' 	=> __('No '.$cpt_plural.' Found in Trash'),
 			'parent_item_colon' 	=> '',
 		);

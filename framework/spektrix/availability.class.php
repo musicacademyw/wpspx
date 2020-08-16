@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class Availability extends Spektrix
+class WPSPX_Availability extends WPSPX_Spektrix
 {
 	public $available;
 	public $capacity;
@@ -52,7 +52,7 @@ function book_online_button($av,$performance)
 	if($now < $performance->start_selling_at):
 		echo '<a class="'.$class.'" href="#" disabled>Selling Soon</a>';
 	elseif($now > $performance->stop_selling_at || !$performance->is_on_sale):
-		echo '<a class="'.$class.'" href="#" disabled>Not Available</a>';
+		echo '<a class="'.$class.'" href="#" disabled>No Longer Available</a>';
 	else:
 		$href = $av->available > 0 ? 'href="' . home_url('/book-online/'.$perfid) . '"' : '';
 		echo '<a ' . $href . ' class="'.$class.'">' . book_online_text($av) . '</a>';

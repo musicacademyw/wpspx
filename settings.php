@@ -5,8 +5,8 @@
 
 if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-// Include framework bootstrap file
-require plugin_dir_path( __FILE__ ) . '/framework/bootstrap.php';
+// Include spektrix file
+require plugin_dir_path( __FILE__ ) . '/framework/spektrix.php';
 
 // Plugin helpers
 require plugin_dir_path( __FILE__ )  . '/lib/helpers/misc.php';
@@ -24,40 +24,50 @@ require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-membership.php';
 require plugin_dir_path( __FILE__ )  . '/lib/shortcodes/wpspx-memberships.php';
 
 function wpspx_admin_scripts()
- {
-	 wp_register_style('wpspx_admin_css', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-admin.css', false, '1.0');
-	 wp_register_script('wpspx_js',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx-min.js', array( 'jquery' ), '1.0', true);
+{
+	wp_register_style('wpspx_admin_css', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-admin.css', false, '1.0');
+	wp_register_script('wpspx_js',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx-min.js', array( 'jquery' ), '1.0', true);
 
-	 wp_enqueue_style( 'wpspx_admin_css' );
-	 wp_enqueue_script( 'wpspx_js' );
- }
+	wp_enqueue_style( 'wpspx_admin_css' );
+	wp_enqueue_script( 'wpspx_js' );
+}
 
- function wpspx_frontend_scripts()
- {
-	 wp_register_style('wpspx_styles', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-styles.css', false, '1.0');
+function wpspx_frontend_scripts()
+{
+wp_register_style('wpspx_styles', WPSPX_PLUGIN_URL . 'lib/assets/css/wpspx-styles.css', false, '1.0');
 
-	 wp_register_script('wpspx_front_js',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx-front-min.js', array( 'jquery' ), '1.0', true);
+wp_register_script('wpspx_front_js',  WPSPX_PLUGIN_URL . 'lib/assets/js/wpspx-front-min.js', array( 'jquery' ), false, true);
+wp_register_script('wpspx-integrate', '//'.WPSPX_SPEKTRIX_CUSTOM_URL.'/'.WPSPX_SPEKTRIX_USER.'/website/scripts/integrate.js', '', false, false);
+wp_register_script('wpspx-viewfromseats','//'.WPSPX_SPEKTRIX_CUSTOM_URL.'/'.WPSPX_SPEKTRIX_USER.'/website/scripts/viewfromseats.js', '', false, false);
+wp_register_script('wpspx-webcomponent-loader','https://webcomponents.spektrix.com/stable/webcomponents-loader.js', '', false, false);
+wp_register_script('wpspx-spektrixcomponent-loader','https://webcomponents.spektrix.com/stable/spektrix-component-loader.js', array( 'jquery' ), false, false);
 
-	 wp_register_script('wpspx-fontawesome', 'https://kit.fontawesome.com/07652d90a4.js', '', '', false);
-	 wp_register_script('wpspx-integrate', '//'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/scripts/integrate.js', '', '', false);
-	 wp_register_script('wpspx-viewfromseats','//'.SPEKTRIX_CUSTOM_URL.'/'.SPEKTRIX_USER.'/website/scripts/viewfromseats.js', '', '', false);
 
-	 $options = get_option( 'wpspx_support_settings' );
+	$options = get_option( 'wpspx_support_settings' );
 
-	 if (!isset($options['wpspx_disable_styles'] )) {
-		 wp_enqueue_style( 'wpspx_styles' );
-	 }
-	 if(!wp_script_is('jquery')) {
-		 wp_enqueue_script( 'jquery' );
-	 }
+	if (!isset($options['wpspx_disable_styles'] )) {
+		wp_enqueue_style( 'wpspx_styles' );
+	}
+	if(!wp_script_is('jquery')) {
+		wp_enqueue_script( 'jquery' );
+	}
 
-	 if (!isset($options['wpspx_disable_fontawesome'] )) {
-		 wp_enqueue_script( 'wpspx-fontawesome' );
-	 }
-	 wp_enqueue_script( 'wpspx_front_js' );
-	 wp_enqueue_script( 'wpspx-integrate' );
-	 wp_enqueue_script( 'wpspx-viewfromseats' );
- }
+	wp_enqueue_script( 'wpspx_front_js' );
+	wp_enqueue_script( 'wpspx-integrate' );
+	wp_enqueue_script( 'wpspx-viewfromseats' );
+	wp_enqueue_script( 'wpspx-webcomponent-loader' );
+	wp_enqueue_script( 'wpspx-spektrixcomponent-loader' );
+}
+
+add_filter( 'script_loader_tag', 'wpspx_script_loader_tag', 10 ,3 );
+function wpspx_script_loader_tag( $tag, $handle, $src )
+{
+	if ( 'wpspx-spektrixcomponent-loader' === $handle )
+	{
+        return str_replace( 'src=', 'data-components="spektrix-basket-summary,spektrix-memberships,spektrix-donate,spektrix-gift-vouchers" async src=', $tag );
+    }
+    return $tag;
+}
 
 /*----------  load custom templates for post types  ----------*/
 
@@ -174,16 +184,6 @@ function wpspx_page_template( $page_template )
     return $page_template;
 }
 
-// Async load
-function wpspx_webc_scripts($url)
-{
-	?>
-	<script src="https://webcomponents.spektrix.com/stable/webcomponents-loader.js"></script>
-	<script src="https://webcomponents.spektrix.com/stable/spektrix-component-loader.js" data-components="spektrix-basket-summary,spektrix-memberships,spektrix-donate,spektrix-gift-vouchers" async></script>
-	<?php
-}
-add_filter( 'wp_head', 'wpspx_webc_scripts', 999 );
-
 
 // Create placeholder image
 function wpspx_placeholder()
@@ -205,4 +205,4 @@ function wpspx_placeholder()
 add_action( 'wp_head', 'wpspx_placeholder' );
 
 
-$api = New Spektrix();
+$api = New WPSPX_Spektrix();

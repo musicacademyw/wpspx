@@ -10,7 +10,7 @@ function wpspxdonate()
 {
 	ob_start();
 	?>
-	<spektrix-donate client-name="<?php echo SPEKTRIX_USER; ?>" custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>" fund-id="" id="selectfundcomponent">
+	<spektrix-donate client-name="<?php echo WPSPX_SPEKTRIX_USER; ?>" custom-domain="<?php echo WPSPX_SPEKTRIX_CUSTOM_URL; ?>" fund-id="" id="selectfundcomponent">
 
 		<div class="wpspx-row header">
 			<div class="wpspx-column">
@@ -19,7 +19,7 @@ function wpspxdonate()
 		</div>
 		<div class="wpspx-row">
 			<?php
-			$api = New Spektrix();
+			$api = New WPSPX_Spektrix();
 			$funds = $api->get_data('funds');
 			foreach ($funds as $fund):
 				?>

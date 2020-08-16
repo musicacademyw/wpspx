@@ -49,7 +49,7 @@ function wpspx_record_inner_custom_box( $post ) {
 	if($pagenow == 'post-new.php'){
 		// Use nonce for verification
 		wp_nonce_field( plugin_basename( __FILE__ ), 'wpspx_data_nonce' );
-		$shows_in_spektrix = Show::find_all_in_future_with_instances();
+		$shows_in_spektrix = WPSPX_Show::find_all_in_future_with_instances();
 		$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
 
     	// Create an array of IDs of shows in WP.
@@ -92,29 +92,31 @@ function wpspx_record_inner_custom_box( $post ) {
 // prints wpspx cache box content
 function wpspx_cache_inner_custom_box( $post ) {
 	global $pagenow;
-	$api = new Spektrix();
+	$api = new WPSPX_Spektrix();
+	$spektrix_id = get_post_meta($post->ID,'_spektrix_id',true);
+
 	$tick = '<svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512" viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m0 274.226 176.549 176.886 339.007-338.672-48.67-47.997-290.337 290-128.553-128.552z"/></svg>';
 	if($pagenow == 'post-new.php'){
 		echo "<h4>Upon saving this show we will attempt to cache the necessary files needed from Spektrix</h4>";
 	} else {
-		echo "<h4>We have cached the following data from Spektrix for this show:</h4>";
+		if($spektrix_id):
+			echo "<h4>We have cached the following data from Spektrix for this show:</h4>";
 
-		echo "<ul>";
-			echo "<li>".$tick." Show Data</li>";
-			echo "<li>".$tick." Performances</li>";
-			echo "<li>".$tick." Price Lists</li>";
-			echo "<li>".$tick." Availability</li>";
-		echo "</ul>";
+			echo "<ul>";
+				echo "<li>".$tick." Show Data</li>";
+				echo "<li>".$tick." Performances</li>";
+				echo "<li>".$tick." Price Lists</li>";
+				echo "<li>".$tick." Availability</li>";
+			echo "</ul>";
 
-		$spektrix_id = get_post_meta($post->ID,'_spektrix_id',true);
-		$show = new Show($spektrix_id);
-		$api = new Spektrix();
-		$performances = $show->get_performances();
-		foreach ($performances as $performance) {
-			$pricelists = $api->get_price_list($performance->id);
-			$availabilities = $api->get_availability($performance->id);
-		}
-
+			$show = new WPSPX_Show($spektrix_id);
+			$api = new WPSPX_Spektrix();
+			$performances = $show->get_performances();
+			foreach ($performances as $performance) {
+				$pricelists = $api->get_price_list($performance->id);
+				$availabilities = $api->get_availability($performance->id);
+			}
+		endif;
 	}
 }
 
@@ -130,7 +132,7 @@ function wpspx_save_postdata($post_id) {
 			return;
 
 		//if saving in a custom table, get post_ID
-		$post_ID = $_POST['post_ID'];
+		$post_ID = intval($_POST['post_ID']);
 		$spektrix_data = sanitize_text_field($_POST['wpspx_data_field']);
 		$spektrix_data = explode('|',$spektrix_data);
 
@@ -150,7 +152,7 @@ function wpspx_save_postdata($post_id) {
 		add_post_meta($post_ID, '_spektrix_id', $spektrix_data[0], true) or
 		update_post_meta($post_ID, '_spektrix_id', $spektrix_data[0]);
 
-		$show = new Show($spektrix_data[0]);
+		$show = new WPSPX_Show($spektrix_data[0]);
 		$performances = $show->get_performances();
 	    $firstdate = reset($performances);
 	    $lastdate = end($performances);

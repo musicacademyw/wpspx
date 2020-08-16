@@ -1,5 +1,11 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/wp-blog-header.php';
-$api = New Spektrix();
+/*
+* Cache fund informartion from Spektrix
+*/
+
+
+$api = New WPSPX_Spektrix();
 $funds = $api->get_data('funds');
+
+
 ?>

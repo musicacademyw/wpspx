@@ -1,10 +1,14 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/wp-blog-header.php';
-$api = New Spektrix();
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+/*
+* Cache events from Spektrix
+*/
+
+$api = New WPSPX_Spektrix();
 $events = $api->get_data('events');
 
 // Grab all future shows in spektrix and all shows in WordPress
-$shows_in_spektrix = Show::find_all_in_future_with_instances();
+$shows_in_spektrix = WPSPX_Show::find_all_in_future_with_instances();
 $shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
 
 $wp_shows = array();
@@ -45,4 +49,5 @@ foreach($shows_in_spektrix as $show):
 	}
 endforeach;
 flush_rewrite_rules( );
+
 ?>

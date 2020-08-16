@@ -10,7 +10,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
  get_header();
 
- // $api = New Spektrix();
+//  $api = New WPSPX_Spektrix();
  $memberships = $api->get_memberships();
 
 ?>
@@ -24,8 +24,8 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 			<spektrix-memberships
 				class="wpspx-membership-box wpspx-column wpspx-column-25"
-				client-name="<?php echo SPEKTRIX_USER; ?>"
-				custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>"
+				client-name="<?php echo WPSPX_SPEKTRIX_USER; ?>"
+				custom-domain="<?php echo WPSPX_SPEKTRIX_CUSTOM_URL; ?>"
 				membership-id="<?php echo $membership->id ?>">
 
 				<div class="wpspx-membership-header">

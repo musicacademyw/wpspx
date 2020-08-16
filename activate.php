@@ -53,12 +53,12 @@ function wpspx_activate() {
 
 	foreach ( $wpspx_pages as $wpspx_page ) {
 		wpspx_create_page (
-			$wpspx_page[0], // title
-			$wpspx_page[1], // slug
-			$wpspx_page[2], // content
-			$wpspx_page[3], // parent
+			$wpspx_page[0],
+			$wpspx_page[1],
+			$wpspx_page[2],
+			$wpspx_page[3]
 		);
-	}
+	};
 
 
 	flush_rewrite_rules();

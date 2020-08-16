@@ -35,16 +35,6 @@ function wpspx_add_admin_menu(  ) {
 		null
 	);
 
-	add_submenu_page(
-		'wpspx',									// parent slug
-		'License',									// page title
-		'License',									// menu title
-		'manage_options',							// capability
-		'wpspx-license',							// slug
-		'wpspx_license_options_page',				// callback
-		null
-	);
-
 	if (is_plugin_active('wpspx-basket/wp-spektrix-basket.php')):
 	add_submenu_page(
 		'wpspx',									// parent slug
@@ -102,21 +92,21 @@ function wpspx_settings_init(  ) {
 		'wpspx_wpspxPluginPage_section'
 	);
 
-	add_settings_field(
-		'wpspx_api_useername',
-		__( 'Spektrix API Username', 'wpspx' ),
-		'wpspx_api_username_render',
-		'wpspxPluginPage',
-		'wpspx_wpspxPluginPage_section'
-	);
+	// add_settings_field(
+	// 	'wpspx_api_useername',
+	// 	__( 'Spektrix API Username', 'wpspx' ),
+	// 	'wpspx_api_username_render',
+	// 	'wpspxPluginPage',
+	// 	'wpspx_wpspxPluginPage_section'
+	// );
 
-	add_settings_field(
-		'wpspx_api_key',
-		__( 'Spektrix API', 'wpspx' ),
-		'wpspx_api_key_render',
-		'wpspxPluginPage',
-		'wpspx_wpspxPluginPage_section'
-	);
+	// add_settings_field(
+	// 	'wpspx_api_key',
+	// 	__( 'Spektrix API', 'wpspx' ),
+	// 	'wpspx_api_key_render',
+	// 	'wpspxPluginPage',
+	// 	'wpspx_wpspxPluginPage_section'
+	// );
 
 	add_settings_field(
 		'wpspx_custom_domain',
@@ -172,54 +162,16 @@ function wpspx_settings_init(  ) {
 		'wpspxPluginPageSupport',
 		'wpspx_wpspxPluginPageSupport_section'
 	);
-
-	add_settings_field(
-		'wpspx_disable_fontawesome',
-		__( 'Disable Font Awesome', 'wpspx' ),
-		'wpspx_disable_fontawesome_render',
-		'wpspxPluginPageSupport',
-		'wpspx_wpspxPluginPageSupport_section'
-	);
-
-	// License Settings
-	register_setting( 'wpspxPluginPageLicense', 'wpspx_licence_settings' );
-
-	add_settings_section(
-		'wpspx_wpspxPluginLicense_section',
-		__( 'License', 'wpspx' ),
-		'wpspx_settings_license_section_callback',
-		'wpspxPluginPageLicense'
-	);
-
-	add_settings_field(
-		'wpspx_license_key',
-		__( 'WPSPX License', 'wpspx' ),
-		'wpspx_license_key_render',
-		'wpspxPluginPageLicense',
-		'wpspx_wpspxPluginLicense_section'
-	);
-
 }
 
 // Client Account Name
 function wpspx_account_name_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
-
-	$is_disabled = true;
-	$license = get_option( 'wpspx_licence_settings' );
-	$lkey = $license['wpspx_license_key'];
-	if ($lkey) {
-		$validation = wpspx_callback_validate($lkey);
-		if ($validation->success == 1):
-			$is_disabled = false;
-		endif;
-	}
 	?>
-	<input type='text' name='wpspx_settings[wpspx_account_name]' value='<?php echo $options['wpspx_account_name']; ?>'<?php disabled( $is_disabled ) ?>>
-	<span>Your account name is the theatrename ius your admin interface url: https://system.spektrix.com/[your account name]/</span>
+	<input type='text' name='wpspx_settings[wpspx_account_name]' value='<?php echo $options['wpspx_account_name']; ?>'>
 	<?php
-
+	echo __( '<span>Your account name is the theatre name in your admin interface url: https://system.spektrix.com/[your account name]/</span>', 'wpspx' );
 }
 
 // Client API Key
@@ -227,20 +179,10 @@ function wpspx_api_username_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
 	$username = $options['wpspx_api_username'];
-
-	$is_disabled = true;
-	$license = get_option( 'wpspx_licence_settings' );
-	$lkey = $license['wpspx_license_key'];
-	if ($lkey) {
-		$validation = wpspx_callback_validate($lkey);
-		if ($validation->success == 1):
-			$is_disabled = false;
-		endif;
-	}
 	?>
-	<input type='text' id='ssn' name='wpspx_settings[wpspx_api_username]' value='<?php if ($username): echo $username; endif; ?>' <?php disabled( $is_disabled ) ?>>
-	<span>You will need to request an API Username though your spektrix account manager.</span>
+	<input type='text' id='ssn' name='wpspx_settings[wpspx_api_username]' value='<?php if ($username): echo $username; endif; ?>'>
 	<?php
+	echo __( '<span>You will need to request an API Username though your spektrix account manager.</span>', 'wpspx' );
 
 }
 
@@ -249,62 +191,29 @@ function wpspx_api_key_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
 	$key = $options['wpspx_api_key'];
-
-	$is_disabled = true;
-	$license = get_option( 'wpspx_licence_settings' );
-	$lkey = $license['wpspx_license_key'];
-	if ($lkey) {
-		$validation = wpspx_callback_validate($lkey);
-		if ($validation->success == 1):
-			$is_disabled = false;
-		endif;
-	}
 	?>
-	<textarea rows='7' cols='50' type='textarea' id='ssn' style="width: 100%;margin-bottom: 10px;" name='wpspx_settings[wpspx_api_key]' value='' <?php disabled( $is_disabled ) ?>><?php if ($key): echo $key;  endif; ?></textarea>
-	<span>You will need to request an API key though your spektrix account manager.</span>
+	<textarea rows='7' cols='50' type='textarea' id='ssn' style="width: 100%;margin-bottom: 10px;" name='wpspx_settings[wpspx_api_key]' value=''><?php if ($key): echo $key;  endif; ?></textarea>
 	<?php
-
+	echo __( '<span>You will need to request an API key though your spektrix account manager.</span>', 'wpspx' );
 }
 
 // Custom URL
 function wpspx_custom_domain_render(  ) {
 
 	$options = get_option( 'wpspx_settings' );
-
-	$is_disabled = true;
-	$license = get_option( 'wpspx_licence_settings' );
-	$lkey = $license['wpspx_license_key'];
-	if ($lkey) {
-		$validation = wpspx_callback_validate($lkey);
-		if ($validation->success == 1):
-			$is_disabled = false;
-		endif;
-	}
 	?>
-	<input type='text' name='wpspx_settings[wpspx_custom_domain]' value='<?php echo $options['wpspx_custom_domain']; ?>' <?php disabled( $is_disabled ) ?>>
-	<span>A custom domain such as tickets.theatre.com <a target="_blank" href="https://integrate.spektrix.com/docs/customdomains">Instructions to set this up</a></span>
+	<input type='text' name='wpspx_settings[wpspx_custom_domain]' value='<?php echo $options['wpspx_custom_domain']; ?>'>
 	<?php
-
+	echo __( '<span>A custom domain such as tickets.theatre.com <a target="_blank" href="https://integrate.spektrix.com/docs/customdomains">Follow these instructions to set this up</a></span>', 'wpspx' );
 }
 
 // Disbale WPSPX Styles
 function wpspx_disable_styles_render(  ) {
 
 	$options = get_option( 'wpspx_support_settings' );
+	echo __( '<p>WPSPX uses the Milligram CSS framework. If you experience issues with your theme, please disable the plugin\'s CSS and compose your own style.</p>', 'wpspx' );
 	?>
-	<p>WPSPX uses the Milligram CSS framework. If you experience issues with your theme, please disable the plugin's CSS and compose your own style.</p>
 	<input type='checkbox' class="checkbox" value="1" name='wpspx_support_settings[wpspx_disable_styles]' <?php checked( 1 == isset($options['wpspx_disable_styles'] )); ?>>
-	<?php
-
-}
-
-// Disbale WPSPX Font Awesome
-function wpspx_disable_fontawesome_render(  ) {
-
-	$options = get_option( 'wpspx_support_settings' );
-	?>
-	<p>WPSPX uses Font Awesome. You should disable this if your theme already uses it.</p>
-	<input type='checkbox' class="checkbox" value="1" name='wpspx_support_settings[wpspx_disable_fontawesome]' <?php checked( 1 == isset($options['wpspx_disable_fontawesome'] )); ?>>
 	<?php
 
 }
@@ -327,13 +236,13 @@ function wpspx_cache_expires_render(  ) {
 
 function wpspx_support_section_callback(  ) {
 
-	echo __( '<p>Please review the <a href="https://docs.wpspx.io" target="_blank" >documentation</a> first. If you can\'t find the answer open a support ticket and we will be happy to answer your questions and assist you with any problems. Please note: If you have not purchased a license from us, you will not have access to these help resources.</p>', 'wpspx' );
+	echo __( '<p>Please review the <a href="https://docs.wpspx.io" target="_blank" >documentation</a> first. If you can\'t find the answer open a support ticket and we will be happy to answer your questions or assist you with any problems.</p>', 'wpspx' );
 
 }
 
 function wpspx_settings_section_callback(  ) {
 
-	echo __( '<p>Please populate the below fields with your API credentials from your Spektrix control panel. You will need a valid API key, your account name &amp; a custom domain.</p>', 'wpspx' );
+	echo __( '<p>Please populate the below fields with your API credentials from your Spektrix control panel. You will need a valid account name &amp; a custom domain.</p>', 'wpspx' );
 
 }
 
@@ -344,45 +253,10 @@ function wpspx_settings_cache_section_callback(  ) {
 
 }
 
-function wpspx_settings_license_section_callback(  ) {
-
-	echo __( '<p>You can find your license key contained inside your payment confirmation email.</p>', 'wpspx' );
-
-}
-
-function wpspx_license_key_render() {
-
-
-	$message = "";
-	$validation = null;
-	$license = get_option( 'wpspx_licence_settings' );
-	$key = $license['wpspx_license_key'];
-	if ($key) {
-		$validation = wpspx_callback_validate($key);
-		if ($validation->success == 1):
-			if ($validation->data->remainingActivations >= 1) {
-				$activate = wpspx_callback_activate($key);
-			}
-			$licenseinfo = wpspx_callback_retrieve($key);
-			$message = "<span class='active'>Licence active</span><br>
-			<span>Remaining ctivations: ".$validation->data->remainingActivations."</span><br /><span>Valid for: ".$licenseinfo->data->validFor." days</span>";
-		else:
-			delete_site_option( 'wpspx_licence_settings' );
-			$message = "<span class='error'>Invalid License entered.</span>";
-		endif;
-	}
-	?>
-	<input type='text' id='ssn' name='wpspx_licence_settings[wpspx_license_key]' value='<?php if ($key): ?>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-&bull;&bull;&bull;&bull;-<?php echo substr($key, -4,4); ?><?php endif; ?>'>
-	<?php
-	echo $message;
-
-
-}
-
 function wpspx_settings_initial_posts_section_callback(  ) {
 
 	// Grab all future shows in spektrix and all shows in WordPress
-	$shows_in_spektrix = Show::find_all_in_future();
+	$shows_in_spektrix = WPSPX_Show::find_all_in_future();
 
 }
 
@@ -409,7 +283,6 @@ function wpspx_options_page(  ) {
 							<?php if (is_plugin_active('wpspx-login/wp-spektrix-login.php')): ?>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-login' ?>">Login</a></li>
 							<?php endif; ?>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-license' ?>">License</a></li>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-support' ?>">Support</a></li>
 						</ul>
 					</nav>
@@ -419,9 +292,9 @@ function wpspx_options_page(  ) {
 
 					<?php if (isset($_GET['settings-updated'])): ?>
 					<div class="notice notice-success is-dismissible">
-						<p><strong>Settings saved.</strong></p>
+						<p><strong><?php echo __( 'Settings Saved', 'wpspx' ); ?></strong></p>
 						<button type="button" class="notice-dismiss">
-							<span class="screen-reader-text">Dismiss this notice.</span>
+							<span class="screen-reader-text"><?php echo __( 'Dismiss', 'wpspx' ); ?></span>
 						</button>
 					</div>
 					<?php endif; ?>
@@ -433,16 +306,7 @@ function wpspx_options_page(  ) {
 								<?php
 								settings_fields( 'wpspxPluginPage' );
 								do_settings_sections( 'wpspxPluginPage' );
-								$license = get_option( 'wpspx_licence_settings' );
-								$key = $license['wpspx_license_key'];
-								if ($key) {
-									$validation = wpspx_callback_validate($key);
-									if ($validation->success == 1):
-										submit_button();
-									else:
-										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
-									endif;
-								}
+								submit_button();
 								?>
 							</section>
 						</div>
@@ -479,7 +343,6 @@ function wpspx_cache_options_page(  ) {
 							<?php if (is_plugin_active('wpspx-login/wp-spektrix-login.php')): ?>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-login' ?>">Login</a></li>
 							<?php endif; ?>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-license' ?>">License</a></li>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-support' ?>">Support</a></li>
 						</ul>
 					</nav>
@@ -494,9 +357,9 @@ function wpspx_cache_options_page(  ) {
 						{
 							array_map('unlink', glob($cached_files)); ?>
 							<div class="notice notice-success is-dismissible">
-								<p><strong>Settings saved.</strong></p>
+								<p><strong><?php echo __( 'Settings Saved', 'wpspx' ); ?></strong></p>
 								<button type="button" class="notice-dismiss">
-									<span class="screen-reader-text">Dismiss this notice.</span>
+									<span class="screen-reader-text"><?php echo __( 'Dismiss', 'wpspx' ); ?></span>
 								</button>
 							</div>
 							<?php
@@ -520,33 +383,16 @@ function wpspx_cache_options_page(  ) {
 								do_settings_sections( 'wpspxPluginPageCache' );
 								$cached_dir = WP_CONTENT_DIR . '/wpspx-cache/';
 								$cached_files = glob($cached_dir . "*.json");
-
-								$license = get_option( 'wpspx_licence_settings' );
-								$key = $license['wpspx_license_key'];
-								if ($key) {
-									$validation = wpspx_callback_validate($key);
-									if ($validation->success == 1):
-										submit_button("Save Cache Settings");
-									else:
-										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
-									endif;
-								}
+								submit_button("Save Cache Settings");
 								?>
 								<p>
-									Clearing this cache completely remove all cached API data data from the server. <strong>Proceed with caution</strong> as this will cause your site to run slowly untill the cache has been rebuilt.
+									<?php echo __( 'Clearing this cache completely remove all cached API data data from the server. <strong>Proceed with caution</strong> as this will cause your site to run slowly untill the cache has been rebuilt.', 'wpspx' ); ?>
 								</p>
 								<h4>
-									There are currnelty <?php echo count($cached_files); ?> cached files
+									<?php echo __( 'There are currnelty '. count($cached_files) .' cached files', 'wpspx' ); ?>
 								</h4>
 								<?php
-								if ($key) {
-									$validation = wpspx_callback_validate($key);
-									if ($validation->success == 1):
-										submit_button("Clear Cache", "large", "clear-cache");
-									else:
-										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
-									endif;
-								}
+									submit_button("Clear Cache", "large", "clear-cache");
 								?>
 							</section>
 						</div>
@@ -583,7 +429,6 @@ function wpspx_support_options_page(  ) {
 							<?php if (is_plugin_active('wpspx-login/wp-spektrix-login.php')): ?>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-login' ?>">Login</a></li>
 							<?php endif; ?>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-license' ?>">License</a></li>
 							<li><a class="active" href="<?php echo admin_url() . 'admin.php?page=wpspx-support' ?>">Support</a></li>
 						</ul>
 					</nav>
@@ -593,9 +438,9 @@ function wpspx_support_options_page(  ) {
 
 					<?php if (isset($_GET['settings-updated'])): ?>
 					<div class="notice notice-success is-dismissible">
-						<p><strong>Settings saved.</strong></p>
+						<p><strong><?php echo __( 'Settings Saved', 'wpspx' ); ?></strong></p>
 						<button type="button" class="notice-dismiss">
-							<span class="screen-reader-text">Dismiss this notice.</span>
+							<span class="screen-reader-text"><?php echo __( 'Dismiss', 'wpspx' ); ?></span>
 						</button>
 					</div>
 					<?php endif; ?>
@@ -609,48 +454,32 @@ function wpspx_support_options_page(  ) {
 								do_settings_sections( 'wpspxPluginPageSupport' );
 								?>
 								<br /><br /><?php
-								$license = get_option( 'wpspx_licence_settings' );
-								$key = $license['wpspx_license_key'];
-								if ($key) {
-									$validation = wpspx_callback_validate($key);
-									if ($validation->success == 1):
-										submit_button('Save Settings');
-									else:
-										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
-									endif;
-								}
+								submit_button('Save Settings');
 								?>
-
-								<h2>Links</h2>
-								<ul>
-									<li><a target="_blank" href="https://docs.wpspx.io">Documentation</a></li>
-									<li><a target="_blank" href="https://integrate.spektrix.com/docs/customdomains">Custom Domain Setup</a></li>
-								</ul>
-
-								<h2>API Data Information</h2>
-								<h3>Memberships</h3>
+								<h2><?php echo __( 'API Data', 'wpspx' ); ?></h2>
+								<h3><?php echo __( 'Memberships', 'wpspx' ); ?></h3>
 								<?php
-								$api = New Spektrix();
+								$api = New WPSPX_Spektrix();
 								$memberships = $api->get_memberships();
 								?>
 								<dl>
-									<dt>Name</dt>
-									<dd>ID</dd>
+									<dt><?php echo __( 'Name', 'wpspx' ); ?></dt>
+									<dd><?php echo __( 'ID', 'wpspx' ); ?></dd>
 									<?php foreach ($memberships as $membership): ?>
 										<dt><?php echo $membership->name ?></dt>
 										<dd><?php echo $membership->id ?></dd>
 									<?php endforeach; ?>
 								</dl>
 
-								<h3>Shows</h3>
+								<h3><?php echo __( 'Shows', 'wpspx' ); ?></h3>
 								<?php
-								$shows = Show::find_all_in_future_with_instances();
+								$shows = WPSPX_Show::find_all_in_future_with_instances();
 							    $wp_shows = get_wp_shows_from_spektrix_shows($shows);
 							    $shows = filter_published($shows,$wp_shows);
 								?>
 								<dl>
-									<dt>Name</dt>
-									<dd>ID</dd>
+									<dt><?php echo __( 'Name', 'wpspx' ); ?></dt>
+									<dd><?php echo __( 'ID', 'wpspx' ); ?></dd>
 									<?php foreach($shows as $show): ?>
 										<dt><?php echo $show->name ?></dt>
 										<dd><?php echo $show->id ?></dd>
@@ -658,13 +487,13 @@ function wpspx_support_options_page(  ) {
 								</dl>
 
 
-								<h2>Debug Info</h2>
+								<h2><?php echo __( 'Dubug Info', 'wpspx' ); ?></h2>
 								<?php
 									// plugin info
 									$wpspx_info = get_plugin_data( WPSPX_PLUGIN_DIR . '/wp-spektrix.php' );
 
 									// Show info
-									$shows_in_spektrix = Show::find_all_in_future();
+									$shows_in_spektrix = WPSPX_Show::find_all_in_future();
 									$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
 									$wp_shows = array();
 									foreach($shows_in_wordpress as $siw){
@@ -682,49 +511,49 @@ function wpspx_support_options_page(  ) {
 										<dd><?php echo home_url(); ?></dd>
 									</dl>
 									<dl>
-										<dt>Database Name</dt>
+										<dt><?php echo __( 'Database Name', 'wpspx' ); ?></dt>
 										<dd><?php echo DB_NAME ?></dd>
-										<dt>Table Prefix</dt>
+										<dt><?php echo __( 'Table Prefix', 'wpspx' ); ?></dt>
 										<dd><?php echo $wpdb->prefix; ?></dd>
 									</dl>
 									<dl>
-										<dt>WordPress Version</dt>
+										<dt><?php echo __( 'WordPress Version', 'wpspx' ); ?></dt>
 										<dd><?php bloginfo('version'); ?></dd>
 									</dl>
 									<dl>
-										<dt>WPSPX Version</dt>
+										<dt><?php echo __( 'WPSPX Version', 'wpspx' ); ?></dt>
 										<dd><?php echo $wpspx_info['Version']; ?></dd>
-										<dt>Shows in Spektrix (in the future)</dt>
+										<dt><?php echo __( 'Shows in Spektrix (in the future)', 'wpspx' ); ?></dt>
 										<dd><?php echo count($shows_in_spektrix); ?></dd>
-										<dt>Shows in WordPress</dt>
+										<dt><?php echo __( 'Shows in Spektrix', 'wpspx' ); ?></dt>
 										<dd><?php echo count($wp_shows); ?></dd>
 									</dl>
 									<dl>
-										<dt>Web Server</dt>
+										<dt><?php echo __( 'Web Server', 'wpspx' ); ?></dt>
 										<dd><?php echo $_SERVER['SERVER_SOFTWARE']; ?></dd>
-										<dt>PHP</dt>
+										<dt><?php echo __( 'PHP Version', 'wpspx' ); ?></dt>
 										<dd><?php echo phpversion(); ?></dd>
-										<dt>WP Memory Limit</dt>
+										<dt><?php echo __( 'WP Memory Limit', 'wpspx' ); ?></dt>
 										<dd><?php echo WP_MEMORY_LIMIT; ?></dd>
-										<dt>PHP Time Limit</dt>
+										<dt><?php echo __( 'Max Execution Time', 'wpspx' ); ?></dt>
 										<dd><?php echo ini_get('max_execution_time'); ?></dd>
-										<dt>SSL</dt>
+										<dt><?php echo __( 'SSL', 'wpspx' ); ?></dt>
 										<dd><?php echo $_SERVER['HTTPS']; ?></dd>
 									</dl>
 									<dl>
-										<dt>Debug Mode</dt>
+										<dt><?php echo __( 'Debug Mode', 'wpspx' ); ?></dt>
 										<dd><?php if (defined('WP_DEBUG') && true === WP_DEBUG) {
 											echo 'Enabled';
 										} else {
 											echo 'Disabled';
 										}; ?></dd>
-										<dt>Debug Log</dt>
+										<dt><?php echo __( 'Debug Log', 'wpspx' ); ?></dt>
 										<dd><?php if (defined('WP_DEBUG_LOG') && true === WP_DEBUG) {
 											echo 'Enabled';
 										} else {
 											echo 'Disabled';
 										}; ?></dd>
-										<dt>Script Debug</dt>
+										<dt><?php echo __( 'Script Debug', 'wpspx' ); ?></dt>
 										<dd><?php if (defined('SCRIPT_DEBUG') && true === WP_DEBUG) {
 											echo 'Enabled';
 										} else {
@@ -732,22 +561,22 @@ function wpspx_support_options_page(  ) {
 										}; ?></dd>
 									</dl>
 									<dl>
-										<dt>WP Max Upload Size</dt>
+										<dt><?php echo __( 'Max Upload Size', 'wpspx' ); ?></dt>
 										<dd><?php echo ini_get('upload_max_size'); ?></dd>
-										<dt>PHP Post Max Size</dt>
+										<dt><?php echo __( 'Post Max Size', 'wpspx' ); ?></dt>
 										<dd><?php echo ini_get('post_max_size'); ?></dd>
 									</dl>
 									<dl>
-										<dt>SPEKTRIX_USER</dt>
-										<dd><?php echo SPEKTRIX_USER; ?></dd>
-										<dt>SPEKTRIX_CUSTOM_URL</dt>
-										<dd><?php echo SPEKTRIX_CUSTOM_URL; ?></dd>
-										<dt>SPEKTRIX_API_URL</dt>
-										<dd><?php echo SPEKTRIX_API_URL; ?></dd>
-										<dt>SPEKTRIX_SECURE_WEB_URL</dt>
-										<dd><?php echo SPEKTRIX_SECURE_WEB_URL; ?></dd>
-										<dt>SPEKTRIX_NON_SECURE_WEB_URL</dt>
-										<dd><?php echo SPEKTRIX_NON_SECURE_WEB_URL; ?></dd>
+										<dt>WPSPX_SPEKTRIX_USER</dt>
+										<dd><?php echo WPSPX_SPEKTRIX_USER; ?></dd>
+										<dt>WPSPX_SPEKTRIX_CUSTOM_URL</dt>
+										<dd><?php echo WPSPX_SPEKTRIX_CUSTOM_URL; ?></dd>
+										<dt>WPSPX_SPEKTRIX_API_URL</dt>
+										<dd><?php echo WPSPX_SPEKTRIX_API_URL; ?></dd>
+										<dt>WPSPX_SPEKTRIX_SECURE_WEB_URL</dt>
+										<dd><?php echo WPSPX_SPEKTRIX_SECURE_WEB_URL; ?></dd>
+										<dt>WPSPX_SPEKTRIX_NON_SECURE_WEB_URL</dt>
+										<dd><?php echo WPSPX_SPEKTRIX_NON_SECURE_WEB_URL; ?></dd>
 										<dt>WP_CONTENT_URL</dt>
 										<dd><?php echo WP_CONTENT_URL; ?></dd>
 										<dt>WP_CONTENT_DIR</dt>
@@ -758,11 +587,11 @@ function wpspx_support_options_page(  ) {
 										<dd><?php echo WP_PLUGIN_URL; ?></dd>
 									</dl>
 									<dl>
-										<dt>Active Theme Name:</dt>
+										<dt><?php echo __( 'Active Theme Name', 'wpspx' ); ?></dt>
 										<dd><?php echo wp_get_theme(); ?></dd>
 									</dl>
 									<dl>
-										<dt>Active Plugins</dt>
+										<dt><?php echo __( 'Active Plugins', 'wpspx' ); ?></dt>
 										<dd>
 											<?php
 											$apl = get_option('active_plugins');
@@ -808,11 +637,11 @@ function wpspx_shows_options_page(  ) {
 
 				<div class="done">
 					<ul class="list">
-						<li>Caching Spektrix Data</li>
+						<li><?php echo __( 'Fetching Spektrix Data', 'wpspx' ); ?></li>
 					</ul>
 					<a class="close-cacher button button-primary" href="<?php echo get_admin_url(); ?>/admin.php?page=wpspx-shows">Close</a>
 					<div id="stopwatch">
-						Time elapsed
+						<?php echo __( 'Time elapsed:', 'wpspx' ); ?>
 						<span id="sw_h">00</span>:
     					<span id="sw_m">00</span>:
     					<span id="sw_s">00</span>:
@@ -835,7 +664,6 @@ function wpspx_shows_options_page(  ) {
 							<?php if (is_plugin_active('wpspx-login/wp-spektrix-login.php')): ?>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-login' ?>">Login</a></li>
 							<?php endif; ?>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-license' ?>">License</a></li>
 							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-support' ?>">Support</a></li>
 						</ul>
 					</nav>
@@ -847,9 +675,9 @@ function wpspx_shows_options_page(  ) {
 					if (isset($_GET['settings-updated'])):
 					?>
 					<div class="notice notice-success is-dismissible">
-						<p><strong>Shows Synced.</strong></p>
+						<p><strong><?php echo __( 'Shows Synced', 'wpspx' ); ?></strong></p>
 						<button type="button" class="notice-dismiss">
-							<span class="screen-reader-text">Dismiss this notice.</span>
+							<span class="screen-reader-text"><?php echo __( 'Dismiss', 'wpspx' ); ?></span>
 						</button>
 					</div>
 					<?php endif; ?>
@@ -858,16 +686,16 @@ function wpspx_shows_options_page(  ) {
 
 						<div class="content">
 							<input type="hidden" name="cache_url" value="<?php echo WP_CONTENT_DIR; ?>/wpspx-cache/">
-							<input type="hidden" name="plugin_url" value="<?php echo plugin_dir_url( __FILE__ ); ?>cache/">
-							<input type="hidden" name="spektrix_url" value="<?php echo SPEKTRIX_API_URL; ?>">
+							<input type="hidden" name="fetch_url" value="<?php echo home_url(); ?>">
+							<input type="hidden" name="spektrix_url" value="<?php echo WPSPX_SPEKTRIX_API_URL; ?>">
 
 							<section>
-								<h2>Data Sync</h2>
+								<h2><?php echo __( 'Data Sync', 'wpspx' ); ?></h2>
 								<p>
-									Below you will see how many shows are available to sync from Spektrix. By default this is set to all shows in the future.
+									<?php echo __( 'Below you will see how many shows are available to sync from Spektrix. By default this is set to all shows in the future.', 'wpspx' ); ?>
 								</p>
 								<?php
-								$shows_in_spektrix = Show::find_all_in_future();
+								$shows_in_spektrix = WPSPX_Show::find_all_in_future();
 								$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
 
 						    	// Create an array of IDs of shows in WP.
@@ -879,115 +707,28 @@ function wpspx_shows_options_page(  ) {
 								?>
 								<div class="header">
 									<div class="showsinspk half">
-										<p>Shows Available in Spektrix</p>
+										<p><?php echo __( 'Shows Available in Spektrix', 'wpspx' ); ?></p>
 										<span><?php echo count($shows_in_spektrix); ?></span>
 									</div>
 									<div class="showsinwp half">
-										<p>Shows synned already</p>
+										<p><?php echo __( 'Shows already synced', 'wpspx' ); ?></p>
 										<span><?php echo count($wp_shows); ?></span>
 									</div>
 								</div>
 								<p>
 									<strong>
-										Please note this can take up to 5 minutes to complete.
+										<?php echo __( 'This can take upto 5 minutes to complete', 'wpspx' ); ?>
 									</strong>
 								</p>
 								<?php
 								settings_fields( 'wpspxPluginPagePosts' );
 								do_settings_sections( 'wpspxPluginPagePosts' );
-								// $showstosync = count($shows_in_spektrix) - count($wp_shows);
-								// $synctext =  'Sync '.$showstosync.' Shows';
-								// $other_attributes = array();
-								// if ($showstosync < 1) {
-								// 	$synctext =  'All Available Shows Synced';
-								// 	$other_attributes = array( 'disabled' => 'disabled' );
-								// }
 								?>
 								<div class="loading">
 									<div class="spin"></div>
 								</div>
-								<?php
-								$license = get_option( 'wpspx_licence_settings' );
-								$key = $license['wpspx_license_key'];
-								if ($key) {
-									$validation = wpspx_callback_validate($key);
-									// if ($validation->success == 1):
-									// 	submit_button($synctext, 'primary', 'publishshows', true );
-									// else:
-									// 	echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
-									// endif;
-									if ($validation->success == 1):
-										echo '<a href="#" id="cache_selected_data" class="button button-primary">Cache selected data</a>';
-									else:
-										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please register WPSPX to cache data">';
-									endif;
-								}
+								<a href="#" onclick="wpspx_cache()" class="button button-primary"><?php echo __( 'Fetch Data', 'wpspx' ); ?></a>
 
-								?>
-
-
-							</section>
-						</div>
-					</div>
-
-				</article>
-
-			</div>
-
-		</form>
-		<?php
-
-}
-
-function wpspx_license_options_page(  ) {
-		?>
-		<form action='options.php' method='post' autocomplete="off">
-
-			<div class="wpspx-wrapper">
-
-				<header>
-					<div class="logo">
-						<img src="<?php echo WPSPX_PLUGIN_URL; ?>/lib/assets/logo.svg" alt="" width="160px">
-					</div>
-					<nav>
-						<ul>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx' ?>">API Settings</a></li>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-shows' ?>">Data Sync</a></li>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-cache' ?>">Cache</a></li>
-							<?php if (is_plugin_active('wpspx-basket/wp-spektrix-basket.php')): ?>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-basket' ?>">Basket</a></li>
-							<?php endif; ?>
-							<?php if (is_plugin_active('wpspx-login/wp-spektrix-login.php')): ?>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-login' ?>">Login</a></li>
-							<?php endif; ?>
-							<li><a class="active" href="<?php echo admin_url() . 'admin.php?page=wpspx-license' ?>">License</a></li>
-							<li><a href="<?php echo admin_url() . 'admin.php?page=wpspx-support' ?>">Support</a></li>
-						</ul>
-					</nav>
-				</header>
-
-				<article>
-
-					<?php if (isset($_GET['settings-updated'])): ?>
-					<div class="notice notice-success is-dismissible">
-						<p><strong>Licenxe Saved.</strong></p>
-						<button type="button" class="notice-dismiss">
-							<span class="screen-reader-text">Dismiss this notice.</span>
-						</button>
-					</div>
-					<?php endif; ?>
-
-					<div class="tab">
-
-						<div class="content">
-							<section>
-								<?php
-								settings_fields( 'wpspxPluginPageLicense' );
-								do_settings_sections( 'wpspxPluginPageLicense' );
-								?>
-								<br /><br /><?php
-								submit_button('Activate Licence');
-								?>
 							</section>
 						</div>
 					</div>

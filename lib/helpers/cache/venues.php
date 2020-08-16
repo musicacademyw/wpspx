@@ -1,5 +1,12 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/wp-blog-header.php';
-$api = New Spektrix();
+if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+/*
+* Cache venue informatio from Spektrix
+*/
+
+
+$api = New WPSPX_Spektrix();
 $venues = $api->get_data('venues');
+
+
 ?>

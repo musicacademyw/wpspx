@@ -7,7 +7,7 @@
  * From their API docs:
  * "An event in Spektrix can be thought of as a ‘show’. It encapsulates the descriptive data about an event, such as its Name and Description. It is a container for instances."
  */
-class Show extends Spektrix
+class WPSPX_Show extends WPSPX_Spektrix
 {
 	public $id;
 	public $name;
@@ -45,7 +45,7 @@ class Show extends Spektrix
 
 	static function find_all_in_future()
 	{
-		$api = new Spektrix();
+		$api = new WPSPX_Spektrix();
 		$eternity = time() + (60 * 60 * 24 * 7 * 500);
 		$shows = $api->get_shows_until($eternity);
 		return $api->collect_shows($shows);
@@ -53,7 +53,7 @@ class Show extends Spektrix
 
 	static function find_all_in_future_with_instances()
 	{
-		$api = new Spektrix();
+		$api = new WPSPX_Spektrix();
 		$eternity = time() + (60 * 60 * 24 * 7 * 500);
 		$shows = $api->get_shows_until_expanded($eternity);
 		return $api->collect_shows($shows);
@@ -61,7 +61,7 @@ class Show extends Spektrix
 
 	static function this_week()
 	{
-		$api = new Spektrix();
+		$api = new WPSPX_Spektrix();
 		$next_week = time() + (60 * 60 * 24 * 7);
 		$shows = $api->get_shows_until($next_week);
 		return $api->collect_shows($shows);

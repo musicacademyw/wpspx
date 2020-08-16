@@ -16,7 +16,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 	<div class="wpspx-container">
 
-		<spektrix-donate client-name="<?php echo SPEKTRIX_USER; ?>" custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>" fund-id="" id="selectfundcomponent">
+		<spektrix-donate client-name="<?php echo WPSPX_SPEKTRIX_USER; ?>" custom-domain="<?php echo WPSPX_SPEKTRIX_CUSTOM_URL; ?>" fund-id="" id="selectfundcomponent">
 
 			<div class="wpspx-row header">
 				<div class="wpspx-column">

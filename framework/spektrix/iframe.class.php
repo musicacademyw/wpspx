@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class iFrame
+class WPSPX_iFrame
 {
   public $url;
 
@@ -8,8 +8,8 @@ class iFrame
   private $params_string;
   public $secure;
 
-  private $secure_prefix = SPEKTRIX_SECURE_WEB_URL;
-  private $insecure_prefix = SPEKTRIX_NON_SECURE_WEB_URL;
+  private $secure_prefix = WPSPX_SPEKTRIX_SECURE_WEB_URL;
+  private $insecure_prefix = WPSPX_SPEKTRIX_NON_SECURE_WEB_URL;
 
   function __construct($page_name, $params = false, $secure = false){
     $this->page_name = strtolower($page_name);

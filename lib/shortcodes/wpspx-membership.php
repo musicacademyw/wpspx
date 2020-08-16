@@ -20,8 +20,8 @@ function wpspxmembership($atts)
 	?>
 	<spektrix-memberships
 		class="wpspx-membership-box"
-		client-name="<?php echo SPEKTRIX_USER; ?>"
-		custom-domain="<?php echo SPEKTRIX_CUSTOM_URL; ?>"
+		client-name="<?php echo WPSPX_SPEKTRIX_USER; ?>"
+		custom-domain="<?php echo WPSPX_SPEKTRIX_CUSTOM_URL; ?>"
 		membership-id="<?php echo $atts['id'] ?>">
 
 		<div class="wpspx-row wpspx-membership-heading-row">

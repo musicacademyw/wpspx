@@ -29,7 +29,7 @@ get_header();
 			<?php
 
 			else:
-				$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance));
+				$spektrix_iframe_url = new WPSPX_iFrame('ChooseSeats',array('EventInstanceId' => $performance));
 				echo $spektrix_iframe_url->render_iframe();
 			endif;
 			?>

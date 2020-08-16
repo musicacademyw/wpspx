@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class Memberships extends Spektrix
+class WPSPX_Memberships extends WPSPX_Spektrix
 {
 	public $id;
 	public $name;

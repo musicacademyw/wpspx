@@ -9,7 +9,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
  */
 
  $spektrix_id = get_post_meta($post->ID,'_spektrix_id',true);
- $show = new Show($spektrix_id);
+ $show = new WPSPX_Show($spektrix_id);
 
  // is_on_sale
  // short_description
@@ -96,10 +96,10 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 					?>
 					<div class="wpspx-performance wpspx-row">
 						<div class="wpspx-performance-date wpspx-column wpspx-column-20">
-							<i class="far fa-calendar-alt"></i> <?php echo $performance->start_time->format('D d M') ?>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> <?php echo $performance->start_time->format('D d M') ?>
 						</div>
 						<div class="wpspx-performance-time wpspx-column wpspx-column-20">
-							<i class="far fa-clock"></i> <?php echo $performance->start_time->format('g:ia') ?>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <?php echo $performance->start_time->format('g:ia') ?>
 						</div>
 						<div class="wpspx-performance-attr wpspx-column wpspx-column-20">
 							<?php if ($performance->start_time->format('h') < 5): ?>
@@ -143,7 +143,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 		<div class="wpspx-no-performaces wpspx-row">
 			<div class="alert warn">
 				<!-- <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> -->
-				This is an alert box.
+				No performacesare currently available.
 			</div>
 		</div>
 		<?php endif //is in future ?>

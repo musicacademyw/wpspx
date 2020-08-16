@@ -19,7 +19,7 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 		<div class="wpspx-row">
 
 			<?php
-			$spektrix_iframe_url = new iFrame('MyAccount',NULL,true);
+			$spektrix_iframe_url = new WPSPX_iFrame('MyAccount',NULL,true);
 			echo $spektrix_iframe_url->render_iframe();
 			?>
 

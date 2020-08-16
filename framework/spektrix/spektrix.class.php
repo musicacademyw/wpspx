@@ -4,11 +4,10 @@
  * Spektrix is a base class for hitting the API and retrieving data
  */
 
-class Spektrix
+class WPSPX_Spektrix
 {
 
-	private static $api_key = SPEKTRIX_API;
-	private static $api_url = SPEKTRIX_API_URL;
+	private static $api_url = WPSPX_SPEKTRIX_API_URL;
 
 	function build_url($resource,$params = array())
 	{
@@ -48,7 +47,7 @@ class Spektrix
 
 	function get_object($resource,$params=array())
 	{
-		$file = new CachedFile($resource, $params);
+		$file = new WPSPX_CachedFile($resource, $params);
 		try
 		{
 			if($file->is_cached_and_fresh()){
@@ -140,7 +139,7 @@ class Spektrix
 		$collection = array();
 		foreach($shows as $show){
 			$id = $show->id;
-			$collection[$id] = new Show($show);
+			$collection[$id] = new WPSPX_Show($show);
 		}
 		return $collection;
 	}
@@ -159,7 +158,7 @@ class Spektrix
 	{
 		$collection = array();
 		foreach($performances as $performance){
-			$collection[] = new Performance($performance);
+			$collection[] = new WPSPX_Performance($performance);
 		}
 		return $collection;
 	}
@@ -167,7 +166,7 @@ class Spektrix
 	function get_price_list($performance_id)
 	{
 		$pricelist = $this->get_object('instances/'.$performance_id.'/price-list');
-		$collection = new PriceList($pricelist);
+		$collection = new WPSPX_PriceList($pricelist);
 		return $collection;
 	}
 
@@ -176,7 +175,7 @@ class Spektrix
 		$collection = array();
 		foreach($performances as $performance){
 			$show_id = $performance->id;
-			$collection[$show_id][] = new Performance($performance);
+			$collection[$show_id][] = new WPSPX_Performance($performance);
 		}
 		return $collection;
 	}
@@ -199,7 +198,7 @@ class Spektrix
 	function get_availability($performance_id)
 	{
 		$availabilities = $this->get_object('instances/'.$performance_id.'/status', array('includeChildPlans'=>'true'));
-		$collection = new Availability($availabilities);
+		$collection = new WPSPX_Availability($availabilities);
 		return $collection;
 	}
 
