@@ -5,7 +5,7 @@ Tags: spektrix, tickets, api, booking, theatre, wp-spektrix, wpspx
 Requires at least: 4.3
 Tested up to: 5.5
 Requires PHP: 7.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Author: Martin Greenwood
@@ -62,6 +62,10 @@ Check out the [Demo](https://demo.wpspx.io).
 20. WPSPX Basket (iframe)
 
 == Changelog ==
+
+= 1.0.2 =
+
+updated logos
 
 = 1.0.1 =
 

@@ -4,7 +4,7 @@
  * Tags: spektrix, tickets, api, booking, theatre
  * Plugin URI: https://martingreenwood.com/wordpress-spektrix-integration/
  * Description: A WordPress plugin that intergrates WordPress with Spektrix API
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Martin Greenwood
  * Author URI: https://martingreenwood.com
  * Text Domain: wpspx
